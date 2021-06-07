@@ -6,5 +6,6 @@
 
 module.exports = {
   siteName: 'Souza',
+  siteUrl: 'https://vitordesouza.github.io/',
   plugins: []
 }
