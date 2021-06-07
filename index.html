@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html data-html-server-rendered="true" lang="en" data-vue-tag="%7B%22lang%22:%7B%22ssr%22:%22en%22%7D%7D">
+
+<head>
+    <title>Hello, world! - Souza</title><meta name="gridsome:hash" content="905f3b8d19390c0700739bb340b08764b2313b8d"><meta data-vue-tag="ssr" charset="utf-8"><meta data-vue-tag="ssr" name="generator" content="Gridsome v0.7.23"><meta data-vue-tag="ssr" data-key="viewport" name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta data-vue-tag="ssr" data-key="format-detection" name="format-detection" content="telephone=no"><link data-vue-tag="ssr" rel="icon" href="data:,"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="16x16" href="/assets/static/favicon.ce0531f.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="32x32" href="/assets/static/favicon.ac8d93a.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="96x96" href="/assets/static/favicon.b9532cc.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="76x76" href="/assets/static/favicon.f22e9f3.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="152x152" href="/assets/static/favicon.62d22cb.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="120x120" href="/assets/static/favicon.1539b60.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="167x167" href="/assets/static/favicon.dc0cdc5.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/static/favicon.7b22250.9bb7ffafafc09ac851d81afb65b8ef59.png"><link rel="preload" href="/assets/css/0.styles.69b89898.css" as="style"><link rel="preload" href="/assets/js/app.e30860b4.js" as="script"><link rel="preload" href="/assets/js/page--src-pages-index-vue.fd8e03b3.js" as="script"><link rel="prefetch" href="/assets/js/page--src-pages-404-vue.8fb27335.js"><link rel="stylesheet" href="/assets/css/0.styles.69b89898.css"><noscript data-vue-tag="ssr"><style>.g-image--loading{display:none;}</style></noscript>
+</head>
+
+<body >
+    <script>
+        // Add dark / light detection that runs before Vue.js load. Borrowed from overreacted.io
+        (function () {
+            window.__onThemeChange = function () { };
+            function setTheme(newTheme) {
+                window.__theme = newTheme;
+                preferredTheme = newTheme;
+                document.body.setAttribute('data-theme', newTheme);
+                window.__onThemeChange(newTheme);
+            }
+
+            var preferredTheme;
+            try {
+                preferredTheme = localStorage.getItem('theme');
+            } catch (err) { }
+
+            window.__setPreferredTheme = function (newTheme) {
+                setTheme(newTheme);
+                try {
+                    localStorage.setItem('theme', newTheme);
+                } catch (err) { }
+            }
+
+            var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+            darkQuery.addListener(function (e) {
+                window.__setPreferredTheme(e.matches ? 'dark' : 'light');
+            });
+
+            setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'));
+        })();
+    </script>
+
+    <div id="app" data-server-rendered="true" class="layout"><header><div class="header-inner container flex gap-30"><a role="button" aria-label="Toggle sepia" title="Toggle sepia" class="toggle-theme"><span data-theme="light"></span><span data-theme="dark"></span><span data-theme="sepia"></span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></a><a href="/" aria-current="page" class="logo active--exact active"><strong>SOUZA</strong></a></div></header><main class="container"><section class="about-section"><img alt="Souza" src="data:image/svg+xml,%3csvg fill='none' viewBox='0 0 2160 1080' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3e%3cdefs%3e%3cfilter id='__svg-blur-6e6094e41f5d92583728aad4c5fae9f8'%3e%3cfeGaussianBlur in='SourceGraphic' stdDeviation='40'/%3e%3c/filter%3e%3c/defs%3e%3cimage x='0' y='0' filter='url(%23__svg-blur-6e6094e41f5d92583728aad4c5fae9f8)' width='2160' height='1080' xlink:href='data:image/jpeg%3bbase64%2c/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAgAEADASIAAhEBAxEB/8QAGwAAAQUBAQAAAAAAAAAAAAAAAgMEBgcIBQD/xAAqEAACAQQBAwMDBQEAAAAAAAABAgMABBEhBQYHMRITQRQiUQgVMlJhcf/EABcBAAMBAAAAAAAAAAAAAAAAAAABAgP/xAAZEQADAQEBAAAAAAAAAAAAAAAAAQIRAxL/2gAMAwEAAhEDEQA/ANJItQHur3T4vt8lvbvbtyHKzr60tI5AnoT%2b7tg4BOgMZO6nqNqs8dT9AydUd1%2bqL3lZIjHG6LaRzufbce2MEgbwuvt15pU8RryhXWMecF%2bpKyur%2bKDmen5bSCRwhntrj3fRk4yVKgkf8NX2w3rdZ34ftx071B1vZJata28FhIrXMEMJj%2bo9AyQoyQVLDz8DXzWjJDkk/miG2tK7QoeIBV3SygAbpFTuiZ9VWGIbEGkZVrynfmjagBurAeTVW98uIvZ7C35LgjJFyUOQzr/Fk%2bQfjNSb99WO/htyWaSXJUKMkgVIY7gSR4KkAjauKdRqwqL8VpR3ZT6266iPKclHaW6WUXoSG2LEsWBUk5OAAN4AG8VoD3AyBlOQRkGuMLGwSQvHbQxudt7ahfUf9x5pWO7jV/YjACoPz4NJTiwrpfuvR0VbdGSDumSyao1ckU8MxYnBzSrP9vmmTPiiaT7M5owD/9k=' /%3e%3c/svg%3e" width="2160" data-src="/assets/static/souza.05b4712.2fbebedea384f073f1d861535f2cb8ff.jpg" data-srcset="/assets/static/souza.82a2fbd.2fbebedea384f073f1d861535f2cb8ff.jpg 480w, /assets/static/souza.cbab2cf.2fbebedea384f073f1d861535f2cb8ff.jpg 1024w, /assets/static/souza.05b4712.2fbebedea384f073f1d861535f2cb8ff.jpg 2160w" data-sizes="(max-width: 2160px) 100vw, 2160px" class="souza g-image g-image--lazy g-image--loading"><noscript><img src="/assets/static/souza.05b4712.2fbebedea384f073f1d861535f2cb8ff.jpg" class="souza g-image g-image--loaded" width="2160" alt="Souza"></noscript><h3>
+        I'm Vitor Souza — A developer based in Portugal. I create websites &amp;
+        apps. <br>
+        Founder of <a href="https://boomich.com" target="_blank">Boomich</a>.
+      </h3><p class="home-links mt-4 mb-4"><a href="#">Work</a><a href="https://github.com/vitordesouza" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/souzavitor/" target="_blank" rel="noopener">LinkedIn</a></p></section><section class="newsletter-section"><div><form><div class="d-flex flex-column flex-md-row"><input type="email" name="email" required="required" placeholder="Enter your email address" aria-describedby="emailHelp" value="" class="form-control mb-2"><button class="btn btn-primary ml-md-2 mb-2">
+        Join the Newsletter
+        <span role="status" aria-hidden="true" class="spinner-grow spinner-grow-sm" style="display:none;"></span></button></div></form></div></section></main><footer class="container"><div class="copyright mt-3"><small>© 2021 Vitor Souza. All Rights Reserved.</small></div></footer></div>
+    <script>window.__INITIAL_STATE__={"data":null,"context":{}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script><script src="/assets/js/app.e30860b4.js" defer></script><script src="/assets/js/page--src-pages-index-vue.fd8e03b3.js" defer></script>
+</body>
+
+</html>
