@@ -1,0 +1,35 @@
+header {
+  .header-inner {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 0 var(--space);
+    min-height: var(--header-height);
+  
+    @media screen and (min-width: 768px) {
+      padding: 30px var(--space);
+    }
+  }
+
+  .logo {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: inherit;
+    margin-right: auto;
+    margin-left: auto;
+
+    @media screen and (min-width: 768px) {
+      margin-left: 30px;
+    }
+  }
+
+  @media screen and (min-width: 992px) and (max-resolution: 1) {
+    backdrop-filter: blur(4px);
+  }
+
+  @media screen and (min-width: 992px) and (-webkit-max-device-pixel-ratio: 1) {
+    backdrop-filter: blur(4px);
+  }
+}

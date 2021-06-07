@@ -1,0 +1,13 @@
+footer {
+  padding-bottom: 10px;
+
+  .copyright {
+    small {
+      font-weight: 200;
+    }
+
+    @media screen and (max-width: 575px) {
+      text-align: center;
+    }
+  }
+}

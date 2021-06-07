@@ -1,0 +1,19 @@
+{
+  "name": "vitordesouza.github.io",
+  "private": true,
+  "scripts": {
+    "develop": "gridsome develop",
+    "explore": "gridsome explore",
+    "build": "gridsome build"
+  },
+  "dependencies": {
+    "gridsome": "^0.7.0"
+  },
+  "devDependencies": {
+    "@popperjs/core": "^2.9.2",
+    "axios": "^0.21.1",
+    "bootstrap": "^5.0.1",
+    "node-sass": "^6.0.0",
+    "sass-loader": "^10.1.1"
+  }
+}
