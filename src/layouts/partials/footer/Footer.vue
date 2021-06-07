@@ -8,13 +8,6 @@
   </footer>
 </template>
 
-<static-query>
-query {
-  metadata {
-    siteName
-  }
-}
-</static-query>
 
 <script>
 import Newsletter from '~/components/newsletter/Newsletter.vue'

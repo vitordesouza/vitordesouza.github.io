@@ -27,48 +27,22 @@
         </p>
       </section>
       <section class="newsletter-section">
-        <Newsletter v-on:show:toast="toast" />
+        <Newsletter />
       </section>
     </main>
-    <template slot="toast">
-      <MyToast id="indexToast" :body="toastText" v-show="showToast" />
-    </template>
   </Layout>
 </template>
 
 <script>
 import Newsletter from "~/components/newsletter/Newsletter.vue";
-import MyToast from "~/components/toast/Toast.vue";
-import { Toast } from "bootstrap/dist/js/bootstrap.esm.min.js";
 
 export default {
-  data() {
-    return {
-      showToast: false,
-      toastText: ''
-    };
-  },
   metaInfo: {
     title: "Hello, world!",
   },
   components: {
-    Newsletter,
-    MyToast,
-  },
-  methods: {
-    toast(text) {
-      this.showToast = true;
-      this.toastText = text;
-      console.log("here");
-      let toastEl = this.$el.querySelector("#indexToast.toast");
-      let toast = new Toast(toastEl);
-      toast.show();
-      toastEl.addEventListener("hidden.bs.toast", function () {
-        this.showToast = false;
-      });
-      console.log(toast);
-    },
-  },
+    Newsletter
+  }
 };
 </script>
 

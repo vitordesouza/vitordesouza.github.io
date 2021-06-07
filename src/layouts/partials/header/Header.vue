@@ -2,18 +2,10 @@
   <header>
     <div class="header-inner container flex gap-30">
       <ToggleTheme />
-      <g-link class="logo" to="/"><strong>{{ $static.metadata.siteName }}</strong></g-link>
+      <g-link class="logo" to="/"><strong>SOUZA</strong></g-link>
     </div>
   </header>
 </template>
-
-<static-query>
-query {
-  metadata {
-    siteName
-  }
-}
-</static-query>
 
 <script>
 import ToggleTheme from "@/components/toggleTheme/ToggleTheme.vue";

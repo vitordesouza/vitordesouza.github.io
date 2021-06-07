@@ -1,30 +1,3 @@
-$grid-gutter-width: 2.5rem;
-
-$primary: #00a672;
-
-$font-family-sans-serif:
-  'Work Sans',
-  // Cross-platform generic font family (default user interface font)
-  system-ui,
-  // Safari for macOS and iOS (San Francisco)
-  -apple-system,
-  // Chrome < 56 for macOS (San Francisco)
-  BlinkMacSystemFont,
-  // Windows
-  "Segoe UI",
-  // Android
-  Roboto,
-  // Basic web fallback
-  Arial,
-  // Linux
-  "Noto Sans",
-  // Sans serif fallback
-  sans-serif,
-  // Emoji fonts
-  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
-
-@import "bootstrap/scss/bootstrap";
-
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;500;800&display=swap');
 @import "./partials/vars";
 @import "./partials/base";

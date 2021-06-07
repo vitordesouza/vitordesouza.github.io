@@ -1,17 +1,17 @@
 <template>
   <div>
     <form @submit.prevent="subscribe">
-      <div class="d-flex flex-column flex-md-row gap-2">
+      <div class="d-flex flex-column flex-md-row">
         <input
           v-model="email"
           type="email"
           name="email"
           required
-          class="form-control"
+          class="form-control mb-2"
           placeholder="Enter your email address"
           aria-describedby="emailHelp"
         />
-        <button class="btn btn-primary">
+        <button class="btn btn-primary ml-md-2 mb-2">
           Join the Newsletter
           <span
             v-show="loading"
@@ -48,7 +48,12 @@ export default {
         );
         if (200 === response.status) {
           this.loading = false;
-          this.$emit('show:toast', 'Thank you for signing up!');
+          this.$bvToast.toast("Succesfully signed up!", {
+            toaster: "b-toaster-bottom-right",
+            title: "Thank You!",
+            solid: true,
+            variant: "primary",
+          });
         }
       } catch (err) {
         console.error(err);
