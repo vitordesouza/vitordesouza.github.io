@@ -9,6 +9,8 @@ import { BootstrapVue } from "bootstrap-vue";
 
 import './assets/style/bootstrap.scss'
 
+import 'animate.css/animate.min.css';
+
 // Import global styles
 import "~/assets/style/index.scss";
 

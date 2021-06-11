@@ -6,8 +6,8 @@ header {
     padding: 0 var(--space);
     min-height: var(--header-height);
   
-    @media screen and (min-width: 768px) {
-      padding: 30px var(--space);
+    @media screen and (min-width: 551px) {
+      padding: 40px 20px;
     }
   }
 
@@ -18,11 +18,6 @@ header {
     text-decoration: none;
     color: inherit;
     margin-right: auto;
-    margin-left: auto;
-
-    @media screen and (min-width: 768px) {
-      margin-left: 30px;
-    }
   }
 
   @media screen and (min-width: 992px) and (max-resolution: 1) {

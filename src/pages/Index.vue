@@ -5,13 +5,11 @@
         <g-image class="souza" alt="Souza" src="~/assets/img/souza.jpg" />
         <h3>
           I'm Vitor Souza — A developer based in Portugal. I create websites &
-          apps. <br />
-          Founder of <a href="https://boomich.com" target="_blank">Boomich</a>.
+          apps. 
+          <!-- <br /> -->
+          <!-- Founder of <a href="https://boomich.com" target="_blank">Boomich</a>. -->
         </h3>
         <p class="home-links mt-4 mb-4">
-          <a href="#"
-            >Work</a
-          >
           <a
             href="https://github.com/vitordesouza"
             target="_blank"
@@ -24,10 +22,14 @@
             rel="noopener"
             >LinkedIn</a
           >
+          <a
+            href="mailto:contatovitorsouza@gmail.com"
+            >Email</a
+          >
         </p>
       </section>
       <section class="newsletter-section">
-        <Newsletter />
+        <Newsletter class="mb-5" />
       </section>
     </main>
   </Layout>
@@ -38,7 +40,7 @@ import Newsletter from "~/components/newsletter/Newsletter.vue";
 
 export default {
   metaInfo: {
-    title: "Hello, world!",
+    title: "Home",
   },
   components: {
     Newsletter
@@ -52,7 +54,6 @@ export default {
 }
 .souza {
   margin-bottom: 20px;
-  margin-top: 10px;
   width: 100%;
 }
 .home-links a {

@@ -108,10 +108,10 @@ export default {
   border: 0;
   color: currentColor;
   cursor: pointer;
-  position: relative;
-  left: 0px;
-  top: -2px;
-  margin-right: -20px;
+  // position: relative;
+  // left: 0px;
+  // top: -2px;
+  // margin-right: -20px;
 
   &:hover {
     opacity: 0.8;
