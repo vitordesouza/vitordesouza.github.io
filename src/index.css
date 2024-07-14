@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Inter Tight", system-ui, sans-serif;
+    font-weight: 400;
+  }
+  
+  p {
+    @apply text-neutral-700 dark:text-neutral-300;
+    @apply tracking-wide
+  }
+
+  b {
+    @apply text-black dark:text-white;
+  }
+}
+
+@-webkit-keyframes crawling-line {
+  0% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  to {
+    -webkit-transform: translate3d(-100vw, 0, 0);
+    transform: translate3d(-100vw, 0, 0);
+  }
+}
+@keyframes crawling-line {
+  0% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  to {
+    -webkit-transform: translate3d(-100vw, 0, 0);
+    transform: translate3d(-100vw, 0, 0);
+  }
+}
+
+.link {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  
+  span {
+    display: inline-block;
+    transition: transform 1.05s cubic-bezier(0.3, 0.86, 0.36, 0.95),
+    -webkit-transform 1.05s cubic-bezier(0.3, 0.86, 0.36, 0.95);
+    will-change: transform;
+  }
+
+  &:before {
+    content: attr(data-title);
+    height: 100%;
+    color: #838383;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transform: translateY(110%);
+    transition: transform 1.05s cubic-bezier(0.3, 0.86, 0.36, 0.95),
+    -webkit-transform 1.05s cubic-bezier(0.3, 0.86, 0.36, 0.95);
+  }
+
+  &:hover span {
+    transform: translateY(-125%);
+  }
+
+  &:hover:before {
+    transform: translateY(0);
+  }
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1px #000;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .text-stroke {
+  -webkit-text-stroke: 1px #fff;
+  -webkit-text-fill-color: transparent;
+}
+
+.animate-crawling-line {
+  -webkit-animation: crawling-line 20s linear infinite;
+  animation: crawling-line 20s linear infinite;
+  will-change: transform; /* Hint to the browser */
+}
+
+.animate-crawling-line-reverse {
+  -webkit-animation: crawling-line 20s linear infinite reverse;
+  animation: crawling-line 20s linear infinite reverse;
+  will-change: transform; /* Hint to the browser */
+}
