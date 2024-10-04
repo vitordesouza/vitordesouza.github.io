@@ -21,13 +21,6 @@ module.exports = {
       center: true,
       screens: {
         '2xl': '1400px',
-      },
-      padding: {
-        DEFAULT: '25px',
-        sm: '2rem',
-        lg: '4rem',
-        xl: '5rem',
-        '2xl': '4.5rem',
       }
     },
   },
