@@ -1,413 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="theme-color" content="#000" />
-    <meta name="msapplication-TileColor" content="#000" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1"
-    />
-    <title>Vitor Souza</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="src/index.css" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="src/img/favicons/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="src/img/favicons/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="src/img/favicons/favicon-16x16.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="src/img/favicons/android-chrome-192x192.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="src/img/favicons/android-chrome-512x512.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      href="src/img/favicons/favicon-32x32.png"
-      sizes="32x32"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="src/img/favicons/favicon.ico"
-    />
-    <script type="module" src="src/index.ts"></script>
-  </head>
 
-  <body class="dark:text-white mainpage">
-    <div
-      id="dot"
-      class="dot hidden lg:block size-8 fixed -mt-5 -ml-5 bg-white pointer-events-none mix-blend-difference rounded-[50%] z-50"
-    ></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#000" />
+  <meta name="msapplication-TileColor" content="#000" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Vitor Souza</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="src/index.css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="src/img/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="src/img/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="src/img/favicons/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="src/img/favicons/android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="src/img/favicons/android-chrome-512x512.png" />
+  <link rel="icon" type="image/png" href="src/img/favicons/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" sizes="16x16" href="src/img/favicons/favicon.ico" />
+  <script type="module" src="src/index.ts"></script>
+</head>
 
-    <main
-      class="main space-y-16 lg:space-y-32 max-w-[100vw] overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-300"
-    >
-      <div id="hero" class="container px-6 sm:px-8 lg:px-16 w-full">
-        <header class="flex py-6 pb-10 md:py-9 lg:py-16 justify-between w-full">
-          <a href="/" class="logo">
-            <img
-              src="src/img/logo.svg"
-              alt=""
-              class="for-day-mode dark:hidden"
-            />
-            <img
-              src="src/img/logo-white.svg"
-              alt=""
-              class="for-night-mode dark:block hidden"
-            />
+<body class="dark:text-white mainpage">
+  <div id="dot"
+    class="dot hidden lg:block size-8 fixed -mt-5 -ml-5 bg-white pointer-events-none mix-blend-difference rounded-[50%] z-50">
+  </div>
+
+  <main
+    class="main space-y-16 lg:space-y-32 max-w-[100vw] overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-300">
+    <div id="hero" class="container px-6 sm:px-8 lg:px-16 w-full">
+      <header class="flex py-6 pb-10 md:py-9 lg:py-16 justify-between w-full">
+        <a href="/" class="logo">
+          <img src="src/img/logo.svg" alt="" class="for-day-mode dark:hidden" />
+          <img src="src/img/logo-white.svg" alt="" class="for-night-mode dark:block hidden" />
+        </a>
+        <div class="flex flex-col text-right gap-2 lg:gap-0 justify-end *:flex *:items-center *:justify-end *:gap-2">
+          <a id="mode-link" href="" class="link link-effect text-xl uppercase" data-day-text="Night mode"
+            data-night-text="Day mode">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="lucide lucide-sun size-4 hidden dark:inline-block">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2" />
+              <path d="M12 20v2" />
+              <path d="m4.93 4.93 1.41 1.41" />
+              <path d="m17.66 17.66 1.41 1.41" />
+              <path d="M2 12h2" />
+              <path d="M20 12h2" />
+              <path d="m6.34 17.66-1.41 1.41" />
+              <path d="m19.07 4.93-1.41 1.41" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="lucide lucide-moon size-4 dark:hidden">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+            </svg>
+            <span>Night mode</span>
           </a>
-          <div
-            class="flex flex-col text-right gap-2 lg:gap-0 justify-end *:flex *:items-center *:justify-end *:gap-2"
-          >
-            <a
-              id="mode-link"
-              href=""
-              class="link link-effect text-xl uppercase"
-              data-day-text="Night mode"
-              data-night-text="Day mode"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-sun size-4 hidden dark:inline-block"
-              >
-                <circle cx="12" cy="12" r="4" />
-                <path d="M12 2v2" />
-                <path d="M12 20v2" />
-                <path d="m4.93 4.93 1.41 1.41" />
-                <path d="m17.66 17.66 1.41 1.41" />
-                <path d="M2 12h2" />
-                <path d="M20 12h2" />
-                <path d="m6.34 17.66-1.41 1.41" />
-                <path d="m19.07 4.93-1.41 1.41" />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-moon size-4 dark:hidden"
-              >
-                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-              </svg>
-              <span>Night mode</span>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/souzavitor/"
-              target="_blank"
-              class="link link-effect"
-            >
-              <span>LinkedIn</span>
-            </a>
-            <a
-              href="https://wa.me/351934347000"
-              target="_blank"
-              class="link link-effect"
-            >
-              <span>WhatsApp</span>
-            </a>
-          </div>
-        </header>
-
-        <div
-          class="main-title relative pt-10 transition-colors duration-200 ease-linear"
-        >
-          <h1
-            class="title-with-img relative pb-12 lg:pb-28 z-10 font-bold text-4xl md:text-5xl lg:text-8xl"
-          >
-            <span class="relative z-30">
-              <a
-                href="#"
-                class="selected hover:text-black js-title-with-img text-neutral"
-              >
-                I'm Vitor Souza,</a
-              >
-            </span>
-            <img
-              src="src/img/square.png"
-              alt=""
-              class="title-img hover-img pointer-events-none absolute top-0 left-0 max-w-[65vw] md:max-w-[400px] rounded-md rotate-45 opacity-0 transition-opacity duration-200 ease-linear z-20"
-              data-top=""
-              data-left=""
-              style="width: 312px"
-            />
-            <span class="relative z-10"
-              >a senior engineer who works where complexity is the product.</span
-            >
-          </h1>
-          <div class="grid grid-cols-3 gap-8">
-            <div class="relative hidden lg:block">
-              <div
-                class="absolute inset-0 flex items-center"
-                aria-hidden="true"
-              >
-                <div class="w-full border-t border-gray-300"></div>
-              </div>
-              <div class="relative flex justify-start">
-                <span
-                  class="pr-3 text-base font-semibold leading-6 text-gray-900 dark:text-neutral"
-                >
-                  <div class="scroll-word link change link-effect">
-                    <span class="change-span animate-pulse">Scroll</span>
-                  </div>
-                </span>
-              </div>
-            </div>
-
-            <div
-              class="flex flex-col text-xl gap-1 col-span-3 lg:col-span-2 font-normal text-neutral-700"
-            >
-              <p class="font-bold">Currently</p>
-              <p>
-                13+ years shipping production-grade web and mobile across startups, scale-ups, and
-                enterprise. Lead frontend on a healthcare AI app running in live clinical settings —
-                owning the realtime audio pipeline, the session lifecycle that keeps long recordings
-                intact through mobile reality, and the architecture the team builds against. Open
-                to senior and staff remote roles where I contribute at the system level, not just
-                feature delivery.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="banner-section">
-        <div class="flex justify-end">
-          <img class="banner-img md:rounded-l-md" src="src/img/boomich.png" />
-        </div>
-      </div>
-
-      <div
-        class="techstack-section space-y-16 lg:space-y-32"
-        id="techstack-section"
-      >
-        <div
-          class="overflow-hidden font-archivo max-w-[100%] text-6xl lg:text-9xl uppercase text-stroke dark:text-stroke-white whitespace-nowrap tracking-normal w-auto"
-        >
-          <div class="techstack-row techstack-row-1 animate-crawling-line">
-            TypeScript · React Native · Expo · Next.js · React · Node.js · WebSockets · Turborepo · Kotlin ·
-          </div>
-          <div
-            class="techstack-row techstack-row-2 -ml-[60vw] animate-crawling-line-reverse"
-          >
-            TypeScript · React Native · Expo · Next.js · React · Node.js · WebSockets · Turborepo · Kotlin ·
-          </div>
-        </div>
-        <div
-          class="container px-6 sm:px-8 lg:px-16 w-full max-w-[1180px] flex flex-col lg:flex-row justify-between"
-        >
-          <h2 class="text-4xl md:text-5xl lg:text-7xl font-bold">Techstack</h2>
-          <div class="flex flex-col *:py-8 divide-y">
-            <div class="flex flex-col text-xl gap-3 lg:!pt-0">
-              <div class="inline gap-4 mb-4">
-                <h4 class="inline font-bold">Daily</h4>
-              </div>
-              <ul
-                class="list-disc ml-4 list-inside sm:ml-1 sm:flex sm:flex-wrap sm:gap-3"
-              >
-                <li>TypeScript</li>
-                <li>Expo</li>
-                <li>React</li>
-                <li>Next.js</li>
-                <li>Node.js</li>
-              </ul>
-            </div>
-
-            <div class="flex flex-col gap-3 text-xl">
-              <div class="inline gap-4 mb-4">
-                <h4 class="inline font-bold">Worked deeply with</h4>
-              </div>
-              <ul
-                class="list-disc ml-4 list-inside sm:ml-1 sm:flex sm:flex-wrap sm:gap-3"
-              >
-                <li>Vue 3</li>
-                <li>GraphQL</li>
-                <li>Tailwind</li>
-                <li>Vite</li>
-                <li>WebSockets</li>
-                <li>Turborepo</li>
-                <li>Kotlin</li>
-                <li>Symfony</li>
-                <li>AWS</li>
-              </ul>
-            </div>
-
-            <div class="flex flex-col gap-3 text-xl">
-              <div class="inline gap-4 mb-4">
-                <h4 class="inline font-bold">Systems &amp; practice</h4>
-              </div>
-              <ul
-                class="list-disc ml-4 list-inside sm:ml-1 sm:flex sm:flex-wrap sm:gap-3"
-              >
-                <li>Realtime systems</li>
-                <li>Mobile lifecycle</li>
-                <li>Frontend architecture</li>
-                <li>Code review culture</li>
-                <li>Mentorship</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="container px-6 sm:px-8 lg:px-16 space-y-6 text-xl"
-      >
-        <p class="text-neutral-700 dark:text-neutral-300">
-          Currently calibrating senior and staff-level roles. Portugal (UTC/UTC+1),
-          C1+ English, async-comfortable. Open to employee or B2B contract structure.
-        </p>
-        <div class="flex flex-col gap-3">
-          <a
-            class="link link-effect text-xl font-bold"
-            href="mailto:joaovitor@boomich.pt"
-          >
-            <span>Shoot me an email →</span>
-          </a>
-          <a
-            class="link link-effect text-xl font-bold"
-            href="src/files/vitor-cv.pdf"
-            download="vitor-souza-resume.pdf"
-          >
-            <span>Download my CV</span>
-          </a>
-          <a
-            class="link link-effect text-xl font-bold"
-            href="https://github.com/vitordesouza"
-            target="_blank"
-          >
-            <span>GitHub</span>
-          </a>
-          <a
-            class="link link-effect text-xl font-bold"
-            href="https://www.linkedin.com/in/souzavitor/"
-            target="_blank"
-          >
+          <a href="https://www.linkedin.com/in/souzavitor/" target="_blank" class="link link-effect">
             <span>LinkedIn</span>
           </a>
+          <a href="https://wa.me/351934347000" target="_blank" class="link link-effect">
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </header>
+
+      <div class="main-title relative pt-10 transition-colors duration-200 ease-linear">
+        <h1 class="title-with-img relative pb-12 lg:pb-28 z-10 font-bold text-4xl md:text-5xl lg:text-8xl">
+          <span class="relative z-30">
+            <a href="#" class="selected hover:text-black js-title-with-img text-neutral">
+              I'm Vitor Souza,</a>
+          </span>
+          <img src="src/img/square.png" alt=""
+            class="title-img hover-img pointer-events-none absolute top-0 left-0 max-w-[65vw] md:max-w-[400px] rounded-md rotate-45 opacity-0 transition-opacity duration-200 ease-linear z-20"
+            data-top="" data-left="" style="width: 312px" />
+          <span class="relative z-10">a senior engineer who works where complexity is the product.</span>
+        </h1>
+        <div class="grid grid-cols-3 gap-8">
+          <div class="relative hidden lg:block">
+            <div class="absolute inset-0 flex items-center" aria-hidden="true">
+              <div class="w-full border-t border-gray-300"></div>
+            </div>
+            <div class="relative flex justify-start">
+              <span class="pr-3 text-base font-semibold leading-6 text-gray-900 dark:text-neutral">
+                <div class="scroll-word link change link-effect">
+                  <span class="change-span animate-pulse">Scroll</span>
+                </div>
+              </span>
+            </div>
+          </div>
+
+          <div class="flex flex-col text-xl gap-3 col-span-3 lg:col-span-2 font-normal text-neutral-700">
+            <p class="font-bold">Currently</p>
+            <p>Senior engineer with 13+ years shipping production-grade web and mobile products across startups,
+              scale-ups, and enterprise.</p>
+            <p>I operate where complexity is the product: realtime pipelines, cross-platform state, mobile lifecycle, AI
+              integrations, multi-team coordination.</p>
+            <p>Open to senior and staff-level remote roles where I contribute at the system level, not just feature
+              delivery.
+            </p>
+          </div>
         </div>
       </div>
+    </div>
 
-      <footer
-        class="flex container px-6 sm:px-8 lg:px-16 justify-between gap-6 pb-8"
-      >
+    <div class="banner-section">
+      <div class="flex">
+        <img class="banner-img flex-1 md:rounded-l-md" src="src/img/boomich.png" />
+      </div>
+    </div>
+
+    <div class="techstack-section space-y-16 lg:space-y-32" id="techstack-section">
+      <div
+        class="overflow-hidden my-20 flex flex-col gap-3 font-archivo max-w-[100%] text-6xl lg:text-9xl uppercase text-stroke dark:text-stroke-white whitespace-nowrap tracking-normal w-auto">
+        <div class="techstack-row techstack-row-1 animate-crawling-line">
+          TypeScript · React Native · Expo · Next.js · React · Node.js ·
+        </div>
+        <div class="techstack-row techstack-row-2 -ml-[60vw] animate-crawling-line-reverse">
+          Vue · GraphQL · Kotlin · Azure · AWS · TypeScript
+        </div>
+      </div>
+      <div
+        class="container md:gap-16 px-6 sm:px-8 lg:px-16 w-full max-w-[1180px] flex flex-col md:flex-row justify-between">
+        
+        <div class="flex gap-8 flex-col-reverse sm:flex-row sm:justify-evenly md:flex-col">
+          <h2 class="text-4xl md:text-5xl lg:text-7xl font-bold">Techstack</h2>
+          <img src="src/img/me.png" alt="" class="object-cover drop-shadow-lg mb-8 rounded-lg max-w-[350px]">
+        </div>
+
+        <div class="flex flex-col *:py-8 divide-y">
+          <div class="flex flex-col text-xl gap-3 lg:!pt-0">
+            <div class="inline gap-4 mb-4">
+              <h4 class="inline font-bold">Daily</h4>
+            </div>
+            <ul class="list-disc ml-4 list-inside sm:ml-1 sm:flex sm:flex-wrap sm:gap-3">
+              <li>TypeScript</li>
+              <li>Expo</li>
+              <li>React</li>
+              <li>Next.js</li>
+              <li>Node.js</li>
+            </ul>
+          </div>
+
+          <div class="flex flex-col gap-3 text-xl">
+            <div class="inline gap-4 mb-4">
+              <h4 class="inline font-bold">Worked deeply with</h4>
+            </div>
+            <ul class="list-disc ml-4 list-inside sm:ml-1 sm:flex sm:flex-wrap sm:gap-3">
+              <li>Vue 3</li>
+              <li>GraphQL</li>
+              <li>Tailwind</li>
+              <li>Vite</li>
+              <li>WebSockets</li>
+              <li>Turborepo</li>
+              <li>Kotlin</li>
+              <li>Symfony</li>
+              <li>AWS</li>
+            </ul>
+          </div>
+
+          <div class="flex flex-col gap-3 text-xl">
+            <div class="inline gap-4 mb-4">
+              <h4 class="inline font-bold">Systems &amp; practice</h4>
+            </div>
+            <ul class="list-disc ml-4 list-inside sm:ml-1 sm:flex sm:flex-wrap sm:gap-3">
+              <li>Realtime systems</li>
+              <li>Mobile lifecycle</li>
+              <li>Frontend architecture</li>
+              <li>Code review culture</li>
+              <li>Mentorship</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container relative z-10 px-6 sm:px-8 lg:px-16 space-y-6 text-xl">
+      <p class="text-neutral-700 dark:text-neutral-300">
+        Currently calibrating senior and staff-level roles. Portugal (UTC/UTC+1),
+        C1+ English, async-comfortable. Open to employee or B2B contract structure.
+      </p>
+      <div class="flex flex-col gap-3">
+        <a class="link link-effect text-xl font-bold" href="mailto:joaovitor@boomich.pt">
+          <span>Shoot me an email →</span>
+        </a>
+        <a class="link link-effect text-xl font-bold" href="src/files/vitor-cv.pdf" download="vitor-souza-resume.pdf">
+          <span>Download my CV</span>
+        </a>
+        <a class="link link-effect text-xl font-bold" href="https://github.com/vitordesouza" target="_blank">
+          <span>GitHub</span>
+        </a>
+        <a class="link link-effect text-xl font-bold" href="https://www.linkedin.com/in/souzavitor/" target="_blank">
+          <span>LinkedIn</span>
+        </a>
+      </div>
+    </div>
+
+    <footer class="flex relative pb-8">
+      <div class="z-0 w-full h-auto absolute bottom-0 left-0">
+        <img src="src/img/footer.webp" alt="Footer" class="w-full h-full object-cover" draggable="false" />
+      </div>
+
+      <div class="flex container justify-between gap-6 px-6 sm:px-8 lg:px-16">
         <div class="flex flex-col uppercase gap-2">
           Vitor Souza<br />
           – Senior TypeScript Engineer ©2026
         </div>
-
-        <div
-          class="flex flex-col items-end lg:flex-row justify-around *:flex *:items-center *:gap-1 gap-4"
-        >
-          <a
-            href="https://www.linkedin.com/in/souzavitor/"
-            target="_blank"
-            class="link link-effect"
-          >
+  
+        <div class="flex flex-col items-end lg:flex-row justify-around *:flex *:items-center *:gap-1 gap-4">
+          <a href="https://www.linkedin.com/in/souzavitor/" target="_blank" class="link link-effect">
             <span>LinkedIn</span>
-            <svg
-              class="dark:fill-neutral size-7"
-              xmlns="http://www.w3.org/2000/svg"
-              x="0px"
-              y="0px"
-              width="100"
-              height="100"
-              viewBox="0 0 30 30"
-            >
+            <svg class="dark:fill-neutral size-7" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
+              height="100" viewBox="0 0 30 30">
               <path
-                d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M10.496,8.403 c0.842,0,1.403,0.561,1.403,1.309c0,0.748-0.561,1.309-1.496,1.309C9.561,11.022,9,10.46,9,9.712C9,8.964,9.561,8.403,10.496,8.403z M12,20H9v-8h3V20z M22,20h-2.824v-4.372c0-1.209-0.753-1.488-1.035-1.488s-1.224,0.186-1.224,1.488c0,0.186,0,4.372,0,4.372H14v-8 h2.918v1.116C17.294,12.465,18.047,12,19.459,12C20.871,12,22,13.116,22,15.628V20z"
-              ></path>
+                d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M10.496,8.403 c0.842,0,1.403,0.561,1.403,1.309c0,0.748-0.561,1.309-1.496,1.309C9.561,11.022,9,10.46,9,9.712C9,8.964,9.561,8.403,10.496,8.403z M12,20H9v-8h3V20z M22,20h-2.824v-4.372c0-1.209-0.753-1.488-1.035-1.488s-1.224,0.186-1.224,1.488c0,0.186,0,4.372,0,4.372H14v-8 h2.918v1.116C17.294,12.465,18.047,12,19.459,12C20.871,12,22,13.116,22,15.628V20z">
+              </path>
             </svg>
           </a>
-          <a
-            href="https://wa.me/351934347000"
-            target="_blank"
-            class="link link-effect"
-          >
+          <a href="https://wa.me/351934347000" target="_blank" class="link link-effect">
             <span>WhatsApp</span>
-            <svg
-              class="dark:fill-neutral size-7"
-              xmlns="http://www.w3.org/2000/svg"
-              x="0px"
-              y="0px"
-              width="100"
-              height="100"
-              viewBox="0 0 30 30"
-            >
+            <svg class="dark:fill-neutral size-7" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
+              height="100" viewBox="0 0 30 30">
               <path
-                d="M 15 3 C 8.373 3 3 8.373 3 15 C 3 17.251208 3.6323415 19.350068 4.7109375 21.150391 L 3.1074219 27 L 9.0820312 25.431641 C 10.829354 26.425062 12.84649 27 15 27 C 21.627 27 27 21.627 27 15 C 27 8.373 21.627 3 15 3 z M 10.892578 9.4023438 C 11.087578 9.4023438 11.287937 9.4011562 11.460938 9.4101562 C 11.674938 9.4151563 11.907859 9.4308281 12.130859 9.9238281 C 12.395859 10.509828 12.972875 11.979906 13.046875 12.128906 C 13.120875 12.277906 13.173313 12.453437 13.070312 12.648438 C 12.972312 12.848437 12.921344 12.969484 12.777344 13.146484 C 12.628344 13.318484 12.465078 13.532109 12.330078 13.662109 C 12.181078 13.811109 12.027219 13.974484 12.199219 14.271484 C 12.371219 14.568484 12.968563 15.542125 13.851562 16.328125 C 14.986562 17.342125 15.944188 17.653734 16.242188 17.802734 C 16.540187 17.951734 16.712766 17.928516 16.884766 17.728516 C 17.061766 17.533516 17.628125 16.864406 17.828125 16.566406 C 18.023125 16.268406 18.222188 16.319969 18.492188 16.417969 C 18.766188 16.515969 20.227391 17.235766 20.525391 17.384766 C 20.823391 17.533766 21.01875 17.607516 21.09375 17.728516 C 21.17075 17.853516 21.170828 18.448578 20.923828 19.142578 C 20.676828 19.835578 19.463922 20.505734 18.919922 20.552734 C 18.370922 20.603734 17.858562 20.7995 15.351562 19.8125 C 12.327563 18.6215 10.420484 15.524219 10.271484 15.324219 C 10.122484 15.129219 9.0605469 13.713906 9.0605469 12.253906 C 9.0605469 10.788906 9.8286563 10.071437 10.097656 9.7734375 C 10.371656 9.4754375 10.692578 9.4023438 10.892578 9.4023438 z"
-              ></path>
+                d="M 15 3 C 8.373 3 3 8.373 3 15 C 3 17.251208 3.6323415 19.350068 4.7109375 21.150391 L 3.1074219 27 L 9.0820312 25.431641 C 10.829354 26.425062 12.84649 27 15 27 C 21.627 27 27 21.627 27 15 C 27 8.373 21.627 3 15 3 z M 10.892578 9.4023438 C 11.087578 9.4023438 11.287937 9.4011562 11.460938 9.4101562 C 11.674938 9.4151563 11.907859 9.4308281 12.130859 9.9238281 C 12.395859 10.509828 12.972875 11.979906 13.046875 12.128906 C 13.120875 12.277906 13.173313 12.453437 13.070312 12.648438 C 12.972312 12.848437 12.921344 12.969484 12.777344 13.146484 C 12.628344 13.318484 12.465078 13.532109 12.330078 13.662109 C 12.181078 13.811109 12.027219 13.974484 12.199219 14.271484 C 12.371219 14.568484 12.968563 15.542125 13.851562 16.328125 C 14.986562 17.342125 15.944188 17.653734 16.242188 17.802734 C 16.540187 17.951734 16.712766 17.928516 16.884766 17.728516 C 17.061766 17.533516 17.628125 16.864406 17.828125 16.566406 C 18.023125 16.268406 18.222188 16.319969 18.492188 16.417969 C 18.766188 16.515969 20.227391 17.235766 20.525391 17.384766 C 20.823391 17.533766 21.01875 17.607516 21.09375 17.728516 C 21.17075 17.853516 21.170828 18.448578 20.923828 19.142578 C 20.676828 19.835578 19.463922 20.505734 18.919922 20.552734 C 18.370922 20.603734 17.858562 20.7995 15.351562 19.8125 C 12.327563 18.6215 10.420484 15.524219 10.271484 15.324219 C 10.122484 15.129219 9.0605469 13.713906 9.0605469 12.253906 C 9.0605469 10.788906 9.8286563 10.071437 10.097656 9.7734375 C 10.371656 9.4754375 10.692578 9.4023438 10.892578 9.4023438 z">
+              </path>
             </svg>
           </a>
-          <a
-            href="https://github.com/vitordesouza"
-            target="_blank"
-            class="link link-effect"
-          >
+          <a href="https://github.com/vitordesouza" target="_blank" class="link link-effect">
             <span>Github</span>
-            <svg
-              class="dark:fill-neutral size-7"
-              xmlns="http://www.w3.org/2000/svg"
-              x="0px"
-              y="0px"
-              width="100"
-              height="100"
-              viewBox="0 0 30 30"
-            >
+            <svg class="dark:fill-neutral size-7" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
+              height="100" viewBox="0 0 30 30">
               <path
-                d="M15,3C8.373,3,3,8.373,3,15c0,5.623,3.872,10.328,9.092,11.63C12.036,26.468,12,26.28,12,26.047v-2.051 c-0.487,0-1.303,0-1.508,0c-0.821,0-1.551-0.353-1.905-1.009c-0.393-0.729-0.461-1.844-1.435-2.526 c-0.289-0.227-0.069-0.486,0.264-0.451c0.615,0.174,1.125,0.596,1.605,1.222c0.478,0.627,0.703,0.769,1.596,0.769 c0.433,0,1.081-0.025,1.691-0.121c0.328-0.833,0.895-1.6,1.588-1.962c-3.996-0.411-5.903-2.399-5.903-5.098 c0-1.162,0.495-2.286,1.336-3.233C9.053,10.647,8.706,8.73,9.435,8c1.798,0,2.885,1.166,3.146,1.481C13.477,9.174,14.461,9,15.495,9 c1.036,0,2.024,0.174,2.922,0.483C18.675,9.17,19.763,8,21.565,8c0.732,0.731,0.381,2.656,0.102,3.594 c0.836,0.945,1.328,2.066,1.328,3.226c0,2.697-1.904,4.684-5.894,5.097C18.199,20.49,19,22.1,19,23.313v2.734 c0,0.104-0.023,0.179-0.035,0.268C23.641,24.676,27,20.236,27,15C27,8.373,21.627,3,15,3z"
-              ></path>
+                d="M15,3C8.373,3,3,8.373,3,15c0,5.623,3.872,10.328,9.092,11.63C12.036,26.468,12,26.28,12,26.047v-2.051 c-0.487,0-1.303,0-1.508,0c-0.821,0-1.551-0.353-1.905-1.009c-0.393-0.729-0.461-1.844-1.435-2.526 c-0.289-0.227-0.069-0.486,0.264-0.451c0.615,0.174,1.125,0.596,1.605,1.222c0.478,0.627,0.703,0.769,1.596,0.769 c0.433,0,1.081-0.025,1.691-0.121c0.328-0.833,0.895-1.6,1.588-1.962c-3.996-0.411-5.903-2.399-5.903-5.098 c0-1.162,0.495-2.286,1.336-3.233C9.053,10.647,8.706,8.73,9.435,8c1.798,0,2.885,1.166,3.146,1.481C13.477,9.174,14.461,9,15.495,9 c1.036,0,2.024,0.174,2.922,0.483C18.675,9.17,19.763,8,21.565,8c0.732,0.731,0.381,2.656,0.102,3.594 c0.836,0.945,1.328,2.066,1.328,3.226c0,2.697-1.904,4.684-5.894,5.097C18.199,20.49,19,22.1,19,23.313v2.734 c0,0.104-0.023,0.179-0.035,0.268C23.641,24.676,27,20.236,27,15C27,8.373,21.627,3,15,3z">
+              </path>
             </svg>
           </a>
         </div>
-      </footer>
-    </main>
-  </body>
+      </div>
+    </footer>
+  </main>
+</body>
+
 </html>
