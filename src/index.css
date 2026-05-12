@@ -6,6 +6,7 @@
   html {
     font-family: "Inter Tight", system-ui, sans-serif;
     font-weight: 400;
+    scroll-behavior: smooth;
   }
 
   p {
@@ -51,8 +52,8 @@
 
   span {
     display: inline-block;
-    transition: transform 1.05s cubic-bezier(0.3, 0.86, 0.36, 0.95),
-      -webkit-transform 1.05s cubic-bezier(0.3, 0.86, 0.36, 0.95);
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+      -webkit-transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform;
   }
 
@@ -65,8 +66,8 @@
     top: 0;
     left: 0;
     transform: translateY(110%);
-    transition: transform 1.05s cubic-bezier(0.3, 0.86, 0.36, 0.95),
-      -webkit-transform 1.05s cubic-bezier(0.3, 0.86, 0.36, 0.95);
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+      -webkit-transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   &:hover span {
@@ -99,5 +100,45 @@
 .animate-crawling-line-reverse {
   -webkit-animation: crawling-line 20s linear infinite reverse;
   animation: crawling-line 20s linear infinite reverse;
-  will-change: transform; /* Hint to the browser */
+  will-change: transform;
+}
+
+/* ─── Hero entry ─────────────────────────────────────────── */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-animate {
+  animation: fadeSlideUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─── Scroll reveal ──────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─── Cursor enhancements ────────────────────────────────── */
+#dot {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+}
+
+body:has(a:hover) #dot,
+body:has(button:hover) #dot {
+  transform: scale(2.8);
 }

@@ -45,24 +45,52 @@ function initLinkHoverEffect() {
 }
 
 function initCursor() {
-  let X = 0,
-    Y = 0;
-  const dot = document.getElementById("dot")!;
+  const dot = document.getElementById("dot");
+  if (!dot) return;
 
-  function move() {
-    dot.style.left = X + "px";
-    dot.style.top = Y + "px";
-  }
+  let targetX = 0,
+    targetY = 0,
+    currentX = 0,
+    currentY = 0;
 
   document.addEventListener(
     "mousemove",
-    function (e) {
-      X = e.clientX;
-      Y = e.clientY;
-      move();
+    (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
     },
-    false
+    { passive: true }
   );
+
+  function tick() {
+    currentX += (targetX - currentX) * 0.1;
+    currentY += (targetY - currentY) * 0.1;
+    dot.style.left = currentX + "px";
+    dot.style.top = currentY + "px";
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+}
+
+function initScrollReveal() {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const delay = el.dataset.revealDelay ?? "0";
+          setTimeout(() => {
+            el.classList.add("revealed");
+          }, parseFloat(delay) * 1000);
+          observer.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+  );
+
+  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 }
 
 function initTitleImgHover() {
@@ -125,5 +153,6 @@ $(function () {
   initMode();
   initLinkHoverEffect();
   initCursor();
+  initScrollReveal();
   initTitleImgHover();
 });

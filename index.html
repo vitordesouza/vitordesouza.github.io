@@ -31,7 +31,7 @@
   <main
     class="main space-y-16 lg:space-y-32 max-w-[100vw] overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-300">
     <div id="hero" class="container px-6 sm:px-8 lg:px-16 w-full">
-      <header class="flex py-6 pb-10 md:py-9 lg:py-16 justify-between w-full">
+      <header class="flex py-6 pb-10 md:py-9 lg:py-16 justify-between w-full hero-animate" style="animation-delay: 0s">
         <a href="/" class="logo">
           <img src="src/img/logo.svg" alt="" class="for-day-mode dark:hidden" />
           <img src="src/img/logo-white.svg" alt="" class="for-night-mode dark:block hidden" />
@@ -68,7 +68,7 @@
         </div>
       </header>
 
-      <div class="main-title relative pt-10 transition-colors duration-200 ease-linear">
+      <div class="main-title relative pt-10 transition-colors duration-200 ease-linear hero-animate" style="animation-delay: 0.12s">
         <h1 class="title-with-img relative pb-12 lg:pb-28 z-10 font-bold text-4xl md:text-5xl lg:text-8xl">
           <span class="relative z-30">
             <a href="#" class="selected hover:text-black js-title-with-img text-neutral">
@@ -107,13 +107,13 @@
       </div>
     </div>
 
-    <div class="banner-section">
+    <div class="banner-section reveal">
       <div class="flex">
         <img class="banner-img flex-1 md:rounded-l-md" src="src/img/boomich.png" />
       </div>
     </div>
 
-    <div class="techstack-section space-y-16 lg:space-y-32" id="techstack-section">
+    <div class="techstack-section space-y-16 lg:space-y-32 reveal" id="techstack-section">
       <div
         class="overflow-hidden my-20 flex flex-col gap-3 font-archivo max-w-[100%] text-6xl lg:text-9xl uppercase text-stroke dark:text-stroke-white whitespace-nowrap tracking-normal w-auto">
         <div class="techstack-row techstack-row-1 animate-crawling-line">
@@ -178,7 +178,7 @@
       </div>
     </div>
 
-    <div class="container relative z-10 px-6 sm:px-8 lg:px-16 space-y-6 text-xl">
+    <div class="container relative z-10 px-6 sm:px-8 lg:px-16 space-y-6 text-xl reveal">
       <p class="text-neutral-700 dark:text-neutral-300">
         Currently calibrating senior and staff-level roles. Portugal (UTC/UTC+1),
         C1+ English, async-comfortable. Open to employee or B2B contract structure.
