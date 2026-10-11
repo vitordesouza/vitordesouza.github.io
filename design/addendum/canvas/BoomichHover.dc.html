@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Boomich hover reveal</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face{font-family:'Outfit';src:url('/_blob/57932ba90e07d4cbd33044c5cdd8da06') format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'Schibsted Grotesk';src:url('/_blob/e6c4e5a5dfcd16fa77be1e80cd005d5d') format('woff2');font-weight:400 700;font-display:swap}
+@font-face{font-family:'Geist Mono';src:url('/_blob/d3472dc26884b7999b004fd280bdbf4d') format('woff2');font-weight:400 500;font-display:swap}
+body{margin:0}
+a{color:#111111;text-decoration:none}
+a:hover{color:#111111}
+.bm-card{position:fixed;left:0;top:0;width:280px;height:176px;pointer-events:none;z-index:50;opacity:0;scale:.7;transition:opacity .3s ease,scale .5s cubic-bezier(.16,1,.3,1);clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px)}
+.bm-card[data-on]{opacity:1;scale:1}
+@media (prefers-reduced-motion: reduce){.bm-card{transition:none}}
+</style>
+</helmet>
+<div ref="{{rootRef}}" style="width: 960px; height: 460px; box-sizing: border-box; padding: 80px 72px; background: #F3F2EE; color: #111111; font-family: 'Schibsted Grotesk', ui-sans-serif, system-ui, sans-serif; font-size: 17px; line-height: 1.55; display: flex; flex-direction: column; gap: 28px">
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: #5C5C56">(01) Selected work · hover "Boomich"</span>
+<h2 style="margin: 0; font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif; font-size: 56px; line-height: 1.02; letter-spacing: -0.035em; font-weight: 600">Things I'm building, in public.</h2>
+<p style="margin: 0; max-width: 420px; color: #2E2E2A">Products I'm shipping under <a href="https://boomich.pt" onMouseEnter="{{enter}}" onMouseLeave="{{leave}}" style="border-bottom: 1px solid #111111">Boomich</a>, my independent studio. Some are live, some are still being built.</p>
+
+<!-- the reveal: a pocket-size piece of boomich.pt, its net loaded by your cursor -->
+<div class="bm-card" ref="{{cardRef}}" aria-hidden="true" style="background: #1A2213; color: #F0EFE7">
+<svg viewBox="0 0 280 176" width="280" height="176" style="position: absolute; inset: 0; display: block">
+<path ref="{{baseRef}}" d="{{rest.base}}" fill="none" stroke="rgba(240,239,231,0.18)" stroke-width="1"></path>
+<path ref="{{hotRef}}" d="" fill="none" stroke="#F2BE45" stroke-width="1.25"></path>
+<rect ref="{{loadRef}}" x="-10" y="-10" width="6" height="6" fill="#F2BE45"></rect>
+</svg>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 12px 16px; background: #141B0F; display: flex; justify-content: space-between; align-items: center; gap: 12px">
+<svg viewBox="63 0 6149 762" height="15" style="display: block; width: auto"><path fill="#F0EFE7" fill-rule="evenodd" d="{{word}}"></path></svg>
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: #9FA392"><span ref="{{readRef}}">0.0</span> px</span>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":960,"height":460}}'>
+class Component extends DCLogic {
+  static get GRID() { return { W: 280, H: 140, C: 10, R: 5 }; }
+
+  // Net geometry with a gaussian load at (lx, ly). Amber marks only the members meeting the loaded node.
+  paths(lx, ly, amp) {
+    const { W, H, C, R } = Component.GRID;
+    const pts = [];
+    let maxD = 0;
+    let load = -1;
+    for (let j = 0; j <= R; j++) {
+      for (let i = 0; i <= C; i++) {
+        const x = (i * W) / C;
+        const y = (j * H) / R;
+        const pinned = (i === 0 || i === C) && (j === 0 || j === R);
+        const d2 = (x - lx) ** 2 + (y - ly) ** 2;
+        const f = pinned ? 0 : amp * Math.exp(-d2 / (2 * 46 * 46));
+        const dist = Math.max(1, Math.sqrt(d2));
+        const px = x + ((lx - x) / dist) * f * 0.35;
+        const py = y + f * 0.9;
+        const disp = Math.hypot(px - x, py - y);
+        if (disp > maxD) { maxD = disp; load = pts.length; }
+        pts.push([px, py]);
+      }
+    }
+    const id = (i, j) => j * (C + 1) + i;
+    let base = '';
+    let hot = '';
+    for (let j = 0; j <= R; j++) {
+      for (let i = 0; i <= C; i++) {
+        const pairs = [];
+        if (i < C) pairs.push([id(i, j), id(i + 1, j)]);
+        if (j < R) pairs.push([id(i, j), id(i, j + 1)]);
+        if (i < C && j < R) pairs.push((i + j) % 2 ? [id(i, j), id(i + 1, j + 1)] : [id(i + 1, j), id(i, j + 1)]);
+        for (const [a, b] of pairs) {
+          const seg = `M${pts[a][0].toFixed(1)} ${pts[a][1].toFixed(1)}L${pts[b][0].toFixed(1)} ${pts[b][1].toFixed(1)}`;
+          if (amp > 0.5 && (a === load || b === load)) hot += seg; else base += seg;
+        }
+      }
+    }
+    return { base, hot, maxD, load: load >= 0 ? pts[load] : null };
+  }
+
+  enter = () => {
+    if (!this.fine || !this.cardEl) return;
+    this.on = true;
+    this.cardEl.setAttribute('data-on', '');
+    console.debug('[portfolio] boomich reveal on');
+    this.wake();
+  };
+
+  leave = () => {
+    this.on = false;
+    if (this.cardEl) this.cardEl.removeAttribute('data-on');
+  };
+
+  componentDidMount() {
+    this.fine = window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.p = { x: 0, y: 0, cx: 0, cy: 0, vx: 0 };
+    this.amp = 0;
+    this.onMove = (e) => {
+      this.p.vx = e.clientX - this.p.x;
+      this.p.x = e.clientX;
+      this.p.y = e.clientY;
+      if (this.on) this.wake();
+    };
+    window.addEventListener('mousemove', this.onMove, { passive: true });
+    console.debug('[portfolio] boomich reveal ready', { fine: this.fine });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('mousemove', this.onMove);
+    cancelAnimationFrame(this.raf);
+  }
+
+  wake() {
+    if (this.raf) return;
+    this.raf = requestAnimationFrame(this.tick);
+  }
+
+  tick = () => {
+    const p = this.p;
+    p.cx += (p.x - p.cx) * 0.12;
+    p.cy += (p.y - p.cy) * 0.12;
+    const lag = p.x - p.cx;
+    // Cursor speed becomes load: move fast and the net bends further, toward where you came from.
+    const target = this.on ? Math.min(26, 6 + Math.abs(p.vx) * 1.4) : 0;
+    this.amp += (target - this.amp) * 0.15;
+    p.vx *= 0.85;
+    const lx = Math.max(30, Math.min(250, 140 - lag * 0.9));
+    const g = this.paths(lx, 64, this.amp);
+    if (this.baseEl) this.baseEl.setAttribute('d', g.base);
+    if (this.hotEl) this.hotEl.setAttribute('d', g.hot);
+    if (this.loadEl && g.load) { this.loadEl.setAttribute('x', (g.load[0] - 3).toFixed(1)); this.loadEl.setAttribute('y', (g.load[1] - 3).toFixed(1)); }
+    if (this.readEl) this.readEl.textContent = g.maxD.toFixed(1);
+    if (this.cardEl) {
+      const tilt = Math.max(-10, Math.min(10, lag * 0.12));
+      this.cardEl.style.transform = `translate3d(${p.cx}px, ${p.cy}px, 0) translate(-50%, -118%) rotate(${tilt - 3}deg)`;
+    }
+    const settled = !this.on && this.amp < 0.05;
+    this.raf = settled ? 0 : requestAnimationFrame(this.tick);
+  };
+
+  renderVals() {
+    return {
+      rest: this.restGeo || (this.restGeo = this.paths(140, 64, 0)),
+      word: 'M63 750 L63 0 L212 0 L212 245 L862 245 L862 750 Z M713 366 L713 629 L212 629 Z M1384 231Q1608 231 1714.5 295.5Q1821 360 1821 497Q1821 634 1714.5 698Q1608 762 1384 762Q1161 762 1054.5 698Q948 634 948 497Q948 360 1054.5 295.5Q1161 231 1384 231ZM1384 636Q1546 636 1609 604.5Q1672 573 1672 497Q1672 421 1609 389.5Q1546 358 1384 358Q1223 358 1160 389.5Q1097 421 1097 497Q1097 573 1160 604.5Q1223 636 1384 636Z M2343 231Q2567 231 2673.5 295.5Q2780 360 2780 497Q2780 634 2673.5 698Q2567 762 2343 762Q2120 762 2013.5 698Q1907 634 1907 497Q1907 360 2013.5 295.5Q2120 231 2343 231ZM2343 636Q2505 636 2568 604.5Q2631 573 2631 497Q2631 421 2568 389.5Q2505 358 2343 358Q2182 358 2119 389.5Q2056 421 2056 497Q2056 573 2119 604.5Q2182 636 2343 636Z M2886 750V245H3017L3027 308Q3199 232 3338 232Q3503 232 3568 318Q3763 232 3913 232Q4047 232 4116 289.5Q4185 347 4185 473V750H4036V495Q4036 358 3865 358Q3764 358 3604 407Q3610 437 3610 473V750H3461V495Q3461 358 3290 358Q3191 358 3035 410V750Z M4449 31V176H4300V31ZM4300 750V245H4449V750Z M4989 232Q5166 232 5323 270L5292 390Q5147 359 4968 359Q4822 359 4763 388.5Q4704 418 4704 496Q4704 575 4762.5 604.5Q4821 634 4968 634Q5147 634 5292 603L5323 724Q5162 761 4989 761Q4760 761 4657.5 698.5Q4555 636 4555 496Q4555 356 4657.5 294Q4760 232 4989 232Z M5428 750V0H5577V303Q5763 232 5927 232Q6067 232 6139.5 289.5Q6212 347 6212 473V750H6063V495Q6063 358 5878 358Q5756 358 5577 411V750Z',
+      enter: this.enter,
+      leave: this.leave,
+      rootRef: (el) => { this.rootEl = el; },
+      cardRef: (el) => { this.cardEl = el; },
+      baseRef: (el) => { this.baseEl = el; },
+      hotRef: (el) => { this.hotEl = el; },
+      loadRef: (el) => { this.loadEl = el; },
+      readRef: (el) => { this.readEl = el; }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -27,14 +27,16 @@ Pull requests run the formatting and build checks in GitHub Actions with a froze
 
 - `index.html` holds the page content and semantic structure. Editing content does not require JavaScript.
 - `src/index.css` holds theme tokens, shared component styles, responsive layout and motion.
-- `src/index.ts` progressively adds theme switching, the Lisbon clock, scroll reveals, scribbles, pointer effects and email copying. Each behavior has one initialization function.
+- `src/index.ts` progressively adds theme switching, the Lisbon clock, scroll reveals, scribbles, pointer effects and email copying. Each behavior has one initialization function; the cursor, portrait and Boomich reveal share one animation loop.
 - `public/` contains files that need stable public URLs: fonts, sharing assets and the CV.
 
 ## Design and assets
 
-Read both `AGENTS.md` and `CLAUDE.md` before working in the repository. `design/HANDOFF.md` records the original canvas handoff and the accepted corrections made during implementation.
+Read both `AGENTS.md` and `CLAUDE.md` before working in the repository. `design/HANDOFF.md` records the original canvas handoff and accepted corrections; `design/addendum/ADDENDUM.md` specifies the Status V mark, social images and Boomich reveal.
 
-The fonts are self-hosted under `public/fonts/` with their Open Font Licenses. The sharing card source is `design/social-card.html`, rendered at 1200 × 630 to `public/og-image.png`. The favicon source is `public/favicon.svg`; PNG and ICO fallbacks support older browsers and home-screen shortcuts.
+`DESIGN.md` records the approved extension's tokens and component rules; `.impeccable/design.json` carries its motion, breakpoints and scoped mark previews. The full portfolio contract remains in the handoff and addendum.
+
+The fonts are self-hosted under `public/fonts/` with their Open Font Licenses. The approved social images in `design/addendum/og/` map to `public/og-image.png` (light, used by metadata) and `public/og-image-dark.png` (for manual sharing). Original brand assets are in `design/addendum/brand/`, with fixed-color SVGs in `design/brand/` for third-party use. `public/favicon.svg` adapts to the operating system theme; PNG and ICO fallbacks support older browsers and home-screen shortcuts.
 
 ## Deployment
 

@@ -208,10 +208,30 @@ a {
 
 /* Shared layout and typography */
 .wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--display);
   font-weight: 700;
   font-size: 22px;
   letter-spacing: -0.03em;
+}
+.status-mark {
+  display: block;
+  flex-shrink: 0;
+  color: var(--ink);
+  overflow: visible;
+}
+.status-ping {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@media (hover: hover) and (pointer: fine) {
+  .wordmark:hover .status-ping {
+    opacity: 1;
+    animation: ping 2.6s cubic-bezier(0, 0, 0.2, 1) 1;
+  }
 }
 .accent-text {
   color: var(--accent);
@@ -487,7 +507,8 @@ a {
 }
 .hero-meta {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: 1fr auto 1fr;
+  align-items: baseline;
   gap: 12px 32px;
   font-family: 'Geist Mono', ui-monospace, monospace;
   font-size: 12px;
@@ -495,11 +516,27 @@ a {
   text-transform: uppercase;
   color: var(--muted);
 }
+.hero-meta > span {
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+}
+.hero-clock {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6em;
+  margin-left: 0.6em;
+}
 .hero-availability {
   display: inline-flex;
-  align-items: center;
+  align-items: baseline;
   gap: 10px;
   justify-self: end;
+}
+@media (max-width: 899px) {
+  .hero-clock {
+    display: none;
+  }
 }
 .hero-heading {
   margin: 0;
@@ -973,6 +1010,11 @@ a {
   font-size: 14px;
   color: var(--muted);
 }
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
 
 /* text roll (nav, buttons) */
 .roll {
@@ -1087,14 +1129,14 @@ a {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #5f8a6b;
+  background: var(--accent);
 }
 .pulse::after {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: #5f8a6b;
+  background: var(--accent);
   animation: ping 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 @keyframes ping {
@@ -1491,6 +1533,66 @@ a {
   display: block;
 }
 
+/* A pocket of Boomich's braced net, loaded by the shared pointer animation. */
+.boomich-reveal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 280px;
+  height: 176px;
+  background: #1a2213;
+  color: #f0efe7;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0;
+  scale: 0.7;
+  transition:
+    opacity 0.3s ease,
+    scale 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  clip-path: polygon(
+    14px 0,
+    100% 0,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    0 100%,
+    0 14px
+  );
+}
+.boomich-reveal[data-on] {
+  opacity: 1;
+  scale: 1;
+}
+.boomich-net {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+.boomich-strip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 12px 16px;
+  background: #141b0f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.boomich-wordmark {
+  display: block;
+  width: auto;
+  height: 15px;
+}
+.boomich-readout {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #9fa392;
+  font-variant-numeric: tabular-nums;
+}
+
 /* IntersectionObserver pauses perpetual loops while they are out of view. */
 [data-motion='on'] [data-loop]:not([data-active]),
 [data-motion='on'] [data-loop]:not([data-active]) * {
@@ -1499,14 +1601,16 @@ a {
 
 @media (hover: none), (pointer: coarse) {
   .cursor,
-  .floating-photo {
+  .floating-photo,
+  .boomich-reveal {
     display: none;
   }
 }
 
 @media (max-width: 767px) {
   .cursor,
-  .floating-photo {
+  .floating-photo,
+  .boomich-reveal {
     display: none;
   }
   .site-nav {
@@ -1695,7 +1799,8 @@ a {
     display: flex;
   }
   .cursor,
-  .floating-photo {
+  .floating-photo,
+  .boomich-reveal {
     display: none;
   }
   .card:hover,
