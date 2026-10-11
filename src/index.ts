@@ -5,14 +5,6 @@ const debug = (message: string, details?: unknown) => {
   if (import.meta.env.DEV) console.debug(`[site] ${message}`, details ?? '');
 };
 
-interface ThemeTransition {
-  ready: Promise<void>;
-  finished: Promise<void>;
-}
-type ThemeDocument = Document & {
-  startViewTransition?: (update: () => void) => ThemeTransition;
-};
-
 function initTheme() {
   const toggle = document.querySelector<HTMLButtonElement>('#theme-toggle');
   const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
@@ -42,8 +34,7 @@ function initTheme() {
       }
       debug('theme changed', { night });
     };
-    const doc = document as ThemeDocument;
-    if (reducedMotion.matches || !doc.startViewTransition) {
+    if (reducedMotion.matches || typeof document.startViewTransition !== 'function') {
       update();
       return;
     }
@@ -53,12 +44,18 @@ function initTheme() {
     const radius = Math.hypot(Math.max(cx, innerWidth - cx), Math.max(cy, innerHeight - cy));
     transitioning = true;
     try {
-      const transition = doc.startViewTransition(update);
+      const transition = document.startViewTransition(update);
       await transition.ready;
       if (!reducedMotion.matches) {
         revealAnimation = root.animate(
-          { clipPath: [`circle(0px at ${cx}px ${cy}px)`, `circle(${radius}px at ${cx}px ${cy}px)`] },
-          { duration: 600, easing: 'cubic-bezier(.16,1,.3,1)', pseudoElement: '::view-transition-new(root)' },
+          {
+            clipPath: [`circle(0px at ${cx}px ${cy}px)`, `circle(${radius}px at ${cx}px ${cy}px)`],
+          },
+          {
+            duration: 600,
+            easing: 'cubic-bezier(.16,1,.3,1)',
+            pseudoElement: '::view-transition-new(root)',
+          },
         );
       }
       await transition.finished;
@@ -78,9 +75,15 @@ function initClock() {
   if (!clock) return;
   try {
     const formatter = new Intl.DateTimeFormat('en-GB', {
-      timeZone: 'Europe/Lisbon', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
+      timeZone: 'Europe/Lisbon',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
     });
-    const tick = () => { clock.textContent = formatter.format(new Date()); };
+    const tick = () => {
+      clock.textContent = formatter.format(new Date());
+    };
     tick();
     window.setInterval(tick, 1000);
     debug('Lisbon clock initialized');
@@ -98,13 +101,16 @@ function initObservers() {
     debug('IntersectionObserver unavailable; content stays visible');
     return;
   }
-  const reveal = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.setAttribute('data-in', '');
-      reveal.unobserve(entry.target);
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  const reveal = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.setAttribute('data-in', '');
+        reveal.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -60px 0px' },
+  );
   const syncMotion = () => {
     reveal.disconnect();
     if (reducedMotion.matches) {
@@ -126,25 +132,34 @@ function initObservers() {
 }
 
 function initScribbles() {
-  const highlights = document.querySelectorAll<HTMLElement>('.hl');
+  const highlights = document.querySelectorAll<HTMLElement>('.highlight');
   const animations = new Map<HTMLElement, Animation>();
   const draw = (highlight: HTMLElement, duration: number, delay = 0) => {
     const scribble = highlight.querySelector<SVGSVGElement>('svg');
     const previous = animations.get(highlight);
     if (!scribble || reducedMotion.matches || previous?.playState === 'running') return;
     // Reveal the full curve independently of SVG scaling and round stroke caps.
-    animations.set(highlight, scribble.animate(
-      { clipPath: ['inset(-8px 100% -8px 0px)', 'inset(-8px -8px -8px -8px)'] },
-      { duration, delay, easing: 'cubic-bezier(.65,0,.35,1)', fill: 'backwards' },
-    ));
+    animations.set(
+      highlight,
+      scribble.animate(
+        { clipPath: ['inset(-8px 100% -8px 0px)', 'inset(-8px -8px -8px -8px)'] },
+        { duration, delay, easing: 'cubic-bezier(.65,0,.35,1)', fill: 'backwards' },
+      ),
+    );
   };
-  const reveal = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      draw(entry.target as HTMLElement, 1200, 350);
-      reveal?.unobserve(entry.target);
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }) : undefined;
+  const reveal =
+    'IntersectionObserver' in window
+      ? new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              draw(entry.target as HTMLElement, 1200, 350);
+              reveal?.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -60px 0px' },
+        )
+      : undefined;
   highlights.forEach((highlight) => {
     if (highlight.closest('h1')) draw(highlight, 1200, 1150);
     else reveal?.observe(highlight);
@@ -154,9 +169,10 @@ function initScribbles() {
     // Pointer leave lets the current draw finish; it never restarts the entrance.
   });
   reducedMotion.addEventListener('change', () => {
-    if (reducedMotion.matches) animations.forEach((animation) => {
-      if (animation.playState === 'running') animation.finish();
-    });
+    if (reducedMotion.matches)
+      animations.forEach((animation) => {
+        if (animation.playState === 'running') animation.finish();
+      });
   });
   debug('scribbles initialized', { count: highlights.length });
 }
@@ -168,11 +184,18 @@ function initPointer() {
   const name = document.querySelector<HTMLElement>('#hero-name');
   const heading = document.querySelector('h1');
   if (!dot || !label || !photo || !name || !heading) return;
-  let tx = -200, ty = -200, cx = -200, cy = -200, px = -200, py = -200;
+  let targetX = -200,
+    targetY = -200;
+  let cursorX = -200,
+    cursorY = -200;
+  let photoX = -200,
+    photoY = -200;
   let frame = 0;
   let enabled = false;
+  let photoVisible = false;
   let currentLabel = '';
   const hidePhoto = () => {
+    photoVisible = false;
     photo.removeAttribute('data-on');
     heading.removeAttribute('data-name-hover');
   };
@@ -183,14 +206,32 @@ function initPointer() {
     frame = 0;
   };
   const loop = () => {
-    cx += (tx - cx) * 0.2;
-    cy += (ty - cy) * 0.2;
-    dot.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
-    px += (tx - px) * 0.1;
-    py += (ty - py) * 0.1;
-    const tilt = Math.max(-12, Math.min(12, (tx - px) * 0.15));
-    photo.style.transform = `translate3d(${px}px, ${py}px, 0) translate(-50%, -115%) rotate(${tilt}deg)`;
-    frame = requestAnimationFrame(loop);
+    cursorX += (targetX - cursorX) * 0.2;
+    cursorY += (targetY - cursorY) * 0.2;
+    const cursorMoving = Math.hypot(targetX - cursorX, targetY - cursorY) > 0.1;
+    if (!cursorMoving) {
+      cursorX = targetX;
+      cursorY = targetY;
+    }
+    dot.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+
+    let photoMoving = false;
+    if (photoVisible) {
+      photoX += (targetX - photoX) * 0.1;
+      photoY += (targetY - photoY) * 0.1;
+      photoMoving = Math.hypot(targetX - photoX, targetY - photoY) > 0.1;
+      if (!photoMoving) {
+        photoX = targetX;
+        photoY = targetY;
+      }
+      const tilt = Math.max(-12, Math.min(12, (targetX - photoX) * 0.15));
+      photo.style.transform = `translate3d(${photoX}px, ${photoY}px, 0) translate(-50%, -115%) rotate(${tilt}deg)`;
+    }
+    // Rest once both effects settle; the next pointer event starts another frame.
+    frame = cursorMoving || photoMoving ? requestAnimationFrame(loop) : 0;
+  };
+  const requestFrame = () => {
+    if (!frame) frame = requestAnimationFrame(loop);
   };
   const sync = () => {
     enabled = finePointer.matches && !reducedMotion.matches;
@@ -199,31 +240,42 @@ function initPointer() {
   sync();
   finePointer.addEventListener('change', sync);
   reducedMotion.addEventListener('change', sync);
-  window.addEventListener('pointermove', (event) => {
-    if (!enabled || event.pointerType === 'touch') return;
-    tx = event.clientX;
-    ty = event.clientY;
-    if (!frame) {
-      cx = px = tx;
-      cy = py = ty;
-      frame = requestAnimationFrame(loop);
-    }
-    dot.setAttribute('data-on', '');
-    const hit = event.target instanceof Element ? event.target.closest<HTMLElement>('[data-cursor]') : null;
-    const next = hit?.dataset.cursor ?? '';
-    if (next !== currentLabel) {
-      currentLabel = next;
-      label.textContent = next;
-      dot.toggleAttribute('data-label', Boolean(next));
-    }
-  }, { passive: true });
+  window.addEventListener(
+    'pointermove',
+    (event) => {
+      if (!enabled || event.pointerType === 'touch') return;
+      targetX = event.clientX;
+      targetY = event.clientY;
+      if (!dot.hasAttribute('data-on')) {
+        cursorX = photoX = targetX;
+        cursorY = photoY = targetY;
+      }
+      requestFrame();
+      dot.setAttribute('data-on', '');
+      const hit =
+        event.target instanceof Element ? event.target.closest<HTMLElement>('[data-cursor]') : null;
+      const next = hit?.dataset.cursor ?? '';
+      if (next !== currentLabel) {
+        currentLabel = next;
+        label.textContent = next;
+        dot.toggleAttribute('data-label', Boolean(next));
+      }
+    },
+    { passive: true },
+  );
   document.addEventListener('pointerleave', hide);
   window.addEventListener('blur', hide);
-  document.addEventListener('visibilitychange', () => { if (document.hidden) hide(); });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) hide();
+  });
   name.addEventListener('pointerenter', (event) => {
     if (!enabled || event.pointerType === 'touch') return;
+    photoVisible = true;
+    photoX = targetX = event.clientX;
+    photoY = targetY = event.clientY;
     photo.setAttribute('data-on', '');
     heading.setAttribute('data-name-hover', '');
+    requestFrame();
   });
   name.addEventListener('pointerleave', hidePhoto);
   debug('pointer initialized', { enabled });
@@ -239,7 +291,9 @@ function initCopy() {
       await navigator.clipboard.writeText('joaovitor@boomich.pt');
       label.textContent = 'Copied';
       clearTimeout(resetTimer);
-      resetTimer = window.setTimeout(() => { label.textContent = 'Copy'; }, 1800);
+      resetTimer = window.setTimeout(() => {
+        label.textContent = 'Copy';
+      }, 1800);
       debug('email copied');
     } catch (error) {
       debug('clipboard unavailable; opening mail client', error);

@@ -24,7 +24,13 @@ Photos are in `src/img/`, and the downloadable CV is `src/files/vitor-cv.pdf`. `
 
 `design/social-card.html` is the 1200 × 630 source for `public/og-image.png`; render it at that exact viewport after changing its copy or portrait. Open Graph and Twitter metadata share this PNG. `public/favicon.svg` is the icon source; preserve its light/dark colors when regenerating the PNG and ICO fallbacks.
 
-The lockfile and workspace configuration must remain compatible with pnpm 8, used by the unchanged Pages workflow. Validate a frozen clean install before release; a lockfile produced by a newer pnpm major can build locally and still fail in CI.
+The lockfile must remain compatible with pnpm 8, used by the unchanged Pages workflow. This is a single package; no workspace configuration is needed. Validate a frozen clean install before release; a lockfile produced by a newer pnpm major can build locally and still fail in CI.
+
+## Source maintenance
+
+Keep page content in static HTML and reusable presentation in named CSS classes. Inline styles carry per-element animation variables. Preserve the approved rendering and motion when refactoring. The six initialization functions in `src/index.ts` are small enough to share one module; split a concern when its size or reuse warrants it. Pointer animation stops once it settles and restarts on movement.
+
+`pnpm build` includes strict TypeScript checking; `pnpm format:check` verifies shared formatting. Formatting excludes the original canvas and unchanged deployment workflow. After a layout refactor, compare the rendered page at both required sizes and themes.
 
 Before reporting visible work complete, run the dev server and inspect 1440px and 390px in both day and night modes. Work through the acceptance checklist in `design/HANDOFF.md` and report unresolved items accurately. Do not invent a replacement CV or project status.
 

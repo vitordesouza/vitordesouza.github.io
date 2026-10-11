@@ -1,445 +1,1265 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#F3F2EE" />
-  <script>
-    (() => {
-      let night = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      try {
-        const mode = localStorage.getItem('mode');
-        if (mode === 'day' || mode === 'night') night = mode === 'night';
-      } catch {}
-      document.documentElement.classList.toggle('dark', night);
-      document.querySelector('meta[name="theme-color"]').content = night ? '#11110F' : '#F3F2EE';
-    })();
-  </script>
-  <title>Vitor Souza — Senior TypeScript Engineer</title>
-  <meta name="description" content="Senior TypeScript engineer working where complexity is the product. 13+ years building web and mobile systems. Based in Caldas da Rainha, Leiria, Portugal; available immediately." />
-  <link rel="canonical" href="https://vitordesouza.github.io/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Vitor Souza — Senior TypeScript Engineer" />
-  <meta property="og:description" content="Senior TypeScript engineer building web and mobile products, shaping architecture and integrating AI. Based in Caldas da Rainha, Leiria, Portugal; available immediately." />
-  <meta property="og:url" content="https://vitordesouza.github.io/" />
-  <meta property="og:site_name" content="Vitor Souza" />
-  <meta property="og:locale" content="en_GB" />
-  <meta property="og:image" content="https://vitordesouza.github.io/og-image.png" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Vitor Souza — Senior TypeScript Engineer. Where complexity is the product." />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Vitor Souza — Senior TypeScript Engineer" />
-  <meta name="twitter:description" content="Web and mobile products. Architecture. AI integrations. Based in Caldas da Rainha, Leiria, Portugal." />
-  <meta name="twitter:image" content="https://vitordesouza.github.io/og-image.png" />
-  <meta name="twitter:image:alt" content="Vitor Souza — Senior TypeScript Engineer. Where complexity is the product." />
-  <meta name="author" content="João Vitor de Souza" />
-  <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "João Vitor de Souza",
-      "alternateName": "Vitor Souza",
-      "jobTitle": "Senior TypeScript Engineer",
-      "url": "https://vitordesouza.github.io/",
-      "image": "https://vitordesouza.github.io/vitor-portrait.webp",
-      "sameAs": ["https://github.com/vitordesouza", "https://www.linkedin.com/in/souzavitor/"]
-    }
-  </script>
-  <link rel="preload" href="/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/geist-mono.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/src/index.css" />
-  <script type="module" src="/src/index.ts"></script>
-</head>
-<body>
-<a class="skip-link" href="#main-content">Skip to content</a>
-<div id="site">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#F3F2EE" />
+    <script>
+      (() => {
+        let night = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        try {
+          const mode = localStorage.getItem('mode');
+          if (mode === 'day' || mode === 'night') night = mode === 'night';
+        } catch {}
+        document.documentElement.classList.toggle('dark', night);
+        document.querySelector('meta[name="theme-color"]').content = night ? '#11110F' : '#F3F2EE';
+      })();
+    </script>
+    <title>Vitor Souza — Senior TypeScript Engineer</title>
+    <meta
+      name="description"
+      content="Senior TypeScript engineer working where complexity is the product. 13+ years building web and mobile systems. Based in Caldas da Rainha, Leiria, Portugal; available immediately."
+    />
+    <link rel="canonical" href="https://vitordesouza.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Vitor Souza — Senior TypeScript Engineer" />
+    <meta
+      property="og:description"
+      content="Senior TypeScript engineer building web and mobile products, shaping architecture and integrating AI. Based in Caldas da Rainha, Leiria, Portugal; available immediately."
+    />
+    <meta property="og:url" content="https://vitordesouza.github.io/" />
+    <meta property="og:site_name" content="Vitor Souza" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://vitordesouza.github.io/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Vitor Souza — Senior TypeScript Engineer. Where complexity is the product."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vitor Souza — Senior TypeScript Engineer" />
+    <meta
+      name="twitter:description"
+      content="Web and mobile products. Architecture. AI integrations. Based in Caldas da Rainha, Leiria, Portugal."
+    />
+    <meta name="twitter:image" content="https://vitordesouza.github.io/og-image.png" />
+    <meta
+      name="twitter:image:alt"
+      content="Vitor Souza — Senior TypeScript Engineer. Where complexity is the product."
+    />
+    <meta name="author" content="João Vitor de Souza" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "João Vitor de Souza",
+        "alternateName": "Vitor Souza",
+        "jobTitle": "Senior TypeScript Engineer",
+        "url": "https://vitordesouza.github.io/",
+        "image": "https://vitordesouza.github.io/vitor-portrait.webp",
+        "sameAs": ["https://github.com/vitordesouza", "https://www.linkedin.com/in/souzavitor/"]
+      }
+    </script>
+    <link rel="preload" href="/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/schibsted-grotesk.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="/fonts/geist-mono.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/src/index.css" />
+    <script type="module" src="/src/index.ts"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div id="site">
+      <div id="cursor" class="cursor" aria-hidden="true">
+        <span id="cursor-label" class="cursor-label"></span>
+      </div>
+      <div id="floating-photo" class="floating-photo" aria-hidden="true">
+        <img src="/src/img/vitor-candid.webp" alt="" width="440" height="440" />
+      </div>
 
-<div id="cursor" class="cur" aria-hidden="true"><span id="cursor-label" class="cur-l"></span></div>
-<div id="floating-photo" class="float" aria-hidden="true"><img src="/src/img/vitor-candid.webp" alt="" width="440" height="440"></div>
+      <!-- NAV -->
+      <header
+        class="site-nav mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-6 px-8 py-7"
+      >
+        <a class="wordmark" href="#top">Vitor Souza<span class="accent-text">.</span></a>
+        <nav class="nav-links ml-auto flex flex-wrap gap-8 text-[15px]" aria-label="Primary">
+          <a href="#work"
+            ><span class="roll"><span>Work</span><span aria-hidden="true">Work</span></span></a
+          >
+          <a href="#experience"
+            ><span class="roll"
+              ><span>Experience</span><span aria-hidden="true">Experience</span></span
+            ></a
+          >
+          <a href="#stack"
+            ><span class="roll"><span>Stack</span><span aria-hidden="true">Stack</span></span></a
+          >
+          <a href="#contact"
+            ><span class="roll"
+              ><span>Contact</span><span aria-hidden="true">Contact</span></span
+            ></a
+          >
+        </nav>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          type="button"
+          aria-label="Switch to night mode"
+          aria-pressed="false"
+        >
+          <svg
+            class="theme-icon"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <defs>
+              <mask id="moon-mask">
+                <rect width="24" height="24" fill="white" />
+                <circle class="moon-cutout" cx="24" cy="0" r="6" fill="black" />
+              </mask>
+            </defs>
+            <circle
+              class="sun-disc"
+              cx="12"
+              cy="12"
+              r="4"
+              fill="currentColor"
+              mask="url(#moon-mask)"
+            />
+            <g class="sun-rays" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <path
+                d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"
+              />
+            </g>
+          </svg>
+        </button>
+        <a class="btn button-nav" href="mailto:joaovitor@boomich.pt" data-cursor="Write"
+          ><span class="roll"
+            ><span>Let's talk</span><span aria-hidden="true">Let's talk</span></span
+          ></a
+        >
+      </header>
 
-<!-- NAV -->
-<header class="site-nav mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-6 px-8 py-7">
-<a href="#top" style="font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: -0.03em">Vitor Souza<span style="color: var(--accent)">.</span></a>
-<nav class="nav-links ml-auto flex flex-wrap gap-8 text-[15px]" aria-label="Primary">
-<a href="#work"><span class="roll"><span>Work</span><span aria-hidden="true">Work</span></span></a>
-<a href="#experience"><span class="roll"><span>Experience</span><span aria-hidden="true">Experience</span></span></a>
-<a href="#stack"><span class="roll"><span>Stack</span><span aria-hidden="true">Stack</span></span></a>
-<a href="#contact"><span class="roll"><span>Contact</span><span aria-hidden="true">Contact</span></span></a>
-</nav>
-<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to night mode" aria-pressed="false">
-<svg class="theme-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-<defs><mask id="moon-mask"><rect width="24" height="24" fill="white"/><circle class="moon-cutout" cx="24" cy="0" r="6" fill="black"/></mask></defs>
-<circle class="sun-disc" cx="12" cy="12" r="4" fill="currentColor" mask="url(#moon-mask)"/>
-<g class="sun-rays" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></g>
-</svg></button>
-<a class="btn" href="mailto:joaovitor@boomich.pt" data-cursor="Write" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 22px; border-radius: 999px; background: var(--ink); color: var(--bg); font-size: 15px; font-weight: 500"><span class="roll"><span>Let's talk</span><span aria-hidden="true">Let's talk</span></span></a>
-</header>
+      <!-- HERO -->
+      <main id="main-content">
+        <section class="hero" id="top">
+          <div class="hero-meta fade" style="--d: 0ms">
+            <span>Senior TypeScript Engineer</span>
+            <span
+              >Caldas da Rainha, Leiria, PT ·
+              <span class="clock-time" id="lisbon-clock">--:--:--</span> Lisbon</span
+            >
+            <span class="hero-availability"
+              ><span class="pulse" aria-hidden="true"></span>Available immediately</span
+            >
+          </div>
 
-<!-- HERO -->
-<main id="main-content">
-<section id="top" style="max-width: 1280px; margin: 0 auto; padding: 88px 32px 72px; display: flex; flex-direction: column; gap: 56px">
-<div class="hero-meta fade" style="--d: 0ms; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 32px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted)">
-<span>Senior TypeScript Engineer</span>
-<span>Caldas da Rainha, Leiria, PT · <span id="lisbon-clock" style="font-variant-numeric: tabular-nums">--:--:--</span> Lisbon</span>
-<span style="display: inline-flex; align-items: center; gap: 10px; justify-self: end"><span class="pulse" aria-hidden="true"></span>Available immediately</span>
-</div>
+          <h1 class="hero-heading">
+            <span class="word"><span style="--i: 0">I'm</span></span>
+            <span class="word"
+              ><span style="--i: 1"
+                ><span class="avatar"
+                  ><img
+                    src="/src/img/me.png"
+                    alt=""
+                    width="288"
+                    height="288"
+                    fetchpriority="high" /></span></span
+            ></span>
+            <span class="name" id="hero-name"
+              ><span class="word"><span style="--i: 2">Vitor</span></span>
+              <span class="word"><span style="--i: 3">Souza,</span></span></span
+            >
+            <span class="word"><span style="--i: 4">a</span></span>
+            <span class="word"><span style="--i: 5">senior</span></span>
+            <span class="word"><span style="--i: 6">engineer</span></span>
+            <span class="word"><span style="--i: 7">who</span></span>
+            <span class="word"><span style="--i: 8">works</span></span>
+            <span class="word"><span style="--i: 9">where</span></span>
+            <span class="word word-highlight"
+              ><span style="--i: 10"
+                ><span class="highlight"
+                  >complexity<svg
+                    viewBox="0 0 300 20"
+                    preserveAspectRatio="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M3 13 C 60 4, 120 4, 170 10 S 260 17, 297 6"
+                      fill="none"
+                      stroke="var(--accent)"
+                      stroke-width="5"
+                      stroke-linecap="round"
+                      pathLength="1"
+                      vector-effect="non-scaling-stroke"
+                    ></path></svg></span></span
+            ></span>
+            <span class="word"><span style="--i: 11">is</span></span>
+            <span class="word"><span style="--i: 12">the</span></span>
+            <span class="word"><span style="--i: 13">product.</span></span>
+          </h1>
 
-<h1 style="margin: 0; font-family: var(--display); font-size: clamp(44px, 6.1vw, 90px); line-height: 1.02; letter-spacing: -0.04em; font-weight: 600; text-wrap: balance">
-<span class="w"><span style="--i: 0">I'm</span></span>
-<span class="w"><span style="--i: 1"><span class="ava"><img src="/src/img/me.png" alt="" width="288" height="288" fetchpriority="high"></span></span></span>
-<span class="name" id="hero-name"><span class="w"><span style="--i: 2">Vitor</span></span> <span class="w"><span style="--i: 3">Souza,</span></span></span>
-<span class="w"><span style="--i: 4">a</span></span>
-<span class="w"><span style="--i: 5">senior</span></span>
-<span class="w"><span style="--i: 6">engineer</span></span>
-<span class="w"><span style="--i: 7">who</span></span>
-<span class="w"><span style="--i: 8">works</span></span>
-<span class="w"><span style="--i: 9">where</span></span>
-<span class="w" style="padding-bottom: .34em; margin-bottom: -.34em"><span style="--i: 10"><span class="hl">complexity<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 13 C 60 4, 120 4, 170 10 S 260 17, 297 6" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" pathLength="1" vector-effect="non-scaling-stroke"></path></svg></span></span></span>
-<span class="w"><span style="--i: 11">is</span></span>
-<span class="w"><span style="--i: 12">the</span></span>
-<span class="w"><span style="--i: 13">product.</span></span>
-</h1>
+          <div class="hero-summary">
+            <div class="fade summary-item" style="--d: 900ms">
+              <span class="eyebrow">Most recently</span>
+              <p class="body-copy">
+                Owned the full technical direction of a healthcare AI mobile platform —
+                architecture, team direction and a realtime audio pipeline running in live clinical
+                environments.
+              </p>
+            </div>
+            <div class="fade summary-item" style="--d: 1000ms">
+              <span class="eyebrow">Before that</span>
+              <p class="body-copy">
+                13+ years shipping production web and mobile products for startups, scale-ups and
+                enterprise — KLM, Lufthansa Technik and Mazars among the end users.
+              </p>
+            </div>
+            <div class="fade hero-actions" style="--d: 1100ms">
+              <a class="btn button-primary" href="mailto:joaovitor@boomich.pt" data-cursor="Write"
+                ><span class="roll"
+                  ><span>Shoot me an email</span
+                  ><span aria-hidden="true">Shoot me an email</span></span
+                ><svg
+                  class="arrow-right"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="M13 6l6 6-6 6"></path></svg
+              ></a>
+              <a class="btn btn-ghost button-secondary" href="/vitor-cv.pdf" data-cursor="PDF"
+                ><span class="roll"
+                  ><span>Download CV</span><span aria-hidden="true">Download CV</span></span
+                ><svg
+                  class="arrow-down"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 4v13"></path>
+                  <path d="M6 11l6 6 6-6"></path>
+                  <path d="M5 20h14"></path></svg
+              ></a>
+            </div>
+          </div>
+        </section>
 
-<div class="hero-summary" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px 48px; padding-top: 32px; border-top: 1px solid var(--line)">
-<div class="fade" style="--d: 900ms; display: flex; flex-direction: column; gap: 10px">
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted)">Most recently</span>
-<p style="margin: 0; color: var(--ink-2)">Owned the full technical direction of a healthcare AI mobile platform — architecture, team direction and a realtime audio pipeline running in live clinical environments.</p>
-</div>
-<div class="fade" style="--d: 1000ms; display: flex; flex-direction: column; gap: 10px">
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted)">Before that</span>
-<p style="margin: 0; color: var(--ink-2)">13+ years shipping production web and mobile products for startups, scale-ups and enterprise — KLM, Lufthansa Technik and Mazars among the end users.</p>
-</div>
-<div class="fade" style="--d: 1100ms; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; justify-content: flex-end">
-<a class="btn" href="mailto:joaovitor@boomich.pt" data-cursor="Write" style="display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 26px; border-radius: 999px; background: var(--ink); color: var(--bg); font-weight: 500"><span class="roll"><span>Shoot me an email</span><span aria-hidden="true">Shoot me an email</span></span><svg class="r" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
-<a class="btn btn-ghost" href="/vitor-cv.pdf" data-cursor="PDF" style="display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 26px; border-radius: 999px; border: 1px solid var(--ink); font-weight: 500"><span class="roll"><span>Download CV</span><span aria-hidden="true">Download CV</span></span><svg class="d" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v13"></path><path d="M6 11l6 6 6-6"></path><path d="M5 20h14"></path></svg></a>
-</div>
-</div>
-</section>
+        <!-- MARQUEE -->
+        <div
+          class="marquee fade"
+          data-loop
+          role="img"
+          style="--d: 1200ms"
+          aria-label="Tools I work with: TypeScript, React Native, Expo, Next.js, Node.js, React, Convex, Vue 3, GraphQL, Turborepo"
+        >
+          <div class="marquee-track" aria-hidden="true">
+            <div class="marquee-group">
+              <span class="marquee-tool"
+                ><span class="marquee-item">TypeScript</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
 
-<!-- MARQUEE -->
-<div class="mq fade" data-loop role="img" style="--d: 1200ms; padding: 28px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)" aria-label="Tools I work with: TypeScript, React Native, Expo, Next.js, Node.js, React, Convex, Vue 3, GraphQL, Turborepo">
-<div class="mq-track" aria-hidden="true" style="font-family: var(--display); font-size: clamp(32px, 4vw, 56px); font-weight: 600; letter-spacing: -0.03em; line-height: 1; align-items: center">
-<div class="mq-group">
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">TypeScript</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+              <span class="marquee-tool"
+                ><span class="marquee-item">React Native</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
 
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">React Native</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+              <span class="marquee-tool"
+                ><span class="marquee-item">Expo</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
 
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Expo</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+              <span class="marquee-tool"
+                ><span class="marquee-item">Next.js</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
 
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Next.js</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+              <span class="marquee-tool"
+                ><span class="marquee-item">Node.js</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
 
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Node.js</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+              <span class="marquee-tool"
+                ><span class="marquee-item">React</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
 
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">React</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+              <span class="marquee-tool"
+                ><span class="marquee-item">Convex</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
 
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Convex</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+              <span class="marquee-tool"
+                ><span class="marquee-item">Vue 3</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
 
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Vue 3</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+              <span class="marquee-tool"
+                ><span class="marquee-item">GraphQL</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
 
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">GraphQL</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+              <span class="marquee-tool"
+                ><span class="marquee-item">Turborepo</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
+            </div>
+            <div class="marquee-group" aria-hidden="true">
+              <span class="marquee-tool"
+                ><span class="marquee-item">TypeScript</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
 
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Turborepo</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
-</div><div class="mq-group" aria-hidden="true">
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">TypeScript</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+              <span class="marquee-tool"
+                ><span class="marquee-item">React Native</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
 
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">React Native</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+              <span class="marquee-tool"
+                ><span class="marquee-item">Expo</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
 
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Expo</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+              <span class="marquee-tool"
+                ><span class="marquee-item">Next.js</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
 
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Next.js</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+              <span class="marquee-tool"
+                ><span class="marquee-item">Node.js</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
 
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Node.js</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+              <span class="marquee-tool"
+                ><span class="marquee-item">React</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
 
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">React</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+              <span class="marquee-tool"
+                ><span class="marquee-item">Convex</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
 
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Convex</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+              <span class="marquee-tool"
+                ><span class="marquee-item">Vue 3</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
 
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Vue 3</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+              <span class="marquee-tool"
+                ><span class="marquee-item">GraphQL</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
 
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">GraphQL</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+              <span class="marquee-tool"
+                ><span class="marquee-item">Turborepo</span
+                ><svg
+                  class="marquee-star"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M4.9 4.9l14.2 14.2"></path>
+                  <path d="M19.1 4.9L4.9 19.1"></path></svg
+              ></span>
+            </div>
+          </div>
+        </div>
 
-<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Turborepo</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
-</div>
-</div>
-</div>
+        <!-- WORK -->
+        <section class="work-section" id="work">
+          <div class="work-header" data-reveal="">
+            <div class="work-intro">
+              <span class="eyebrow">(01) Selected work</span>
+              <h2 class="section-title">Things I'm building, in public.</h2>
+            </div>
+            <p class="work-description">
+              Products I'm shipping under
+              <a class="inline-link" href="https://boomich.pt">Boomich</a>, my independent studio.
+              Some are live, some are still being built.
+            </p>
+          </div>
 
-<!-- WORK -->
-<section id="work" style="max-width: 1280px; margin: 0 auto; padding: 160px 32px 0">
-<div data-reveal="" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 56px">
-<div style="display: flex; flex-direction: column; gap: 20px; max-width: 640px">
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">(01) Selected work</span>
-<h2 style="margin: 0; font-family: var(--display); font-size: clamp(36px, 4.6vw, 68px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 600">Things I'm building, in public.</h2>
-</div>
-<p style="margin: 0; max-width: 380px; color: var(--ink-2)">Products I'm shipping under <a href="https://boomich.pt" style="border-bottom: 1px solid var(--ink)">Boomich</a>, my independent studio. Some are live, some are still being built.</p>
-</div>
+          <div class="project-grid">
+            <!-- Bidcast -->
+            <a
+              class="card featured-project"
+              href="https://www.bidcast.io/"
+              data-cursor="Visit"
+              data-reveal=""
+            >
+              <div class="featured-details">
+                <div class="project-heading">
+                  <span class="eyebrow">01 · In development</span>
+                  <span class="project-arrow"
+                    ><svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M5 12h14"></path>
+                      <path d="M13 6l6 6-6 6"></path></svg
+                  ></span>
+                </div>
+                <div class="featured-copy">
+                  <h3 class="featured-title">Bidcast</h3>
+                  <p class="featured-description">
+                    Crowdfunding for creators. Fans pitch and fund videos, streams and podcasts
+                    upfront, so creators know what to make before they make it.
+                  </p>
+                  <span class="project-stack">Next.js · Convex · Clerk · Stripe · Turborepo</span>
+                </div>
+              </div>
+              <div class="vignette vignette-framed bidcast-vignette" data-loop aria-hidden="true">
+                <div class="campaign vignette-content">
+                  <div class="campaign-header">
+                    <span>Campaign</span>
+                    <span class="campaign-status"><span class="live-dot"></span>Live</span>
+                  </div>
+                  <div class="campaign-title">Studio tour + Q&amp;A, filmed in one take</div>
+                  <div class="campaign-funding">
+                    <div class="funding-track"><div class="funding-bar"></div></div>
+                    <div class="funding-summary">
+                      <span>€780 of €1,000</span><span>4 days left</span>
+                    </div>
+                  </div>
+                  <div class="bid-list">
+                    <div class="bid-ticker">
+                      <div class="bid-row">
+                        <span class="bid-person"><span class="bid-avatar">MR</span>marta.r</span>
+                        <span class="bid-amount">+€25</span>
+                      </div>
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: 24px">
+                      <div class="bid-row">
+                        <span class="bid-person"><span class="bid-avatar">JD</span>joaod</span>
+                        <span class="bid-amount">+€10</span>
+                      </div>
 
-<!-- Bidcast -->
-<a class="card" href="https://www.bidcast.io/" data-cursor="Visit" data-reveal="" style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; background: var(--surface); border-radius: 28px; overflow: hidden">
-<div style="flex: 1 1 380px; padding: 44px; display: flex; flex-direction: column; justify-content: space-between; gap: 40px">
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">01 · In development</span>
-<span class="go" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></span>
-</div>
-<div style="display: flex; flex-direction: column; gap: 16px">
-<h3 style="margin: 0; font-family: var(--display); font-size: clamp(36px, 4vw, 56px); line-height: 1; letter-spacing: -0.035em; font-weight: 600">Bidcast</h3>
-<p style="margin: 0; max-width: 420px; color: var(--ink-2); font-size: 18px">Crowdfunding for creators. Fans pitch and fund videos, streams and podcasts upfront, so creators know what to make before they make it.</p>
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.02em">Next.js · Convex · Clerk · Stripe · Turborepo</span>
-</div>
-</div>
-<div class="vig vig-framed bidcast-vig" data-loop aria-hidden="true" style="flex: 1.25 1 440px; min-height: 420px; background: var(--vignette); display: flex; align-items: center; justify-content: center; padding: 40px; box-sizing: border-box">
-<div class="campaign vig-content" style="width: 100%; max-width: 380px; background: #1F1F1D; border: 1px solid #2E2E2B; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 20px; color: #ECEBE4">
-<div style="display: flex; justify-content: space-between; align-items: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #9D9C94">
-<span>Campaign</span>
-<span style="display: inline-flex; align-items: center; gap: 6px; color: #F08A68"><span class="live" style="width: 6px; height: 6px; border-radius: 50%; background: #F08A68"></span>Live</span>
-</div>
-<div style="font-family: var(--display); font-size: 22px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Studio tour + Q&amp;A, filmed in one take</div>
-<div style="display: flex; flex-direction: column; gap: 8px">
-<div style="height: 8px; border-radius: 99px; background: #33332F; overflow: hidden"><div class="bar" style="width: 78%; height: 100%; border-radius: 99px; background: var(--accent)"></div></div>
-<div style="display: flex; justify-content: space-between; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; color: #B9B8B0"><span>€780 of €1,000</span><span>4 days left</span></div>
-</div>
-<div style="height: 144px; overflow: hidden; border-top: 1px solid #2E2E2B">
-<div class="ticker">
+                      <div class="bid-row">
+                        <span class="bid-person"><span class="bid-avatar">AL</span>ana_lima</span>
+                        <span class="bid-amount">+€50</span>
+                      </div>
 
-<div style="height: 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2A2A27; font-size: 14px">
-<span style="display: inline-flex; align-items: center; gap: 10px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #3A3A36; display: inline-flex; align-items: center; justify-content: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #ECEBE4">MR</span>marta.r</span>
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; color: #ECEBE4">+€25</span>
-</div>
+                      <div class="bid-row">
+                        <span class="bid-person"><span class="bid-avatar">TS</span>tiago.s</span>
+                        <span class="bid-amount">+€15</span>
+                      </div>
 
-<div style="height: 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2A2A27; font-size: 14px">
-<span style="display: inline-flex; align-items: center; gap: 10px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #3A3A36; display: inline-flex; align-items: center; justify-content: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #ECEBE4">JD</span>joaod</span>
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; color: #ECEBE4">+€10</span>
-</div>
+                      <div class="bid-row">
+                        <span class="bid-person"><span class="bid-avatar">MR</span>marta.r</span>
+                        <span class="bid-amount">+€25</span>
+                      </div>
 
-<div style="height: 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2A2A27; font-size: 14px">
-<span style="display: inline-flex; align-items: center; gap: 10px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #3A3A36; display: inline-flex; align-items: center; justify-content: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #ECEBE4">AL</span>ana_lima</span>
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; color: #ECEBE4">+€50</span>
-</div>
+                      <div class="bid-row">
+                        <span class="bid-person"><span class="bid-avatar">JD</span>joaod</span>
+                        <span class="bid-amount">+€10</span>
+                      </div>
 
-<div style="height: 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2A2A27; font-size: 14px">
-<span style="display: inline-flex; align-items: center; gap: 10px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #3A3A36; display: inline-flex; align-items: center; justify-content: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #ECEBE4">TS</span>tiago.s</span>
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; color: #ECEBE4">+€15</span>
-</div>
+                      <div class="bid-row">
+                        <span class="bid-person"><span class="bid-avatar">AL</span>ana_lima</span>
+                        <span class="bid-amount">+€50</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
 
-<div style="height: 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2A2A27; font-size: 14px">
-<span style="display: inline-flex; align-items: center; gap: 10px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #3A3A36; display: inline-flex; align-items: center; justify-content: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #ECEBE4">MR</span>marta.r</span>
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; color: #ECEBE4">+€25</span>
-</div>
+            <!-- MailToBills -->
+            <a
+              class="card project-card"
+              href="https://www.mailtobills.com/"
+              data-cursor="Visit"
+              data-reveal=""
+            >
+              <div class="vignette mail-vignette" data-loop aria-hidden="true">
+                <div class="mail-inbox">
+                  <div class="mail-chip" style="--d: 0s">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="var(--ink)"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                      <path d="M3 7l9 6 9-6"></path></svg
+                    ><span class="mail-message"
+                      ><span class="mail-subject">Electricity bill</span
+                      ><span class="mail-filename">fatura-out.pdf</span></span
+                    >
+                  </div>
+                  <div class="mail-chip" style="--d: 2.5s">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="var(--ink)"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                      <path d="M3 7l9 6 9-6"></path></svg
+                    ><span class="mail-message"
+                      ><span class="mail-subject">Cloud hosting</span
+                      ><span class="mail-filename">invoice-2210.pdf</span></span
+                    >
+                  </div>
+                  <div class="mail-chip" style="--d: 5s">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="var(--ink)"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                      <path d="M3 7l9 6 9-6"></path></svg
+                    ><span class="mail-message"
+                      ><span class="mail-subject">Coworking</span
+                      ><span class="mail-filename">recibo-10.pdf</span></span
+                    >
+                  </div>
+                </div>
+                <div class="mail-export">
+                  <div class="mail-folder">2026-10<span class="mail-folder-tab"></span></div>
+                  <span class="mail-export-caption">.zip + manifest.csv</span>
+                </div>
+              </div>
+              <div class="project-details">
+                <div class="project-heading">
+                  <span class="eyebrow">02 · Live, early access</span>
+                  <span class="project-arrow"
+                    ><svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M5 12h14"></path>
+                      <path d="M13 6l6 6-6 6"></path></svg
+                  ></span>
+                </div>
+                <h3 class="project-title">MailToBills</h3>
+                <p class="body-copy">
+                  Forward supplier emails and get one tidy ZIP per month for your accountant. Built
+                  for freelancers and small businesses in Portugal.
+                </p>
+                <span class="project-stack">Next.js · Convex · n8n · Turborepo · Playwright</span>
+              </div>
+            </a>
 
-<div style="height: 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2A2A27; font-size: 14px">
-<span style="display: inline-flex; align-items: center; gap: 10px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #3A3A36; display: inline-flex; align-items: center; justify-content: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #ECEBE4">JD</span>joaod</span>
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; color: #ECEBE4">+€10</span>
-</div>
+            <!-- Review AI -->
+            <a
+              class="card project-card"
+              href="https://github.com/vitordesouza"
+              data-cursor="Code"
+              data-reveal=""
+              style="--d: 120ms"
+            >
+              <div class="vignette vignette-framed review-vignette" data-loop aria-hidden="true">
+                <div class="vignette-content review-content">
+                  <div>
+                    <span class="terminal-muted">$ </span
+                    ><span class="terminal-command">review-ai evidence list</span
+                    ><span class="terminal-caret"></span>
+                  </div>
+                  <div class="terminal-output terminal-evidence">
+                    <div class="terminal-evidence-heading">
+                      <span>src/session/upload.ts</span
+                      ><span class="terminal-accent">significant</span>
+                    </div>
+                    <div>
+                      <span class="terminal-muted">rationale </span>retry uploads after network loss
+                    </div>
+                    <div><span class="terminal-muted">provenance </span>review feedback</div>
+                  </div>
+                  <div class="terminal-output terminal-muted">1 pending · 0 concerns</div>
+                </div>
+              </div>
+              <div class="project-details">
+                <div class="project-heading">
+                  <span class="eyebrow">03 · v0.1, in development</span>
+                  <span class="project-arrow"
+                    ><svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M5 12h14"></path>
+                      <path d="M13 6l6 6-6 6"></path></svg
+                  ></span>
+                </div>
+                <h3 class="project-title">Review AI</h3>
+                <p class="body-copy">
+                  A CLI and agent skill that records why an AI agent made each significant change,
+                  so humans can review agent-written code without reverse-engineering intent from
+                  the diff.
+                </p>
+                <span class="project-stack">TypeScript · Node.js · Codex Skills · CLI</span>
+              </div>
+            </a>
+          </div>
+        </section>
 
-<div style="height: 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2A2A27; font-size: 14px">
-<span style="display: inline-flex; align-items: center; gap: 10px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #3A3A36; display: inline-flex; align-items: center; justify-content: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #ECEBE4">AL</span>ana_lima</span>
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; color: #ECEBE4">+€50</span>
-</div>
+        <!-- EXPERIENCE -->
+        <section class="section" id="experience">
+          <div class="section-header" data-reveal="">
+            <div class="section-intro">
+              <span class="eyebrow">(02) Experience</span>
+              <h2 class="section-title">Thirteen years,<br />mostly the hard parts.</h2>
+            </div>
+            <a
+              class="btn btn-ghost button-history"
+              href="https://www.linkedin.com/in/souzavitor/"
+              data-cursor="Open"
+              ><span class="roll"
+                ><span>Full history on LinkedIn</span
+                ><span aria-hidden="true">Full history on LinkedIn</span></span
+              ></a
+            >
+          </div>
+          <ol class="experience-list" data-reveal="">
+            <li class="row experience-row">
+              <span class="row-meta experience-date">2024 — 2026</span>
+              <div class="row-title experience-role">
+                <span class="experience-title">Lead Frontend / TypeScript Engineer</span
+                ><span class="muted">Remynd · Healthcare AI</span>
+              </div>
+              <p class="row-description experience-description">
+                Owned the technical direction of the iOS and Android app. Built a realtime audio and
+                transcription pipeline that survives hours-long sessions, backgrounding and network
+                loss in live clinical settings.
+              </p>
+            </li>
+            <li class="row experience-row">
+              <span class="row-meta experience-date">2023 — 2024</span>
+              <div class="row-title experience-role">
+                <span class="experience-title">Senior TypeScript Developer</span
+                ><span class="muted">INFORM GmbH · WorkforcePlus</span>
+              </div>
+              <p class="row-description experience-description">
+                Rebuilt the rules back-office of an AI workforce scheduler used by KLM, LATAM and
+                Lufthansa Technik — turning union agreements and labor law into flows admins can
+                actually operate.
+              </p>
+            </li>
+            <li class="row experience-row">
+              <span class="row-meta experience-date">2021 — 2022</span>
+              <div class="row-title experience-role">
+                <span class="experience-title">Senior Frontend Developer</span
+                ><span class="muted">Evident · via Smart Consulting</span>
+              </div>
+              <p class="row-description experience-description">
+                Authored and led the frontend architecture for the greenfield rebuild of Mazars
+                Signals, a B2B compliance platform planned to scale across 90 countries.
+              </p>
+            </li>
+            <li class="row experience-row">
+              <span class="row-meta experience-date">2019 — 2021</span>
+              <div class="row-title experience-role">
+                <span class="experience-title">Frontend Web Developer</span
+                ><span class="muted">Brief Creatives · Digital agency</span>
+              </div>
+              <p class="row-description experience-description">
+                Led frontend delivery of websites and apps for consumer brands including Bayer and
+                Bepanthen.
+              </p>
+            </li>
+            <li class="row experience-row">
+              <span class="row-meta experience-date">2013 — 2019</span>
+              <div class="row-title experience-role">
+                <span class="experience-title">Full Stack Developer</span
+                ><span class="muted">COPYTRACK · EYESO · agencies</span>
+              </div>
+              <p class="row-description experience-description">
+                From São Paulo agencies to a copyright-enforcement SaaS with hundreds of thousands
+                of users, and a marketplace taken from first commit to public beta.
+              </p>
+            </li>
+          </ol>
+        </section>
 
-</div>
-</div>
-</div>
-</div>
-</a>
+        <!-- FOCUS -->
+        <section class="focus-section" id="focus">
+          <div class="focus-intro" data-reveal="">
+            <span class="eyebrow">(03) Where complexity lives</span>
+            <h2 class="focus-heading">The problems I go looking for.</h2>
+            <p class="body-copy">
+              Senior and staff-level remote roles where I contribute at the system level, not just
+              feature delivery.
+            </p>
+          </div>
+          <ol class="focus-list" data-reveal="">
+            <li class="row focus-row">
+              <span class="row-meta focus-number">01</span>
+              <div class="row-title focus-detail">
+                <span class="focus-title">Complex product domains</span
+                ><span class="row-description focus-description"
+                  >Turning complicated rules and workflows into software people can understand and
+                  use.</span
+                >
+              </div>
+            </li>
 
-<!-- MailToBills -->
-<a class="card" href="https://www.mailtobills.com/" data-cursor="Visit" data-reveal="" style="display: flex; flex-direction: column; background: var(--surface); border-radius: 28px; overflow: hidden">
-<div class="vig mail-vig" data-loop aria-hidden="true" style="height: 300px; background: var(--surface-2); display: flex; align-items: center; justify-content: center; gap: 28px; padding: 32px; box-sizing: border-box">
-<div style="position: relative; width: 210px; height: 56px">
-<div class="chip" style="--d: 0s; position: absolute; inset: 0; background: var(--surface); border-radius: 14px; display: flex; align-items: center; gap: 12px; padding: 0 14px; box-shadow: 0 10px 24px -14px rgba(17,17,17,.4)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg><span style="display: flex; flex-direction: column; line-height: 1.2"><span style="font-size: 13px; font-weight: 600">Electricity bill</span><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: var(--muted)">fatura-out.pdf</span></span></div>
-<div class="chip" style="--d: 2.5s; position: absolute; inset: 0; background: var(--surface); border-radius: 14px; display: flex; align-items: center; gap: 12px; padding: 0 14px; box-shadow: 0 10px 24px -14px rgba(17,17,17,.4)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg><span style="display: flex; flex-direction: column; line-height: 1.2"><span style="font-size: 13px; font-weight: 600">Cloud hosting</span><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: var(--muted)">invoice-2210.pdf</span></span></div>
-<div class="chip" style="--d: 5s; position: absolute; inset: 0; background: var(--surface); border-radius: 14px; display: flex; align-items: center; gap: 12px; padding: 0 14px; box-shadow: 0 10px 24px -14px rgba(17,17,17,.4)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg><span style="display: flex; flex-direction: column; line-height: 1.2"><span style="font-size: 13px; font-weight: 600">Coworking</span><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: var(--muted)">recibo-10.pdf</span></span></div>
-</div>
-<div style="display: flex; flex-direction: column; align-items: center; gap: 10px">
-<div class="folder" style="width: 92px; height: 72px; border-radius: 10px 10px 12px 12px; background: var(--ink); color: var(--bg); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 10px; box-sizing: border-box; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; position: relative">2026-10<span style="position: absolute; top: -8px; left: 0; width: 40px; height: 12px; border-radius: 6px 6px 0 0; background: var(--ink)"></span></div>
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: var(--ink-2)">.zip + manifest.csv</span>
-</div>
-</div>
-<div style="padding: 36px 40px 40px; display: flex; flex-direction: column; gap: 14px; flex: 1">
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">02 · Live, early access</span>
-<span class="go" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></span>
-</div>
-<h3 style="margin: 0; font-family: var(--display); font-size: 40px; line-height: 1; letter-spacing: -0.035em; font-weight: 600">MailToBills</h3>
-<p style="margin: 0; color: var(--ink-2)">Forward supplier emails and get one tidy ZIP per month for your accountant. Built for freelancers and small businesses in Portugal.</p>
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.02em">Next.js · Convex · n8n · Turborepo · Playwright</span>
-</div>
-</a>
+            <li class="row focus-row">
+              <span class="row-meta focus-number">02</span>
+              <div class="row-title focus-detail">
+                <span class="focus-title">Architecture that can evolve</span
+                ><span class="row-description focus-description"
+                  >Clear boundaries and deliberate trade-offs, so a product can grow without every
+                  change becoming a rewrite.</span
+                >
+              </div>
+            </li>
 
-<!-- Review AI -->
-<a class="card" href="https://github.com/vitordesouza" data-cursor="Code" data-reveal="" style="--d: 120ms; display: flex; flex-direction: column; background: var(--surface); border-radius: 28px; overflow: hidden">
-<div class="vig vig-framed review-vig" data-loop aria-hidden="true" style="height: 300px; background: var(--vignette); padding: 32px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 14px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: #E8E7E0; line-height: 1.5">
-<div class="vig-content review-content">
-<div><span style="color: #8F8E86">$ </span><span class="type">review-ai evidence list</span><span class="caret"></span></div>
-<div class="out" style="display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border: 1px solid #2E2E2B; border-radius: 12px; background: #1C1C1A">
-<div style="display: flex; justify-content: space-between; gap: 12px"><span>src/session/upload.ts</span><span style="color: var(--vignette-accent)">significant</span></div>
-<div><span style="color: #8F8E86">rationale </span>retry uploads after network loss</div>
-<div><span style="color: #8F8E86">provenance </span>review feedback</div>
-</div>
-<div class="out" style="color: #8F8E86">1 pending · 0 concerns</div>
-</div>
-</div>
-<div style="padding: 36px 40px 40px; display: flex; flex-direction: column; gap: 14px; flex: 1">
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">03 · v0.1, in development</span>
-<span class="go" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></span>
-</div>
-<h3 style="margin: 0; font-family: var(--display); font-size: 40px; line-height: 1; letter-spacing: -0.035em; font-weight: 600">Review AI</h3>
-<p style="margin: 0; color: var(--ink-2)">A CLI and agent skill that records why an AI agent made each significant change, so humans can review agent-written code without reverse-engineering intent from the diff.</p>
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.02em">TypeScript · Node.js · Codex Skills · CLI</span>
-</div>
-</a>
+            <li class="row focus-row">
+              <span class="row-meta focus-number">03</span>
+              <div class="row-title focus-detail">
+                <span class="focus-title">Unfamiliar territory</span
+                ><span class="row-description focus-description"
+                  >Learning the tools a problem calls for, testing assumptions early and finding a
+                  practical way forward.</span
+                >
+              </div>
+            </li>
 
-</div>
-</section>
+            <li class="row focus-row">
+              <span class="row-meta focus-number">04</span>
+              <div class="row-title focus-detail">
+                <span class="focus-title">AI integrations</span
+                ><span class="row-description focus-description"
+                  >Bringing AI into useful product workflows, with reliability, clear feedback and a
+                  way to understand what went wrong.</span
+                >
+              </div>
+            </li>
 
-<!-- EXPERIENCE -->
-<section id="experience" style="max-width: 1280px; margin: 0 auto; padding: 180px 32px 0">
-<div data-reveal="" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 48px">
-<div style="display: flex; flex-direction: column; gap: 20px">
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">(02) Experience</span>
-<h2 style="margin: 0; font-family: var(--display); font-size: clamp(36px, 4.6vw, 68px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 600">Thirteen years,<br>mostly the hard parts.</h2>
-</div>
-<a class="btn btn-ghost" href="https://www.linkedin.com/in/souzavitor/" data-cursor="Open" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1px solid var(--ink); font-size: 15px"><span class="roll"><span>Full history on LinkedIn</span><span aria-hidden="true">Full history on LinkedIn</span></span></a>
-</div>
-<ol data-reveal="" style="list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink)">
-<li class="row" style="display: flex; flex-wrap: wrap; gap: 12px 40px; padding: 36px 0; border-bottom: 1px solid var(--line)">
-<span class="n" style="flex: 0 0 150px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 6px">2024 — 2026</span>
-<div class="t" style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Lead Frontend / TypeScript Engineer</span><span style="color: var(--muted)">Remynd · Healthcare AI</span></div>
-<p class="p" style="flex: 1.3 1 340px; margin: 0; color: var(--ink-2)">Owned the technical direction of the iOS and Android app. Built a realtime audio and transcription pipeline that survives hours-long sessions, backgrounding and network loss in live clinical settings.</p>
-</li>
-<li class="row" style="display: flex; flex-wrap: wrap; gap: 12px 40px; padding: 36px 0; border-bottom: 1px solid var(--line)">
-<span class="n" style="flex: 0 0 150px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 6px">2023 — 2024</span>
-<div class="t" style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Senior TypeScript Developer</span><span style="color: var(--muted)">INFORM GmbH · WorkforcePlus</span></div>
-<p class="p" style="flex: 1.3 1 340px; margin: 0; color: var(--ink-2)">Rebuilt the rules back-office of an AI workforce scheduler used by KLM, LATAM and Lufthansa Technik — turning union agreements and labor law into flows admins can actually operate.</p>
-</li>
-<li class="row" style="display: flex; flex-wrap: wrap; gap: 12px 40px; padding: 36px 0; border-bottom: 1px solid var(--line)">
-<span class="n" style="flex: 0 0 150px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 6px">2021 — 2022</span>
-<div class="t" style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Senior Frontend Developer</span><span style="color: var(--muted)">Evident · via Smart Consulting</span></div>
-<p class="p" style="flex: 1.3 1 340px; margin: 0; color: var(--ink-2)">Authored and led the frontend architecture for the greenfield rebuild of Mazars Signals, a B2B compliance platform planned to scale across 90 countries.</p>
-</li>
-<li class="row" style="display: flex; flex-wrap: wrap; gap: 12px 40px; padding: 36px 0; border-bottom: 1px solid var(--line)">
-<span class="n" style="flex: 0 0 150px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 6px">2019 — 2021</span>
-<div class="t" style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Frontend Web Developer</span><span style="color: var(--muted)">Brief Creatives · Digital agency</span></div>
-<p class="p" style="flex: 1.3 1 340px; margin: 0; color: var(--ink-2)">Led frontend delivery of websites and apps for consumer brands including Bayer and Bepanthen.</p>
-</li>
-<li class="row" style="display: flex; flex-wrap: wrap; gap: 12px 40px; padding: 36px 0; border-bottom: 1px solid var(--line)">
-<span class="n" style="flex: 0 0 150px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 6px">2013 — 2019</span>
-<div class="t" style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Full Stack Developer</span><span style="color: var(--muted)">COPYTRACK · EYESO · agencies</span></div>
-<p class="p" style="flex: 1.3 1 340px; margin: 0; color: var(--ink-2)">From São Paulo agencies to a copyright-enforcement SaaS with hundreds of thousands of users, and a marketplace taken from first commit to public beta.</p>
-</li>
-</ol>
-</section>
+            <li class="row focus-row">
+              <span class="row-meta focus-number">05</span>
+              <div class="row-title focus-detail">
+                <span class="focus-title">Multi-team coordination</span
+                ><span class="row-description focus-description"
+                  >Helping people with different perspectives agree on the problem, the trade-offs
+                  and the next step.</span
+                >
+              </div>
+            </li>
+          </ol>
+        </section>
 
-<!-- FOCUS -->
-<section id="focus" style="max-width: 1280px; margin: 0 auto; padding: 180px 32px 0; display: flex; flex-wrap: wrap; gap: 40px 64px">
-<div data-reveal="" style="flex: 1 1 320px; max-width: 420px; display: flex; flex-direction: column; gap: 20px">
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">(03) Where complexity lives</span>
-<h2 style="margin: 0; font-family: var(--display); font-size: clamp(36px, 4.2vw, 60px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 600">The problems I go looking for.</h2>
-<p style="margin: 0; color: var(--ink-2)">Senior and staff-level remote roles where I contribute at the system level, not just feature delivery.</p>
-</div>
-<ol data-reveal="" style="flex: 999 1 560px; min-width: 0; list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink)">
+        <!-- STACK -->
+        <section class="section" id="stack">
+          <div class="section-header" data-reveal="">
+            <div class="section-intro">
+              <span class="eyebrow">(04) Stack</span>
+              <h2 class="section-title">Tools of the trade.</h2>
+              <p class="stack-description">
+                Tools I use now, alongside stacks I've shipped with. The projects and experience
+                above show where they fit.
+              </p>
+            </div>
+          </div>
+          <div class="stack-panel" data-reveal="">
+            <div class="stack-column stack-column-bordered">
+              <h3 class="stack-label">Frontend &amp; mobile</h3>
+              <ul class="stack-list">
+                <li>TypeScript · JavaScript</li>
+                <li>React · Next.js</li>
+                <li>Vue 3</li>
+                <li>React Native · Expo</li>
+                <li>Tailwind CSS</li>
+                <li>Vite</li>
+              </ul>
+            </div>
+            <div class="stack-column stack-column-bordered">
+              <h3 class="stack-label">Backend &amp; data</h3>
+              <ul class="stack-list">
+                <li>Node.js</li>
+                <li>REST · GraphQL</li>
+                <li>WebSockets</li>
+                <li>Convex</li>
+                <li>SQL · PostgreSQL</li>
+                <li>PHP · Symfony</li>
+              </ul>
+            </div>
+            <div class="stack-column stack-column-bordered">
+              <h3 class="stack-label">Delivery &amp; tooling</h3>
+              <ul class="stack-list">
+                <li>Git · GitHub</li>
+                <li>Turborepo</li>
+                <li>AWS · Azure</li>
+                <li>CI / CD</li>
+                <li>n8n</li>
+              </ul>
+            </div>
+            <div class="stack-column">
+              <h3 class="stack-label">Quality &amp; observability</h3>
+              <ul class="stack-list">
+                <li>Playwright</li>
+                <li>Vitest · Jest</li>
+                <li>Testing Library</li>
+                <li>Storybook</li>
+                <li>Sentry · PostHog</li>
+              </ul>
+            </div>
+          </div>
+        </section>
 
-<li class="row" style="display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line)">
-<span class="n" style="flex: 0 0 40px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 8px">01</span>
-<div class="t" style="flex: 1; display: flex; flex-direction: column; gap: 6px"><span style="font-family: var(--display); font-size: clamp(24px, 2.4vw, 32px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Complex product domains</span><span class="p" style="color: var(--muted); max-width: 560px">Turning complicated rules and workflows into software people can understand and use.</span></div>
-</li>
-
-<li class="row" style="display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line)">
-<span class="n" style="flex: 0 0 40px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 8px">02</span>
-<div class="t" style="flex: 1; display: flex; flex-direction: column; gap: 6px"><span style="font-family: var(--display); font-size: clamp(24px, 2.4vw, 32px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Architecture that can evolve</span><span class="p" style="color: var(--muted); max-width: 560px">Clear boundaries and deliberate trade-offs, so a product can grow without every change becoming a rewrite.</span></div>
-</li>
-
-<li class="row" style="display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line)">
-<span class="n" style="flex: 0 0 40px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 8px">03</span>
-<div class="t" style="flex: 1; display: flex; flex-direction: column; gap: 6px"><span style="font-family: var(--display); font-size: clamp(24px, 2.4vw, 32px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Unfamiliar territory</span><span class="p" style="color: var(--muted); max-width: 560px">Learning the tools a problem calls for, testing assumptions early and finding a practical way forward.</span></div>
-</li>
-
-<li class="row" style="display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line)">
-<span class="n" style="flex: 0 0 40px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 8px">04</span>
-<div class="t" style="flex: 1; display: flex; flex-direction: column; gap: 6px"><span style="font-family: var(--display); font-size: clamp(24px, 2.4vw, 32px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">AI integrations</span><span class="p" style="color: var(--muted); max-width: 560px">Bringing AI into useful product workflows, with reliability, clear feedback and a way to understand what went wrong.</span></div>
-</li>
-
-<li class="row" style="display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line)">
-<span class="n" style="flex: 0 0 40px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 8px">05</span>
-<div class="t" style="flex: 1; display: flex; flex-direction: column; gap: 6px"><span style="font-family: var(--display); font-size: clamp(24px, 2.4vw, 32px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Multi-team coordination</span><span class="p" style="color: var(--muted); max-width: 560px">Helping people with different perspectives agree on the problem, the trade-offs and the next step.</span></div>
-</li>
-
-</ol>
-</section>
-
-<!-- STACK -->
-<section id="stack" style="max-width: 1280px; margin: 0 auto; padding: 180px 32px 0">
-<div data-reveal="" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 48px">
-<div style="display: flex; flex-direction: column; gap: 20px">
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">(04) Stack</span>
-<h2 style="margin: 0; font-family: var(--display); font-size: clamp(36px, 4.6vw, 68px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 600">Tools of the trade.</h2>
-<p style="margin: 20px 0 0; max-width: 640px; color: var(--ink-2)">Tools I use now, alongside stacks I've shipped with. The projects and experience above show where they fit.</p>
-</div>
-</div>
-<div class="stack-panel" data-reveal="" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; background: var(--surface); border-radius: 28px; overflow: hidden">
-<div style="padding: 36px; display: flex; flex-direction: column; gap: 20px; border-right: 1px solid var(--line-soft)">
-<h3 style="margin: 0; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">Frontend &amp; mobile</h3>
-<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 19px; font-weight: 500"><li>TypeScript · JavaScript</li><li>React · Next.js</li><li>Vue 3</li><li>React Native · Expo</li><li>Tailwind CSS</li><li>Vite</li></ul>
-</div>
-<div style="padding: 36px; display: flex; flex-direction: column; gap: 20px; border-right: 1px solid var(--line-soft)">
-<h3 style="margin: 0; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">Backend &amp; data</h3>
-<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 19px; font-weight: 500"><li>Node.js</li><li>REST · GraphQL</li><li>WebSockets</li><li>Convex</li><li>SQL · PostgreSQL</li><li>PHP · Symfony</li></ul>
-</div>
-<div style="padding: 36px; display: flex; flex-direction: column; gap: 20px; border-right: 1px solid var(--line-soft)">
-<h3 style="margin: 0; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">Delivery &amp; tooling</h3>
-<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 19px; font-weight: 500"><li>Git · GitHub</li><li>Turborepo</li><li>AWS · Azure</li><li>CI / CD</li><li>n8n</li></ul>
-</div>
-<div style="padding: 36px; display: flex; flex-direction: column; gap: 20px">
-<h3 style="margin: 0; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">Quality &amp; observability</h3>
-<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 19px; font-weight: 500"><li>Playwright</li><li>Vitest · Jest</li><li>Testing Library</li><li>Storybook</li><li>Sentry · PostHog</li></ul>
-</div>
-</div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" style="max-width: 1280px; margin: 0 auto; padding: 200px 32px 120px; display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-end">
-<div data-reveal="" style="flex: 999 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 32px">
-<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">(05) Contact</span>
-<h2 style="margin: 0; font-family: var(--display); font-size: clamp(36px, 4.6vw, 68px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 600; color: var(--contact-muted)">Have a <span class="hl">hard problem?<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 13 C 60 4, 120 4, 170 10 S 260 17, 297 6" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" pathLength="1" vector-effect="non-scaling-stroke"></path></svg></span></h2>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px">
-<a class="email" href="mailto:joaovitor@boomich.pt" data-cursor="Write" aria-label="Email joaovitor@boomich.pt" style="font-family: var(--display); font-size: clamp(34px, 5.6vw, 84px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05; overflow-wrap: anywhere; border-bottom: 3px solid var(--ink); padding-bottom: 6px"><span class="ch" aria-hidden="true" style="--i: 0">j</span><span class="ch" aria-hidden="true" style="--i: 1">o</span><span class="ch" aria-hidden="true" style="--i: 2">a</span><span class="ch" aria-hidden="true" style="--i: 3">o</span><span class="ch" aria-hidden="true" style="--i: 4">v</span><span class="ch" aria-hidden="true" style="--i: 5">i</span><span class="ch" aria-hidden="true" style="--i: 6">t</span><span class="ch" aria-hidden="true" style="--i: 7">o</span><span class="ch" aria-hidden="true" style="--i: 8">r</span><span class="ch" aria-hidden="true" style="--i: 9">@</span><span class="ch" aria-hidden="true" style="--i: 10">b</span><span class="ch" aria-hidden="true" style="--i: 11">o</span><span class="ch" aria-hidden="true" style="--i: 12">o</span><span class="ch" aria-hidden="true" style="--i: 13">m</span><span class="ch" aria-hidden="true" style="--i: 14">i</span><span class="ch" aria-hidden="true" style="--i: 15">c</span><span class="ch" aria-hidden="true" style="--i: 16">h</span><span class="ch" aria-hidden="true" style="--i: 17">.</span><span class="ch" aria-hidden="true" style="--i: 18">p</span><span class="ch" aria-hidden="true" style="--i: 19">t</span></a>
-<button id="copy-email" type="button" class="btn btn-ghost" aria-live="polite" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--ink); background: transparent; color: inherit; font: inherit; font-size: 14px; cursor: pointer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg><span id="copy-label">Copy</span></button>
-</div>
-<dl style="margin: 16px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px 32px; padding-top: 32px; border-top: 1px solid var(--line)">
-<div style="display: flex; flex-direction: column; gap: 6px"><dt style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">Availability</dt><dd style="margin: 0">Immediately</dd></div>
-<div style="display: flex; flex-direction: column; gap: 6px"><dt style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">Based in</dt><dd style="margin: 0">Caldas da Rainha, Leiria, Portugal · UTC/UTC+1</dd></div>
-<div style="display: flex; flex-direction: column; gap: 6px"><dt style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">Languages</dt><dd style="margin: 0">Portuguese, English C1+, Spanish</dd></div>
-<div style="display: flex; flex-direction: column; gap: 6px"><dt style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">Structure</dt><dd style="margin: 0">Employee or B2B contract</dd></div>
-</dl>
-<div style="display: flex; flex-wrap: wrap; gap: 12px">
-<a class="btn btn-ghost" href="https://github.com/vitordesouza" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border: 1px solid var(--line); border-radius: 999px; font-size: 15px"><span class="roll"><span>GitHub</span><span aria-hidden="true">GitHub</span></span></a>
-<a class="btn btn-ghost" href="https://www.linkedin.com/in/souzavitor/" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border: 1px solid var(--line); border-radius: 999px; font-size: 15px"><span class="roll"><span>LinkedIn</span><span aria-hidden="true">LinkedIn</span></span></a>
-<a class="btn btn-ghost" href="https://wa.me/351934347000" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border: 1px solid var(--line); border-radius: 999px; font-size: 15px"><span class="roll"><span>WhatsApp</span><span aria-hidden="true">WhatsApp</span></span></a>
-<a class="btn btn-ghost" href="/vitor-cv.pdf" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border: 1px solid var(--line); border-radius: 999px; font-size: 15px"><span class="roll"><span>CV (PDF)</span><span aria-hidden="true">CV (PDF)</span></span></a>
-</div>
-</div>
-<figure data-reveal="" style="--d: 150ms; flex: 1 1 260px; max-width: 340px; margin: 0; display: flex; flex-direction: column; gap: 12px">
-<img src="/src/img/vitor-portrait.webp" alt="Vitor Souza" width="680" height="907" loading="lazy" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 24px; display: block">
-<figcaption style="display: flex; justify-content: space-between; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)"><span>Vitor Souza</span><span>Caldas da Rainha, Leiria</span></figcaption>
-</figure>
-</section>
-
-</main>
-<!-- FOOTER -->
-<footer style="max-width: 1280px; margin: 0 auto; padding: 32px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; font-size: 14px; color: var(--muted)">
-<span>Vitor Souza — Senior TypeScript Engineer · ©2026</span>
-<a href="#top" style="display: inline-flex; align-items: center; gap: 8px; color: var(--ink)"><span class="roll"><span>Back to top</span><span aria-hidden="true">Back to top</span></span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"></path><path d="M6 11l6-6 6 6"></path></svg></a>
-</footer>
-
-</div>
-</body>
+        <!-- CONTACT -->
+        <section class="contact-section" id="contact">
+          <div class="contact-details" data-reveal="">
+            <span class="eyebrow">(05) Contact</span>
+            <h2 class="contact-heading">
+              Have a
+              <span class="highlight"
+                >hard problem?<svg
+                  viewBox="0 0 300 20"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3 13 C 60 4, 120 4, 170 10 S 260 17, 297 6"
+                    fill="none"
+                    stroke="var(--accent)"
+                    stroke-width="5"
+                    stroke-linecap="round"
+                    pathLength="1"
+                    vector-effect="non-scaling-stroke"
+                  ></path></svg
+              ></span>
+            </h2>
+            <div class="contact-actions">
+              <a
+                class="email contact-email"
+                href="mailto:joaovitor@boomich.pt"
+                data-cursor="Write"
+                aria-label="Email joaovitor@boomich.pt"
+                ><span class="email-character" aria-hidden="true" style="--i: 0">j</span
+                ><span class="email-character" aria-hidden="true" style="--i: 1">o</span
+                ><span class="email-character" aria-hidden="true" style="--i: 2">a</span
+                ><span class="email-character" aria-hidden="true" style="--i: 3">o</span
+                ><span class="email-character" aria-hidden="true" style="--i: 4">v</span
+                ><span class="email-character" aria-hidden="true" style="--i: 5">i</span
+                ><span class="email-character" aria-hidden="true" style="--i: 6">t</span
+                ><span class="email-character" aria-hidden="true" style="--i: 7">o</span
+                ><span class="email-character" aria-hidden="true" style="--i: 8">r</span
+                ><span class="email-character" aria-hidden="true" style="--i: 9">@</span
+                ><span class="email-character" aria-hidden="true" style="--i: 10">b</span
+                ><span class="email-character" aria-hidden="true" style="--i: 11">o</span
+                ><span class="email-character" aria-hidden="true" style="--i: 12">o</span
+                ><span class="email-character" aria-hidden="true" style="--i: 13">m</span
+                ><span class="email-character" aria-hidden="true" style="--i: 14">i</span
+                ><span class="email-character" aria-hidden="true" style="--i: 15">c</span
+                ><span class="email-character" aria-hidden="true" style="--i: 16">h</span
+                ><span class="email-character" aria-hidden="true" style="--i: 17">.</span
+                ><span class="email-character" aria-hidden="true" style="--i: 18">p</span
+                ><span class="email-character" aria-hidden="true" style="--i: 19">t</span></a
+              >
+              <button
+                id="copy-email"
+                type="button"
+                class="btn btn-ghost button-copy"
+                aria-live="polite"
+              >
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="9" y="9" width="12" height="12" rx="2"></rect>
+                  <path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg
+                ><span id="copy-label">Copy</span>
+              </button>
+            </div>
+            <dl class="contact-facts">
+              <div class="contact-fact">
+                <dt class="eyebrow">Availability</dt>
+                <dd class="reset-margin">Immediately</dd>
+              </div>
+              <div class="contact-fact">
+                <dt class="eyebrow">Based in</dt>
+                <dd class="reset-margin">Caldas da Rainha, Leiria, Portugal · UTC/UTC+1</dd>
+              </div>
+              <div class="contact-fact">
+                <dt class="eyebrow">Languages</dt>
+                <dd class="reset-margin">Portuguese, English C1+, Spanish</dd>
+              </div>
+              <div class="contact-fact">
+                <dt class="eyebrow">Structure</dt>
+                <dd class="reset-margin">Employee or B2B contract</dd>
+              </div>
+            </dl>
+            <div class="contact-socials">
+              <a class="btn btn-ghost social-link" href="https://github.com/vitordesouza"
+                ><span class="roll"
+                  ><span>GitHub</span><span aria-hidden="true">GitHub</span></span
+                ></a
+              >
+              <a class="btn btn-ghost social-link" href="https://www.linkedin.com/in/souzavitor/"
+                ><span class="roll"
+                  ><span>LinkedIn</span><span aria-hidden="true">LinkedIn</span></span
+                ></a
+              >
+              <a class="btn btn-ghost social-link" href="https://wa.me/351934347000"
+                ><span class="roll"
+                  ><span>WhatsApp</span><span aria-hidden="true">WhatsApp</span></span
+                ></a
+              >
+              <a class="btn btn-ghost social-link" href="/vitor-cv.pdf"
+                ><span class="roll"
+                  ><span>CV (PDF)</span><span aria-hidden="true">CV (PDF)</span></span
+                ></a
+              >
+            </div>
+          </div>
+          <figure class="contact-portrait" data-reveal="" style="--d: 150ms">
+            <img
+              class="portrait-image"
+              src="/src/img/vitor-portrait.webp"
+              alt="Vitor Souza"
+              width="680"
+              height="907"
+              loading="lazy"
+            />
+            <figcaption class="portrait-caption">
+              <span>Vitor Souza</span><span>Caldas da Rainha, Leiria</span>
+            </figcaption>
+          </figure>
+        </section>
+      </main>
+      <!-- FOOTER -->
+      <footer class="site-footer">
+        <span>Vitor Souza — Senior TypeScript Engineer · ©2026</span>
+        <a class="back-to-top" href="#top"
+          ><span class="roll"
+            ><span>Back to top</span><span aria-hidden="true">Back to top</span></span
+          ><svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M12 19V5"></path>
+            <path d="M6 11l6-6 6 6"></path></svg
+        ></a>
+      </footer>
+    </div>
+  </body>
 </html>

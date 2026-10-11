@@ -1,0 +1,7 @@
+dist/
+node_modules/
+.impeccable/
+pnpm-lock.yaml
+design/Main.dc.html
+public/fonts/
+.github/workflows/deploy.yml
