@@ -1,247 +1,445 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="theme-color" content="#000" />
-  <meta name="msapplication-TileColor" content="#000" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>Vitor Souza</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..900&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="src/index.css" />
-  <link rel="apple-touch-icon" sizes="180x180" href="src/img/favicons/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="src/img/favicons/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="src/img/favicons/favicon-16x16.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="src/img/favicons/android-chrome-192x192.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="src/img/favicons/android-chrome-512x512.png" />
-  <link rel="icon" type="image/png" href="src/img/favicons/favicon-32x32.png" sizes="32x32" />
-  <link rel="icon" type="image/png" sizes="16x16" href="src/img/favicons/favicon.ico" />
-  <script type="module" src="src/index.ts"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#F3F2EE" />
+  <script>
+    (() => {
+      let night = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      try {
+        const mode = localStorage.getItem('mode');
+        if (mode === 'day' || mode === 'night') night = mode === 'night';
+      } catch {}
+      document.documentElement.classList.toggle('dark', night);
+      document.querySelector('meta[name="theme-color"]').content = night ? '#11110F' : '#F3F2EE';
+    })();
+  </script>
+  <title>Vitor Souza — Senior TypeScript Engineer</title>
+  <meta name="description" content="Senior TypeScript engineer working where complexity is the product. 13+ years building web and mobile systems. Based in Caldas da Rainha, Leiria, Portugal; available immediately." />
+  <link rel="canonical" href="https://vitordesouza.github.io/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Vitor Souza — Senior TypeScript Engineer" />
+  <meta property="og:description" content="Senior TypeScript engineer building web and mobile products, shaping architecture and integrating AI. Based in Caldas da Rainha, Leiria, Portugal; available immediately." />
+  <meta property="og:url" content="https://vitordesouza.github.io/" />
+  <meta property="og:site_name" content="Vitor Souza" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:image" content="https://vitordesouza.github.io/og-image.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Vitor Souza — Senior TypeScript Engineer. Where complexity is the product." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Vitor Souza — Senior TypeScript Engineer" />
+  <meta name="twitter:description" content="Web and mobile products. Architecture. AI integrations. Based in Caldas da Rainha, Leiria, Portugal." />
+  <meta name="twitter:image" content="https://vitordesouza.github.io/og-image.png" />
+  <meta name="twitter:image:alt" content="Vitor Souza — Senior TypeScript Engineer. Where complexity is the product." />
+  <meta name="author" content="João Vitor de Souza" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "João Vitor de Souza",
+      "alternateName": "Vitor Souza",
+      "jobTitle": "Senior TypeScript Engineer",
+      "url": "https://vitordesouza.github.io/",
+      "image": "https://vitordesouza.github.io/vitor-portrait.webp",
+      "sameAs": ["https://github.com/vitordesouza", "https://www.linkedin.com/in/souzavitor/"]
+    }
+  </script>
+  <link rel="preload" href="/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/geist-mono.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/src/index.css" />
+  <script type="module" src="/src/index.ts"></script>
 </head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div id="site">
 
-<body class="dark:text-white mainpage">
-  <div id="dot"
-    class="dot hidden lg:block size-8 fixed -mt-5 -ml-5 bg-white pointer-events-none mix-blend-difference rounded-[50%] z-50">
-  </div>
+<div id="cursor" class="cur" aria-hidden="true"><span id="cursor-label" class="cur-l"></span></div>
+<div id="floating-photo" class="float" aria-hidden="true"><img src="/src/img/vitor-candid.webp" alt="" width="440" height="440"></div>
 
-  <main
-    class="main space-y-16 lg:space-y-32 max-w-[100vw] overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-300">
-    <div id="hero" class="container px-6 sm:px-8 lg:px-16 w-full">
-      <header class="flex py-6 pb-10 md:py-9 lg:py-16 justify-between w-full hero-animate" style="animation-delay: 0s">
-        <a href="/" class="logo">
-          <img src="src/img/logo.svg" alt="" class="for-day-mode dark:hidden" />
-          <img src="src/img/logo-white.svg" alt="" class="for-night-mode dark:block hidden" />
-        </a>
-        <div class="flex flex-col text-right gap-2 lg:gap-0 justify-end *:flex *:items-center *:justify-end *:gap-2">
-          <a id="mode-link" href="" class="link link-effect text-xl uppercase" data-day-text="Night mode"
-            data-night-text="Day mode">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="lucide lucide-sun size-4 hidden dark:inline-block">
-              <circle cx="12" cy="12" r="4" />
-              <path d="M12 2v2" />
-              <path d="M12 20v2" />
-              <path d="m4.93 4.93 1.41 1.41" />
-              <path d="m17.66 17.66 1.41 1.41" />
-              <path d="M2 12h2" />
-              <path d="M20 12h2" />
-              <path d="m6.34 17.66-1.41 1.41" />
-              <path d="m19.07 4.93-1.41 1.41" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="lucide lucide-moon size-4 dark:hidden">
-              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-            </svg>
-            <span>Night mode</span>
-          </a>
-          <a href="https://www.linkedin.com/in/souzavitor/" target="_blank" class="link link-effect">
-            <span>LinkedIn</span>
-          </a>
-          <a href="https://wa.me/351934347000" target="_blank" class="link link-effect">
-            <span>WhatsApp</span>
-          </a>
-        </div>
-      </header>
+<!-- NAV -->
+<header class="site-nav mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-6 px-8 py-7">
+<a href="#top" style="font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: -0.03em">Vitor Souza<span style="color: var(--accent)">.</span></a>
+<nav class="nav-links ml-auto flex flex-wrap gap-8 text-[15px]" aria-label="Primary">
+<a href="#work"><span class="roll"><span>Work</span><span aria-hidden="true">Work</span></span></a>
+<a href="#experience"><span class="roll"><span>Experience</span><span aria-hidden="true">Experience</span></span></a>
+<a href="#stack"><span class="roll"><span>Stack</span><span aria-hidden="true">Stack</span></span></a>
+<a href="#contact"><span class="roll"><span>Contact</span><span aria-hidden="true">Contact</span></span></a>
+</nav>
+<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to night mode" aria-pressed="false">
+<svg class="theme-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+<defs><mask id="moon-mask"><rect width="24" height="24" fill="white"/><circle class="moon-cutout" cx="24" cy="0" r="6" fill="black"/></mask></defs>
+<circle class="sun-disc" cx="12" cy="12" r="4" fill="currentColor" mask="url(#moon-mask)"/>
+<g class="sun-rays" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></g>
+</svg></button>
+<a class="btn" href="mailto:joaovitor@boomich.pt" data-cursor="Write" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 22px; border-radius: 999px; background: var(--ink); color: var(--bg); font-size: 15px; font-weight: 500"><span class="roll"><span>Let's talk</span><span aria-hidden="true">Let's talk</span></span></a>
+</header>
 
-      <div class="main-title relative pt-10 transition-colors duration-200 ease-linear hero-animate" style="animation-delay: 0.12s">
-        <h1 class="title-with-img relative pb-12 lg:pb-28 z-10 font-bold text-4xl md:text-5xl lg:text-8xl">
-          <span class="relative z-30">
-            <a href="#" class="selected hover:text-black js-title-with-img text-neutral">
-              I'm Vitor Souza,</a>
-          </span>
-          <img src="src/img/square.png" alt=""
-            class="title-img hover-img pointer-events-none absolute top-0 left-0 max-w-[65vw] md:max-w-[400px] rounded-md rotate-45 opacity-0 transition-opacity duration-200 ease-linear z-20"
-            data-top="" data-left="" style="width: 312px" />
-          <span class="relative z-10">a senior engineer who works where complexity is the product.</span>
-        </h1>
-        <div class="grid grid-cols-3 gap-8">
-          <div class="relative hidden lg:block">
-            <div class="absolute inset-0 flex items-center" aria-hidden="true">
-              <div class="w-full border-t border-gray-300"></div>
-            </div>
-            <div class="relative flex justify-start">
-              <span class="pr-3 text-base font-semibold leading-6 text-gray-900 dark:text-neutral">
-                <div class="scroll-word link change link-effect">
-                  <span class="change-span animate-pulse">Scroll</span>
-                </div>
-              </span>
-            </div>
-          </div>
+<!-- HERO -->
+<main id="main-content">
+<section id="top" style="max-width: 1280px; margin: 0 auto; padding: 88px 32px 72px; display: flex; flex-direction: column; gap: 56px">
+<div class="hero-meta fade" style="--d: 0ms; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 32px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted)">
+<span>Senior TypeScript Engineer</span>
+<span>Caldas da Rainha, Leiria, PT · <span id="lisbon-clock" style="font-variant-numeric: tabular-nums">--:--:--</span> Lisbon</span>
+<span style="display: inline-flex; align-items: center; gap: 10px; justify-self: end"><span class="pulse" aria-hidden="true"></span>Available immediately</span>
+</div>
 
-          <div class="flex flex-col text-xl gap-3 col-span-3 lg:col-span-2 font-normal text-neutral-700">
-            <p class="font-bold">Currently</p>
-            <p>Senior engineer with 13+ years shipping production-grade web and mobile products across startups,
-              scale-ups, and enterprise.</p>
-            <p>I operate where complexity is the product: realtime pipelines, cross-platform state, mobile lifecycle, AI
-              integrations, multi-team coordination.</p>
-            <p>Open to senior and staff-level remote roles where I contribute at the system level, not just feature
-              delivery.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+<h1 style="margin: 0; font-family: var(--display); font-size: clamp(44px, 6.1vw, 90px); line-height: 1.02; letter-spacing: -0.04em; font-weight: 600; text-wrap: balance">
+<span class="w"><span style="--i: 0">I'm</span></span>
+<span class="w"><span style="--i: 1"><span class="ava"><img src="/src/img/me.png" alt="" width="288" height="288" fetchpriority="high"></span></span></span>
+<span class="name" id="hero-name"><span class="w"><span style="--i: 2">Vitor</span></span> <span class="w"><span style="--i: 3">Souza,</span></span></span>
+<span class="w"><span style="--i: 4">a</span></span>
+<span class="w"><span style="--i: 5">senior</span></span>
+<span class="w"><span style="--i: 6">engineer</span></span>
+<span class="w"><span style="--i: 7">who</span></span>
+<span class="w"><span style="--i: 8">works</span></span>
+<span class="w"><span style="--i: 9">where</span></span>
+<span class="w" style="padding-bottom: .34em; margin-bottom: -.34em"><span style="--i: 10"><span class="hl">complexity<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 13 C 60 4, 120 4, 170 10 S 260 17, 297 6" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" pathLength="1" vector-effect="non-scaling-stroke"></path></svg></span></span></span>
+<span class="w"><span style="--i: 11">is</span></span>
+<span class="w"><span style="--i: 12">the</span></span>
+<span class="w"><span style="--i: 13">product.</span></span>
+</h1>
 
-    <div class="banner-section reveal">
-      <div class="flex">
-        <img class="banner-img flex-1 md:rounded-l-md" src="src/img/boomich.png" />
-      </div>
-    </div>
+<div class="hero-summary" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px 48px; padding-top: 32px; border-top: 1px solid var(--line)">
+<div class="fade" style="--d: 900ms; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted)">Most recently</span>
+<p style="margin: 0; color: var(--ink-2)">Owned the full technical direction of a healthcare AI mobile platform — architecture, team direction and a realtime audio pipeline running in live clinical environments.</p>
+</div>
+<div class="fade" style="--d: 1000ms; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted)">Before that</span>
+<p style="margin: 0; color: var(--ink-2)">13+ years shipping production web and mobile products for startups, scale-ups and enterprise — KLM, Lufthansa Technik and Mazars among the end users.</p>
+</div>
+<div class="fade" style="--d: 1100ms; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; justify-content: flex-end">
+<a class="btn" href="mailto:joaovitor@boomich.pt" data-cursor="Write" style="display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 26px; border-radius: 999px; background: var(--ink); color: var(--bg); font-weight: 500"><span class="roll"><span>Shoot me an email</span><span aria-hidden="true">Shoot me an email</span></span><svg class="r" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+<a class="btn btn-ghost" href="/vitor-cv.pdf" data-cursor="PDF" style="display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 26px; border-radius: 999px; border: 1px solid var(--ink); font-weight: 500"><span class="roll"><span>Download CV</span><span aria-hidden="true">Download CV</span></span><svg class="d" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v13"></path><path d="M6 11l6 6 6-6"></path><path d="M5 20h14"></path></svg></a>
+</div>
+</div>
+</section>
 
-    <div class="techstack-section space-y-16 lg:space-y-32 reveal" id="techstack-section">
-      <div
-        class="overflow-hidden my-20 flex flex-col gap-3 font-archivo max-w-[100%] text-6xl lg:text-9xl uppercase text-stroke dark:text-stroke-white whitespace-nowrap tracking-normal w-auto">
-        <div class="techstack-row techstack-row-1 animate-crawling-line">
-          TypeScript · React Native · Expo · Next.js · React · Node.js ·
-        </div>
-        <div class="techstack-row techstack-row-2 -ml-[60vw] animate-crawling-line-reverse">
-          Vue · GraphQL · Kotlin · Azure · AWS · TypeScript
-        </div>
-      </div>
-      <div
-        class="container md:gap-16 px-6 sm:px-8 lg:px-16 w-full max-w-[1180px] flex flex-col md:flex-row justify-between">
-        
-        <div class="flex gap-8 flex-col-reverse sm:flex-row sm:justify-evenly md:flex-col">
-          <h2 class="text-4xl md:text-5xl lg:text-7xl font-bold">Techstack</h2>
-          <img src="src/img/me.png" alt="" class="object-cover drop-shadow-lg mb-8 rounded-lg max-w-[350px]">
-        </div>
+<!-- MARQUEE -->
+<div class="mq fade" data-loop role="img" style="--d: 1200ms; padding: 28px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)" aria-label="Tools I work with: TypeScript, React Native, Expo, Next.js, Node.js, React, Convex, Vue 3, GraphQL, Turborepo">
+<div class="mq-track" aria-hidden="true" style="font-family: var(--display); font-size: clamp(32px, 4vw, 56px); font-weight: 600; letter-spacing: -0.03em; line-height: 1; align-items: center">
+<div class="mq-group">
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">TypeScript</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
 
-        <div class="flex flex-col *:py-8 divide-y">
-          <div class="flex flex-col text-xl gap-3 lg:!pt-0">
-            <div class="inline gap-4 mb-4">
-              <h4 class="inline font-bold">Daily</h4>
-            </div>
-            <ul class="list-disc ml-4 list-inside sm:ml-1 sm:flex sm:flex-wrap sm:gap-3">
-              <li>TypeScript</li>
-              <li>Expo</li>
-              <li>React</li>
-              <li>Next.js</li>
-              <li>Node.js</li>
-            </ul>
-          </div>
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">React Native</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
 
-          <div class="flex flex-col gap-3 text-xl">
-            <div class="inline gap-4 mb-4">
-              <h4 class="inline font-bold">Worked deeply with</h4>
-            </div>
-            <ul class="list-disc ml-4 list-inside sm:ml-1 sm:flex sm:flex-wrap sm:gap-3">
-              <li>Vue 3</li>
-              <li>GraphQL</li>
-              <li>Tailwind</li>
-              <li>Vite</li>
-              <li>WebSockets</li>
-              <li>Turborepo</li>
-              <li>Kotlin</li>
-              <li>Symfony</li>
-              <li>AWS</li>
-            </ul>
-          </div>
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Expo</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
 
-          <div class="flex flex-col gap-3 text-xl">
-            <div class="inline gap-4 mb-4">
-              <h4 class="inline font-bold">Systems &amp; practice</h4>
-            </div>
-            <ul class="list-disc ml-4 list-inside sm:ml-1 sm:flex sm:flex-wrap sm:gap-3">
-              <li>Realtime systems</li>
-              <li>Mobile lifecycle</li>
-              <li>Frontend architecture</li>
-              <li>Code review culture</li>
-              <li>Mentorship</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Next.js</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
 
-    <div class="container relative z-10 px-6 sm:px-8 lg:px-16 space-y-6 text-xl reveal">
-      <p class="text-neutral-700 dark:text-neutral-300">
-        Currently calibrating senior and staff-level roles. Portugal (UTC/UTC+1),
-        C1+ English, async-comfortable. Open to employee or B2B contract structure.
-      </p>
-      <div class="flex flex-col gap-3">
-        <a class="link link-effect text-xl font-bold" href="mailto:joaovitor@boomich.pt">
-          <span>Shoot me an email →</span>
-        </a>
-        <a class="link link-effect text-xl font-bold" href="src/files/vitor-cv.pdf" download="vitor-souza-resume.pdf">
-          <span>Download my CV</span>
-        </a>
-        <a class="link link-effect text-xl font-bold" href="https://github.com/vitordesouza" target="_blank">
-          <span>GitHub</span>
-        </a>
-        <a class="link link-effect text-xl font-bold" href="https://www.linkedin.com/in/souzavitor/" target="_blank">
-          <span>LinkedIn</span>
-        </a>
-      </div>
-    </div>
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Node.js</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
 
-    <footer class="flex relative pb-8">
-      <div class="z-0 w-full h-auto absolute bottom-0 left-0">
-        <img src="src/img/footer.webp" alt="Footer" class="w-full h-full object-cover" draggable="false" />
-      </div>
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">React</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
 
-      <div class="flex container justify-between gap-6 px-6 sm:px-8 lg:px-16">
-        <div class="flex flex-col uppercase gap-2">
-          Vitor Souza<br />
-          – Senior TypeScript Engineer ©2026
-        </div>
-  
-        <div class="flex flex-col items-end lg:flex-row justify-around *:flex *:items-center *:gap-1 gap-4">
-          <a href="https://www.linkedin.com/in/souzavitor/" target="_blank" class="link link-effect">
-            <span>LinkedIn</span>
-            <svg class="dark:fill-neutral size-7" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
-              height="100" viewBox="0 0 30 30">
-              <path
-                d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M10.496,8.403 c0.842,0,1.403,0.561,1.403,1.309c0,0.748-0.561,1.309-1.496,1.309C9.561,11.022,9,10.46,9,9.712C9,8.964,9.561,8.403,10.496,8.403z M12,20H9v-8h3V20z M22,20h-2.824v-4.372c0-1.209-0.753-1.488-1.035-1.488s-1.224,0.186-1.224,1.488c0,0.186,0,4.372,0,4.372H14v-8 h2.918v1.116C17.294,12.465,18.047,12,19.459,12C20.871,12,22,13.116,22,15.628V20z">
-              </path>
-            </svg>
-          </a>
-          <a href="https://wa.me/351934347000" target="_blank" class="link link-effect">
-            <span>WhatsApp</span>
-            <svg class="dark:fill-neutral size-7" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
-              height="100" viewBox="0 0 30 30">
-              <path
-                d="M 15 3 C 8.373 3 3 8.373 3 15 C 3 17.251208 3.6323415 19.350068 4.7109375 21.150391 L 3.1074219 27 L 9.0820312 25.431641 C 10.829354 26.425062 12.84649 27 15 27 C 21.627 27 27 21.627 27 15 C 27 8.373 21.627 3 15 3 z M 10.892578 9.4023438 C 11.087578 9.4023438 11.287937 9.4011562 11.460938 9.4101562 C 11.674938 9.4151563 11.907859 9.4308281 12.130859 9.9238281 C 12.395859 10.509828 12.972875 11.979906 13.046875 12.128906 C 13.120875 12.277906 13.173313 12.453437 13.070312 12.648438 C 12.972312 12.848437 12.921344 12.969484 12.777344 13.146484 C 12.628344 13.318484 12.465078 13.532109 12.330078 13.662109 C 12.181078 13.811109 12.027219 13.974484 12.199219 14.271484 C 12.371219 14.568484 12.968563 15.542125 13.851562 16.328125 C 14.986562 17.342125 15.944188 17.653734 16.242188 17.802734 C 16.540187 17.951734 16.712766 17.928516 16.884766 17.728516 C 17.061766 17.533516 17.628125 16.864406 17.828125 16.566406 C 18.023125 16.268406 18.222188 16.319969 18.492188 16.417969 C 18.766188 16.515969 20.227391 17.235766 20.525391 17.384766 C 20.823391 17.533766 21.01875 17.607516 21.09375 17.728516 C 21.17075 17.853516 21.170828 18.448578 20.923828 19.142578 C 20.676828 19.835578 19.463922 20.505734 18.919922 20.552734 C 18.370922 20.603734 17.858562 20.7995 15.351562 19.8125 C 12.327563 18.6215 10.420484 15.524219 10.271484 15.324219 C 10.122484 15.129219 9.0605469 13.713906 9.0605469 12.253906 C 9.0605469 10.788906 9.8286563 10.071437 10.097656 9.7734375 C 10.371656 9.4754375 10.692578 9.4023438 10.892578 9.4023438 z">
-              </path>
-            </svg>
-          </a>
-          <a href="https://github.com/vitordesouza" target="_blank" class="link link-effect">
-            <span>Github</span>
-            <svg class="dark:fill-neutral size-7" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
-              height="100" viewBox="0 0 30 30">
-              <path
-                d="M15,3C8.373,3,3,8.373,3,15c0,5.623,3.872,10.328,9.092,11.63C12.036,26.468,12,26.28,12,26.047v-2.051 c-0.487,0-1.303,0-1.508,0c-0.821,0-1.551-0.353-1.905-1.009c-0.393-0.729-0.461-1.844-1.435-2.526 c-0.289-0.227-0.069-0.486,0.264-0.451c0.615,0.174,1.125,0.596,1.605,1.222c0.478,0.627,0.703,0.769,1.596,0.769 c0.433,0,1.081-0.025,1.691-0.121c0.328-0.833,0.895-1.6,1.588-1.962c-3.996-0.411-5.903-2.399-5.903-5.098 c0-1.162,0.495-2.286,1.336-3.233C9.053,10.647,8.706,8.73,9.435,8c1.798,0,2.885,1.166,3.146,1.481C13.477,9.174,14.461,9,15.495,9 c1.036,0,2.024,0.174,2.922,0.483C18.675,9.17,19.763,8,21.565,8c0.732,0.731,0.381,2.656,0.102,3.594 c0.836,0.945,1.328,2.066,1.328,3.226c0,2.697-1.904,4.684-5.894,5.097C18.199,20.49,19,22.1,19,23.313v2.734 c0,0.104-0.023,0.179-0.035,0.268C23.641,24.676,27,20.236,27,15C27,8.373,21.627,3,15,3z">
-              </path>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </footer>
-  </main>
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Convex</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Vue 3</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">GraphQL</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Turborepo</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+</div><div class="mq-group" aria-hidden="true">
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">TypeScript</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">React Native</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Expo</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Next.js</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Node.js</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">React</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Convex</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Vue 3</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">GraphQL</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+
+<span style="display: inline-flex; align-items: center; gap: 40px; padding-right: 40px"><span class="mq-item">Turborepo</span><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20"></path><path d="M2 12h20"></path><path d="M4.9 4.9l14.2 14.2"></path><path d="M19.1 4.9L4.9 19.1"></path></svg></span>
+</div>
+</div>
+</div>
+
+<!-- WORK -->
+<section id="work" style="max-width: 1280px; margin: 0 auto; padding: 160px 32px 0">
+<div data-reveal="" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 56px">
+<div style="display: flex; flex-direction: column; gap: 20px; max-width: 640px">
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">(01) Selected work</span>
+<h2 style="margin: 0; font-family: var(--display); font-size: clamp(36px, 4.6vw, 68px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 600">Things I'm building, in public.</h2>
+</div>
+<p style="margin: 0; max-width: 380px; color: var(--ink-2)">Products I'm shipping under <a href="https://boomich.pt" style="border-bottom: 1px solid var(--ink)">Boomich</a>, my independent studio. Some are live, some are still being built.</p>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: 24px">
+
+<!-- Bidcast -->
+<a class="card" href="https://www.bidcast.io/" data-cursor="Visit" data-reveal="" style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; background: var(--surface); border-radius: 28px; overflow: hidden">
+<div style="flex: 1 1 380px; padding: 44px; display: flex; flex-direction: column; justify-content: space-between; gap: 40px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">01 · In development</span>
+<span class="go" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px">
+<h3 style="margin: 0; font-family: var(--display); font-size: clamp(36px, 4vw, 56px); line-height: 1; letter-spacing: -0.035em; font-weight: 600">Bidcast</h3>
+<p style="margin: 0; max-width: 420px; color: var(--ink-2); font-size: 18px">Crowdfunding for creators. Fans pitch and fund videos, streams and podcasts upfront, so creators know what to make before they make it.</p>
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.02em">Next.js · Convex · Clerk · Stripe · Turborepo</span>
+</div>
+</div>
+<div class="vig vig-framed bidcast-vig" data-loop aria-hidden="true" style="flex: 1.25 1 440px; min-height: 420px; background: var(--vignette); display: flex; align-items: center; justify-content: center; padding: 40px; box-sizing: border-box">
+<div class="campaign vig-content" style="width: 100%; max-width: 380px; background: #1F1F1D; border: 1px solid #2E2E2B; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 20px; color: #ECEBE4">
+<div style="display: flex; justify-content: space-between; align-items: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #9D9C94">
+<span>Campaign</span>
+<span style="display: inline-flex; align-items: center; gap: 6px; color: #F08A68"><span class="live" style="width: 6px; height: 6px; border-radius: 50%; background: #F08A68"></span>Live</span>
+</div>
+<div style="font-family: var(--display); font-size: 22px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Studio tour + Q&amp;A, filmed in one take</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="height: 8px; border-radius: 99px; background: #33332F; overflow: hidden"><div class="bar" style="width: 78%; height: 100%; border-radius: 99px; background: var(--accent)"></div></div>
+<div style="display: flex; justify-content: space-between; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; color: #B9B8B0"><span>€780 of €1,000</span><span>4 days left</span></div>
+</div>
+<div style="height: 144px; overflow: hidden; border-top: 1px solid #2E2E2B">
+<div class="ticker">
+
+<div style="height: 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2A2A27; font-size: 14px">
+<span style="display: inline-flex; align-items: center; gap: 10px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #3A3A36; display: inline-flex; align-items: center; justify-content: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #ECEBE4">MR</span>marta.r</span>
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; color: #ECEBE4">+€25</span>
+</div>
+
+<div style="height: 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2A2A27; font-size: 14px">
+<span style="display: inline-flex; align-items: center; gap: 10px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #3A3A36; display: inline-flex; align-items: center; justify-content: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #ECEBE4">JD</span>joaod</span>
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; color: #ECEBE4">+€10</span>
+</div>
+
+<div style="height: 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2A2A27; font-size: 14px">
+<span style="display: inline-flex; align-items: center; gap: 10px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #3A3A36; display: inline-flex; align-items: center; justify-content: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #ECEBE4">AL</span>ana_lima</span>
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; color: #ECEBE4">+€50</span>
+</div>
+
+<div style="height: 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2A2A27; font-size: 14px">
+<span style="display: inline-flex; align-items: center; gap: 10px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #3A3A36; display: inline-flex; align-items: center; justify-content: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #ECEBE4">TS</span>tiago.s</span>
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; color: #ECEBE4">+€15</span>
+</div>
+
+<div style="height: 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2A2A27; font-size: 14px">
+<span style="display: inline-flex; align-items: center; gap: 10px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #3A3A36; display: inline-flex; align-items: center; justify-content: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #ECEBE4">MR</span>marta.r</span>
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; color: #ECEBE4">+€25</span>
+</div>
+
+<div style="height: 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2A2A27; font-size: 14px">
+<span style="display: inline-flex; align-items: center; gap: 10px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #3A3A36; display: inline-flex; align-items: center; justify-content: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #ECEBE4">JD</span>joaod</span>
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; color: #ECEBE4">+€10</span>
+</div>
+
+<div style="height: 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2A2A27; font-size: 14px">
+<span style="display: inline-flex; align-items: center; gap: 10px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #3A3A36; display: inline-flex; align-items: center; justify-content: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #ECEBE4">AL</span>ana_lima</span>
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; color: #ECEBE4">+€50</span>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</a>
+
+<!-- MailToBills -->
+<a class="card" href="https://www.mailtobills.com/" data-cursor="Visit" data-reveal="" style="display: flex; flex-direction: column; background: var(--surface); border-radius: 28px; overflow: hidden">
+<div class="vig mail-vig" data-loop aria-hidden="true" style="height: 300px; background: var(--surface-2); display: flex; align-items: center; justify-content: center; gap: 28px; padding: 32px; box-sizing: border-box">
+<div style="position: relative; width: 210px; height: 56px">
+<div class="chip" style="--d: 0s; position: absolute; inset: 0; background: var(--surface); border-radius: 14px; display: flex; align-items: center; gap: 12px; padding: 0 14px; box-shadow: 0 10px 24px -14px rgba(17,17,17,.4)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg><span style="display: flex; flex-direction: column; line-height: 1.2"><span style="font-size: 13px; font-weight: 600">Electricity bill</span><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: var(--muted)">fatura-out.pdf</span></span></div>
+<div class="chip" style="--d: 2.5s; position: absolute; inset: 0; background: var(--surface); border-radius: 14px; display: flex; align-items: center; gap: 12px; padding: 0 14px; box-shadow: 0 10px 24px -14px rgba(17,17,17,.4)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg><span style="display: flex; flex-direction: column; line-height: 1.2"><span style="font-size: 13px; font-weight: 600">Cloud hosting</span><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: var(--muted)">invoice-2210.pdf</span></span></div>
+<div class="chip" style="--d: 5s; position: absolute; inset: 0; background: var(--surface); border-radius: 14px; display: flex; align-items: center; gap: 12px; padding: 0 14px; box-shadow: 0 10px 24px -14px rgba(17,17,17,.4)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg><span style="display: flex; flex-direction: column; line-height: 1.2"><span style="font-size: 13px; font-weight: 600">Coworking</span><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: var(--muted)">recibo-10.pdf</span></span></div>
+</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px">
+<div class="folder" style="width: 92px; height: 72px; border-radius: 10px 10px 12px 12px; background: var(--ink); color: var(--bg); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 10px; box-sizing: border-box; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; position: relative">2026-10<span style="position: absolute; top: -8px; left: 0; width: 40px; height: 12px; border-radius: 6px 6px 0 0; background: var(--ink)"></span></div>
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: var(--ink-2)">.zip + manifest.csv</span>
+</div>
+</div>
+<div style="padding: 36px 40px 40px; display: flex; flex-direction: column; gap: 14px; flex: 1">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">02 · Live, early access</span>
+<span class="go" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></span>
+</div>
+<h3 style="margin: 0; font-family: var(--display); font-size: 40px; line-height: 1; letter-spacing: -0.035em; font-weight: 600">MailToBills</h3>
+<p style="margin: 0; color: var(--ink-2)">Forward supplier emails and get one tidy ZIP per month for your accountant. Built for freelancers and small businesses in Portugal.</p>
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.02em">Next.js · Convex · n8n · Turborepo · Playwright</span>
+</div>
+</a>
+
+<!-- Review AI -->
+<a class="card" href="https://github.com/vitordesouza" data-cursor="Code" data-reveal="" style="--d: 120ms; display: flex; flex-direction: column; background: var(--surface); border-radius: 28px; overflow: hidden">
+<div class="vig vig-framed review-vig" data-loop aria-hidden="true" style="height: 300px; background: var(--vignette); padding: 32px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 14px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: #E8E7E0; line-height: 1.5">
+<div class="vig-content review-content">
+<div><span style="color: #8F8E86">$ </span><span class="type">review-ai evidence list</span><span class="caret"></span></div>
+<div class="out" style="display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border: 1px solid #2E2E2B; border-radius: 12px; background: #1C1C1A">
+<div style="display: flex; justify-content: space-between; gap: 12px"><span>src/session/upload.ts</span><span style="color: var(--vignette-accent)">significant</span></div>
+<div><span style="color: #8F8E86">rationale </span>retry uploads after network loss</div>
+<div><span style="color: #8F8E86">provenance </span>review feedback</div>
+</div>
+<div class="out" style="color: #8F8E86">1 pending · 0 concerns</div>
+</div>
+</div>
+<div style="padding: 36px 40px 40px; display: flex; flex-direction: column; gap: 14px; flex: 1">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">03 · v0.1, in development</span>
+<span class="go" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></span>
+</div>
+<h3 style="margin: 0; font-family: var(--display); font-size: 40px; line-height: 1; letter-spacing: -0.035em; font-weight: 600">Review AI</h3>
+<p style="margin: 0; color: var(--ink-2)">A CLI and agent skill that records why an AI agent made each significant change, so humans can review agent-written code without reverse-engineering intent from the diff.</p>
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.02em">TypeScript · Node.js · Codex Skills · CLI</span>
+</div>
+</a>
+
+</div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="max-width: 1280px; margin: 0 auto; padding: 180px 32px 0">
+<div data-reveal="" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 48px">
+<div style="display: flex; flex-direction: column; gap: 20px">
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">(02) Experience</span>
+<h2 style="margin: 0; font-family: var(--display); font-size: clamp(36px, 4.6vw, 68px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 600">Thirteen years,<br>mostly the hard parts.</h2>
+</div>
+<a class="btn btn-ghost" href="https://www.linkedin.com/in/souzavitor/" data-cursor="Open" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1px solid var(--ink); font-size: 15px"><span class="roll"><span>Full history on LinkedIn</span><span aria-hidden="true">Full history on LinkedIn</span></span></a>
+</div>
+<ol data-reveal="" style="list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink)">
+<li class="row" style="display: flex; flex-wrap: wrap; gap: 12px 40px; padding: 36px 0; border-bottom: 1px solid var(--line)">
+<span class="n" style="flex: 0 0 150px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 6px">2024 — 2026</span>
+<div class="t" style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Lead Frontend / TypeScript Engineer</span><span style="color: var(--muted)">Remynd · Healthcare AI</span></div>
+<p class="p" style="flex: 1.3 1 340px; margin: 0; color: var(--ink-2)">Owned the technical direction of the iOS and Android app. Built a realtime audio and transcription pipeline that survives hours-long sessions, backgrounding and network loss in live clinical settings.</p>
+</li>
+<li class="row" style="display: flex; flex-wrap: wrap; gap: 12px 40px; padding: 36px 0; border-bottom: 1px solid var(--line)">
+<span class="n" style="flex: 0 0 150px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 6px">2023 — 2024</span>
+<div class="t" style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Senior TypeScript Developer</span><span style="color: var(--muted)">INFORM GmbH · WorkforcePlus</span></div>
+<p class="p" style="flex: 1.3 1 340px; margin: 0; color: var(--ink-2)">Rebuilt the rules back-office of an AI workforce scheduler used by KLM, LATAM and Lufthansa Technik — turning union agreements and labor law into flows admins can actually operate.</p>
+</li>
+<li class="row" style="display: flex; flex-wrap: wrap; gap: 12px 40px; padding: 36px 0; border-bottom: 1px solid var(--line)">
+<span class="n" style="flex: 0 0 150px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 6px">2021 — 2022</span>
+<div class="t" style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Senior Frontend Developer</span><span style="color: var(--muted)">Evident · via Smart Consulting</span></div>
+<p class="p" style="flex: 1.3 1 340px; margin: 0; color: var(--ink-2)">Authored and led the frontend architecture for the greenfield rebuild of Mazars Signals, a B2B compliance platform planned to scale across 90 countries.</p>
+</li>
+<li class="row" style="display: flex; flex-wrap: wrap; gap: 12px 40px; padding: 36px 0; border-bottom: 1px solid var(--line)">
+<span class="n" style="flex: 0 0 150px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 6px">2019 — 2021</span>
+<div class="t" style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Frontend Web Developer</span><span style="color: var(--muted)">Brief Creatives · Digital agency</span></div>
+<p class="p" style="flex: 1.3 1 340px; margin: 0; color: var(--ink-2)">Led frontend delivery of websites and apps for consumer brands including Bayer and Bepanthen.</p>
+</li>
+<li class="row" style="display: flex; flex-wrap: wrap; gap: 12px 40px; padding: 36px 0; border-bottom: 1px solid var(--line)">
+<span class="n" style="flex: 0 0 150px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 6px">2013 — 2019</span>
+<div class="t" style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Full Stack Developer</span><span style="color: var(--muted)">COPYTRACK · EYESO · agencies</span></div>
+<p class="p" style="flex: 1.3 1 340px; margin: 0; color: var(--ink-2)">From São Paulo agencies to a copyright-enforcement SaaS with hundreds of thousands of users, and a marketplace taken from first commit to public beta.</p>
+</li>
+</ol>
+</section>
+
+<!-- FOCUS -->
+<section id="focus" style="max-width: 1280px; margin: 0 auto; padding: 180px 32px 0; display: flex; flex-wrap: wrap; gap: 40px 64px">
+<div data-reveal="" style="flex: 1 1 320px; max-width: 420px; display: flex; flex-direction: column; gap: 20px">
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">(03) Where complexity lives</span>
+<h2 style="margin: 0; font-family: var(--display); font-size: clamp(36px, 4.2vw, 60px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 600">The problems I go looking for.</h2>
+<p style="margin: 0; color: var(--ink-2)">Senior and staff-level remote roles where I contribute at the system level, not just feature delivery.</p>
+</div>
+<ol data-reveal="" style="flex: 999 1 560px; min-width: 0; list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink)">
+
+<li class="row" style="display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line)">
+<span class="n" style="flex: 0 0 40px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 8px">01</span>
+<div class="t" style="flex: 1; display: flex; flex-direction: column; gap: 6px"><span style="font-family: var(--display); font-size: clamp(24px, 2.4vw, 32px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Complex product domains</span><span class="p" style="color: var(--muted); max-width: 560px">Turning complicated rules and workflows into software people can understand and use.</span></div>
+</li>
+
+<li class="row" style="display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line)">
+<span class="n" style="flex: 0 0 40px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 8px">02</span>
+<div class="t" style="flex: 1; display: flex; flex-direction: column; gap: 6px"><span style="font-family: var(--display); font-size: clamp(24px, 2.4vw, 32px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Architecture that can evolve</span><span class="p" style="color: var(--muted); max-width: 560px">Clear boundaries and deliberate trade-offs, so a product can grow without every change becoming a rewrite.</span></div>
+</li>
+
+<li class="row" style="display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line)">
+<span class="n" style="flex: 0 0 40px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 8px">03</span>
+<div class="t" style="flex: 1; display: flex; flex-direction: column; gap: 6px"><span style="font-family: var(--display); font-size: clamp(24px, 2.4vw, 32px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Unfamiliar territory</span><span class="p" style="color: var(--muted); max-width: 560px">Learning the tools a problem calls for, testing assumptions early and finding a practical way forward.</span></div>
+</li>
+
+<li class="row" style="display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line)">
+<span class="n" style="flex: 0 0 40px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 8px">04</span>
+<div class="t" style="flex: 1; display: flex; flex-direction: column; gap: 6px"><span style="font-family: var(--display); font-size: clamp(24px, 2.4vw, 32px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">AI integrations</span><span class="p" style="color: var(--muted); max-width: 560px">Bringing AI into useful product workflows, with reliability, clear feedback and a way to understand what went wrong.</span></div>
+</li>
+
+<li class="row" style="display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line)">
+<span class="n" style="flex: 0 0 40px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 8px">05</span>
+<div class="t" style="flex: 1; display: flex; flex-direction: column; gap: 6px"><span style="font-family: var(--display); font-size: clamp(24px, 2.4vw, 32px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Multi-team coordination</span><span class="p" style="color: var(--muted); max-width: 560px">Helping people with different perspectives agree on the problem, the trade-offs and the next step.</span></div>
+</li>
+
+</ol>
+</section>
+
+<!-- STACK -->
+<section id="stack" style="max-width: 1280px; margin: 0 auto; padding: 180px 32px 0">
+<div data-reveal="" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 48px">
+<div style="display: flex; flex-direction: column; gap: 20px">
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">(04) Stack</span>
+<h2 style="margin: 0; font-family: var(--display); font-size: clamp(36px, 4.6vw, 68px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 600">Tools of the trade.</h2>
+<p style="margin: 20px 0 0; max-width: 640px; color: var(--ink-2)">Tools I use now, alongside stacks I've shipped with. The projects and experience above show where they fit.</p>
+</div>
+</div>
+<div class="stack-panel" data-reveal="" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; background: var(--surface); border-radius: 28px; overflow: hidden">
+<div style="padding: 36px; display: flex; flex-direction: column; gap: 20px; border-right: 1px solid var(--line-soft)">
+<h3 style="margin: 0; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">Frontend &amp; mobile</h3>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 19px; font-weight: 500"><li>TypeScript · JavaScript</li><li>React · Next.js</li><li>Vue 3</li><li>React Native · Expo</li><li>Tailwind CSS</li><li>Vite</li></ul>
+</div>
+<div style="padding: 36px; display: flex; flex-direction: column; gap: 20px; border-right: 1px solid var(--line-soft)">
+<h3 style="margin: 0; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">Backend &amp; data</h3>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 19px; font-weight: 500"><li>Node.js</li><li>REST · GraphQL</li><li>WebSockets</li><li>Convex</li><li>SQL · PostgreSQL</li><li>PHP · Symfony</li></ul>
+</div>
+<div style="padding: 36px; display: flex; flex-direction: column; gap: 20px; border-right: 1px solid var(--line-soft)">
+<h3 style="margin: 0; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">Delivery &amp; tooling</h3>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 19px; font-weight: 500"><li>Git · GitHub</li><li>Turborepo</li><li>AWS · Azure</li><li>CI / CD</li><li>n8n</li></ul>
+</div>
+<div style="padding: 36px; display: flex; flex-direction: column; gap: 20px">
+<h3 style="margin: 0; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">Quality &amp; observability</h3>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 19px; font-weight: 500"><li>Playwright</li><li>Vitest · Jest</li><li>Testing Library</li><li>Storybook</li><li>Sentry · PostHog</li></ul>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="max-width: 1280px; margin: 0 auto; padding: 200px 32px 120px; display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-end">
+<div data-reveal="" style="flex: 999 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 32px">
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">(05) Contact</span>
+<h2 style="margin: 0; font-family: var(--display); font-size: clamp(36px, 4.6vw, 68px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 600; color: var(--contact-muted)">Have a <span class="hl">hard problem?<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 13 C 60 4, 120 4, 170 10 S 260 17, 297 6" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" pathLength="1" vector-effect="non-scaling-stroke"></path></svg></span></h2>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px">
+<a class="email" href="mailto:joaovitor@boomich.pt" data-cursor="Write" aria-label="Email joaovitor@boomich.pt" style="font-family: var(--display); font-size: clamp(34px, 5.6vw, 84px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05; overflow-wrap: anywhere; border-bottom: 3px solid var(--ink); padding-bottom: 6px"><span class="ch" aria-hidden="true" style="--i: 0">j</span><span class="ch" aria-hidden="true" style="--i: 1">o</span><span class="ch" aria-hidden="true" style="--i: 2">a</span><span class="ch" aria-hidden="true" style="--i: 3">o</span><span class="ch" aria-hidden="true" style="--i: 4">v</span><span class="ch" aria-hidden="true" style="--i: 5">i</span><span class="ch" aria-hidden="true" style="--i: 6">t</span><span class="ch" aria-hidden="true" style="--i: 7">o</span><span class="ch" aria-hidden="true" style="--i: 8">r</span><span class="ch" aria-hidden="true" style="--i: 9">@</span><span class="ch" aria-hidden="true" style="--i: 10">b</span><span class="ch" aria-hidden="true" style="--i: 11">o</span><span class="ch" aria-hidden="true" style="--i: 12">o</span><span class="ch" aria-hidden="true" style="--i: 13">m</span><span class="ch" aria-hidden="true" style="--i: 14">i</span><span class="ch" aria-hidden="true" style="--i: 15">c</span><span class="ch" aria-hidden="true" style="--i: 16">h</span><span class="ch" aria-hidden="true" style="--i: 17">.</span><span class="ch" aria-hidden="true" style="--i: 18">p</span><span class="ch" aria-hidden="true" style="--i: 19">t</span></a>
+<button id="copy-email" type="button" class="btn btn-ghost" aria-live="polite" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--ink); background: transparent; color: inherit; font: inherit; font-size: 14px; cursor: pointer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg><span id="copy-label">Copy</span></button>
+</div>
+<dl style="margin: 16px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px 32px; padding-top: 32px; border-top: 1px solid var(--line)">
+<div style="display: flex; flex-direction: column; gap: 6px"><dt style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">Availability</dt><dd style="margin: 0">Immediately</dd></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><dt style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">Based in</dt><dd style="margin: 0">Caldas da Rainha, Leiria, Portugal · UTC/UTC+1</dd></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><dt style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">Languages</dt><dd style="margin: 0">Portuguese, English C1+, Spanish</dd></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><dt style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)">Structure</dt><dd style="margin: 0">Employee or B2B contract</dd></div>
+</dl>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a class="btn btn-ghost" href="https://github.com/vitordesouza" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border: 1px solid var(--line); border-radius: 999px; font-size: 15px"><span class="roll"><span>GitHub</span><span aria-hidden="true">GitHub</span></span></a>
+<a class="btn btn-ghost" href="https://www.linkedin.com/in/souzavitor/" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border: 1px solid var(--line); border-radius: 999px; font-size: 15px"><span class="roll"><span>LinkedIn</span><span aria-hidden="true">LinkedIn</span></span></a>
+<a class="btn btn-ghost" href="https://wa.me/351934347000" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border: 1px solid var(--line); border-radius: 999px; font-size: 15px"><span class="roll"><span>WhatsApp</span><span aria-hidden="true">WhatsApp</span></span></a>
+<a class="btn btn-ghost" href="/vitor-cv.pdf" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border: 1px solid var(--line); border-radius: 999px; font-size: 15px"><span class="roll"><span>CV (PDF)</span><span aria-hidden="true">CV (PDF)</span></span></a>
+</div>
+</div>
+<figure data-reveal="" style="--d: 150ms; flex: 1 1 260px; max-width: 340px; margin: 0; display: flex; flex-direction: column; gap: 12px">
+<img src="/src/img/vitor-portrait.webp" alt="Vitor Souza" width="680" height="907" loading="lazy" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 24px; display: block">
+<figcaption style="display: flex; justify-content: space-between; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted)"><span>Vitor Souza</span><span>Caldas da Rainha, Leiria</span></figcaption>
+</figure>
+</section>
+
+</main>
+<!-- FOOTER -->
+<footer style="max-width: 1280px; margin: 0 auto; padding: 32px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; font-size: 14px; color: var(--muted)">
+<span>Vitor Souza — Senior TypeScript Engineer · ©2026</span>
+<a href="#top" style="display: inline-flex; align-items: center; gap: 8px; color: var(--ink)"><span class="roll"><span>Back to top</span><span aria-hidden="true">Back to top</span></span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"></path><path d="M6 11l6-6 6 6"></path></svg></a>
+</footer>
+
+</div>
 </body>
-
 </html>

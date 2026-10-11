@@ -1,0 +1,14 @@
+{
+  "name": "Vitor Souza — Senior TypeScript Engineer",
+  "short_name": "Vitor Souza",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "theme_color": "#F3F2EE",
+  "background_color": "#F3F2EE",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
