@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>.bg{fill:#F3F2EE}.letter{fill:#111}.dot{fill:#1E7A55}@media(prefers-color-scheme:dark){.bg{fill:#11110F}.letter{fill:#EDECE6}.dot{fill:#3FAE7F}}</style>
+  <rect class="bg" width="64" height="64" rx="14"/>
+  <path class="letter" d="M8 15h9l10 27 10-27h9L31 51h-8Z"/>
+  <circle class="dot" cx="52" cy="47" r="5"/>
+</svg>

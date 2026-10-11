@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vitor Souza — sharing image source</title>
+<style>
+@font-face { font-family: Outfit; font-weight: 500 700; src: url('/fonts/outfit.woff2'); }
+@font-face { font-family: Schibsted; font-weight: 400 600; src: url('/fonts/schibsted-grotesk.woff2'); }
+@font-face { font-family: Geist; font-weight: 400 500; src: url('/fonts/geist-mono.woff2'); }
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: #F3F2EE; color: #111; }
+body { padding: 56px; display: grid; grid-template-columns: 688px 320px; gap: 80px; font-family: Schibsted, sans-serif; }
+.copy { display: flex; flex-direction: column; }
+.name { margin: 0; font-family: Outfit, sans-serif; font-size: 44px; font-weight: 700; letter-spacing: -.03em; line-height: 1; }
+.name span { color: #1E7A55; }
+.role { margin: 18px 0 0; font-family: Geist, monospace; font-size: 14px; color: #5C5C56; }
+h1 { margin: 58px 0 32px; font-family: Outfit, sans-serif; font-size: 68px; font-weight: 600; line-height: 1.04; letter-spacing: -.035em; }
+.scribble { position: relative; display: inline-block; }
+.scribble svg { position: absolute; left: -3%; width: 106%; height: .3em; bottom: -.1em; overflow: visible; }
+.summary { margin: 0; max-width: 540px; font-size: 21px; line-height: 1.45; color: #2E2E2A; }
+footer { margin-top: auto; font-family: Geist, monospace; font-size: 14px; line-height: 1.7; color: #5C5C56; }
+figure { margin: 0; display: flex; align-items: center; }
+img { display: block; width: 320px; height: 427px; border-radius: 24px; object-fit: cover; }
+</style>
+</head>
+<body>
+<div class="copy">
+<p class="name">Vitor Souza<span>.</span></p>
+<p class="role">Senior TypeScript Engineer</p>
+<h1>Where <span class="scribble">complexity<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 13 C 60 4, 120 4, 170 10 S 260 17, 297 6" fill="none" stroke="#1E7A55" stroke-width="5" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg></span><br>is the product.</h1>
+<p class="summary">Web and mobile products.<br>Architecture. AI integrations.</p>
+<footer>Caldas da Rainha, Leiria, Portugal<br>vitordesouza.github.io</footer>
+</div>
+<figure><img src="/src/img/vitor-portrait.webp" width="320" height="427" alt="Vitor Souza"></figure>
+</body>
+</html>

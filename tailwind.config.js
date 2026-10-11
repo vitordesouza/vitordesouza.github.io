@@ -14,7 +14,9 @@ module.exports = {
         }
       },
       fontFamily: {
-        roboto: ['Roboto', 'sans-serif'],
+        display: ['Outfit', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Schibsted Grotesk', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['Geist Mono', 'ui-monospace', 'monospace'],
       },
     },
     container: {

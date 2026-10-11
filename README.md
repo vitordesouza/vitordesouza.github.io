@@ -1,105 +1,31 @@
-# João Vitor de Souza - Personal Website/Portfolio
+# Vitor Souza — portfolio
 
-Welcome to my personal portfolio website! This site is designed to showcase my skills, projects, and experience as a software developer. Below, you'll find details about the technologies used, features of the site, and how to set it up locally.
+A static portfolio for João Vitor de Souza, Senior TypeScript Engineer, based in Caldas da Rainha, Leiria, Portugal.
 
-## Table of Contents
+Built with semantic HTML, vanilla TypeScript, Tailwind CSS 3 and Vite. The site includes day/night themes, reduced-motion support, project vignettes, experience, engineering interests and contact links.
 
-- [About](#about)
-- [Technologies Used](#technologies-used)
-- [Features](#features)
-- [Setup Instructions](#setup-instructions)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [Contact](#contact)
+## Local development
 
-## About
+Use Node.js 20 and pnpm 8, matching the GitHub Pages workflow.
 
-This personal portfolio is a testament to my passion for creating beautiful, interactive, and marketable websites. It highlights my professional journey, skills, and projects, and serves as a hub for potential clients and employers to learn more about me.
+```sh
+pnpm install --frozen-lockfile
+pnpm dev
+```
 
-## Technologies Used
+```sh
+pnpm build
+pnpm preview
+```
 
-- **HTML5** - For structuring the content
-- **CSS3 & Tailwind** - For styling and layout
-- **Javascript (moving to Typescript)** - For interactivity and functionality
-- **GitHub Pages** - For hosting the website
+## Design and assets
 
-## Features
+Read both `AGENTS.md` and `CLAUDE.md` before working in the repository. `design/HANDOFF.md` records the original canvas handoff and the accepted corrections made during implementation.
 
-- **Responsive Design**: The website is fully responsive and looks great on all devices.
-- **Interactive Elements**: Engaging and interactive UI components to enhance user experience.
-- **Project Showcase**: Detailed descriptions and visuals of my key projects.
-- **Contact Form**: Easy-to-use contact form for getting in touch with me.
+The fonts are self-hosted under `public/fonts/` with their Open Font Licenses. The sharing card source is `design/social-card.html`, rendered at 1200 × 630 to `public/og-image.png`. The favicon source is `public/favicon.svg`; PNG and ICO fallbacks support older browsers and home-screen shortcuts.
 
-## Setup Instructions
+## Deployment
 
-To set up this project locally, follow these steps:
+Merging into `main` triggers `.github/workflows/deploy.yml`, which builds `dist/` and deploys it to GitHub Pages.
 
-1. **Clone the repository:**
-
-    ```bash
-    git clone https://github.com/your-username/your-repo-name.git
-    ```
-
-2. **Navigate to the project directory and install the dependencies:**
-
-    ```bash
-    cd vitordesouza.github.io
-    npm install
-    ```
-
-3. **Build the project:**
-
-    ```bash
-    npm run build
-    ```
-
-4. **Open `index.html` in your preferred browser:**
-
-    ```bash
-    open index.html
-    ```
-
-## Usage
-
-Explore the various sections of the website:
-
-- **Home**: Introduction and brief about me.
-- **Projects**: Showcase of my key projects with descriptions and links.
-- **Services**: Overview of the services I offer.
-- **About**: Detailed information about my background and interests.
-- **Contact**: A form to get in touch with me.
-
-## Contributing
-
-I welcome contributions to improve this website! If you have suggestions or find any issues, please feel free to open an issue or submit a pull request.
-
-1. **Fork the repository**
-2. **Create a new branch:**
-
-    ```bash
-    git checkout -b feature/YourFeature
-    ```
-
-3. **Commit your changes:**
-
-    ```bash
-    git commit -m 'Add some feature'
-    ```
-
-4. **Push to the branch:**
-
-    ```bash
-    git push origin feature/YourFeature
-    ```
-
-5. **Open a pull request**
-
-## Contact
-
-Feel free to reach out to me for any inquiries or collaborations!
-
-- **Email**: [contatovitorsouza@gmail.com](mailto:contatovitorsouza@gmail.com)
-- **LinkedIn**: [linkedin.com/in/souzavitor](https://www.linkedin.com/in/souzavitor)
-- **GitHub**: [vitordesouza.github.io](https://vitordesouza.github.io/)
-
-Thank you for visiting my portfolio!
+Live site: [vitordesouza.github.io](https://vitordesouza.github.io/)
