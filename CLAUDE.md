@@ -4,7 +4,7 @@ Before working in this repository, read both `AGENTS.md` and `CLAUDE.md`. This g
 
 ## Architecture
 
-For frontend changes, read `design/HANDOFF.md` and inspect `design/Main.dc.html` first. The canvas file is a reference using a custom template format, not a production entry point. Preserve its supplied copy and tuned easing/timings; use the handoff's Outfit, Schibsted Grotesk, Geist Mono, and green accent decisions.
+For frontend changes, read `DESIGN.md`, `design/HANDOFF.md` and `design/addendum/ADDENDUM.md`; inspect `design/Main.dc.html` and the relevant boards in `design/addendum/canvas/`. Canvas files use a custom template format, not a production entry point. The handoff's accepted corrections and approved addendum resolve reference differences. Preserve supplied copy, fonts, tokens and tuned easing/timings. `DESIGN.md` and `.impeccable/design.json` capture the approved Status V extension.
 
 ## Theme and motion
 
@@ -22,13 +22,13 @@ The three selected fonts are self-hosted in `public/fonts/` with their Open Font
 
 Photos are in `src/img/`, and the downloadable CV is `src/files/vitor-cv.pdf`. `public/vitor-portrait.webp` supplies the stable profile image URL for structured data; keep it synchronized with the contact portrait. `public/vitor-cv.pdf` is the served download; keep it synchronized with `src/files/vitor-cv.pdf`. Static public URLs keep downloads working without JavaScript.
 
-`design/social-card.html` is the 1200 × 630 source for `public/og-image.png`; render it at that exact viewport after changing its copy or portrait. Open Graph and Twitter metadata share this PNG. `public/favicon.svg` is the icon source; preserve its light/dark colors when regenerating the PNG and ICO fallbacks.
+The approved PNGs in `design/addendum/og/` are the social-image source of truth: light maps to `public/og-image.png`, dark to `public/og-image-dark.png`. Open Graph and Twitter share the light image. Status V originals are in `design/addendum/brand/`, fixed third-party variants in `design/brand/`; preserve the geometry and theme colors when updating the inline marks and public icons. The status dot uses `--accent` while job-hunting.
 
 The lockfile must remain compatible with pnpm 8, used by the unchanged Pages workflow. This is a single package; no workspace configuration is needed. Validate a frozen clean install before release; a lockfile produced by a newer pnpm major can build locally and still fail in CI.
 
 ## Source maintenance
 
-Keep page content in static HTML and reusable presentation in named CSS classes. Inline styles carry per-element animation variables. Preserve the approved rendering and motion when refactoring. The six initialization functions in `src/index.ts` are small enough to share one module; split a concern when its size or reuse warrants it. Pointer animation stops once it settles and restarts on movement.
+Keep page content in static HTML and reusable presentation in named CSS classes. Inline styles carry per-element animation variables. Preserve the approved rendering and motion when refactoring. Initialization functions in `src/index.ts` share one module; split a concern when its size or reuse warrants it. `initPointer()` owns the shared pointer state and frame loop, including `initBoomichReveal()`. Its grid storage is allocated at setup, and the loop rests after the cursor, portrait and departing net settle.
 
 `pnpm build` includes strict TypeScript checking; `pnpm format:check` verifies shared formatting. Formatting excludes the original canvas and unchanged deployment workflow. After a layout refactor, compare the rendered page at both required sizes and themes.
 

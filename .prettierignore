@@ -3,5 +3,9 @@ node_modules/
 .impeccable/
 pnpm-lock.yaml
 design/Main.dc.html
+design/addendum/canvas/
+design/addendum/brand/
+design/brand/
+public/favicon.svg
 public/fonts/
 .github/workflows/deploy.yml

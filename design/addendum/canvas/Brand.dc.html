@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Personal mark exploration</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face{font-family:'Outfit';src:url('/_blob/57932ba90e07d4cbd33044c5cdd8da06') format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'Geist Mono';src:url('/_blob/d3472dc26884b7999b004fd280bdbf4d') format('woff2');font-weight:400 500;font-display:swap}
+@font-face{font-family:'Schibsted Grotesk';src:url('/_blob/e6c4e5a5dfcd16fa77be1e80cd005d5d') format('woff2');font-weight:400 700;font-display:swap}
+body{margin:0}
+.mono{font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1240px; box-sizing: border-box; padding: 72px 64px; background: #F3F2EE; color: #111111; font-family: 'Schibsted Grotesk', ui-sans-serif, system-ui, sans-serif; display: flex; flex-direction: column; gap: 40px">
+
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px">
+<h1 style="margin: 0; font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif; font-size: 48px; font-weight: 600; letter-spacing: -0.04em; line-height: 1">Personal mark</h1>
+<span class="mono" style="color: #5C5C56">Outfit 700 · grid 100 · min 16 px</span>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px">
+<sc-for list="{{concepts}}" as="c" hint-placeholder-count="4">
+<section style="display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; padding-top: 14px; border-top: 1px solid {{c.rule}}">
+<h2 style="margin: 0; font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">{{c.name}}</h2>
+<span class="mono" style="color: {{c.tagColor}}">{{c.tag}}</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0">
+<div style="aspect-ratio: 1; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><dc-import name="Mark" concept="{{c.id}}" theme="light" size="{{ 116 }}" hint-size="116px,116px"></dc-import></div>
+<div style="aspect-ratio: 1; background: #11110F; display: flex; align-items: center; justify-content: center"><dc-import name="Mark" concept="{{c.id}}" theme="dark" size="{{ 116 }}" hint-size="116px,116px"></dc-import></div>
+</div>
+<div style="height: 84px; display: flex; align-items: center; gap: 12px; padding: 0 4px; border-bottom: 1px solid #D6D4CC">
+<dc-import name="Mark" concept="{{c.id}}" theme="light" size="{{ 34 }}" hint-size="34px,34px"></dc-import>
+<span style="font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif; font-weight: 700; font-size: 24px; letter-spacing: -0.03em">Vitor Souza<span style="color: #1E7A55">.</span></span>
+</div>
+<div style="display: flex; align-items: flex-end; gap: 22px; padding: 8px 4px 16px; border-bottom: 1px solid #D6D4CC">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px"><dc-import name="Mark" concept="{{c.id}}" theme="light" size="{{ 64 }}" hint-size="64px,64px"></dc-import><span class="mono" style="font-size: 10px; color: #5C5C56">64</span></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px"><dc-import name="Mark" concept="{{c.id}}" theme="light" size="{{ 32 }}" hint-size="32px,32px"></dc-import><span class="mono" style="font-size: 10px; color: #5C5C56">32</span></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px"><dc-import name="Mark" concept="{{c.id}}" theme="light" size="{{ 24 }}" hint-size="24px,24px"></dc-import><span class="mono" style="font-size: 10px; color: #5C5C56">24</span></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px"><dc-import name="Mark" concept="{{c.id}}" theme="light" size="{{ 16 }}" hint-size="16px,16px"></dc-import><span class="mono" style="font-size: 10px; color: #5C5C56">16</span></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 4px; background: #11110F"><dc-import name="Mark" concept="{{c.id}}" theme="dark" size="{{ 16 }}" hint-size="16px,16px"></dc-import></div>
+</div>
+<div style="display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; background: #E4E2DB; border-radius: 10px 10px 0 0; font-size: 13px">
+<dc-import name="Mark" concept="{{c.id}}" theme="light" size="{{ 16 }}" hint-size="16px,16px"></dc-import>
+<span>Vitor Souza — Senior TypeScript Engineer</span>
+</div>
+</section>
+</sc-for>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const make = (id, name, tag, recommended) => ({
+      id, name, tag,
+      rule: recommended ? '#1E7A55' : '#D6D4CC',
+      tagColor: recommended ? '#1E7A55' : '#5C5C56'
+    });
+    return {
+      concepts: [
+        make('current', 'Current', 'V favicon', false),
+        make('dot', 'A · V-dot', 'Evolution', false),
+        make('signed', 'B · Signed V', 'Motion', false),
+        make('status', 'C · Status V', 'Approved', true)
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

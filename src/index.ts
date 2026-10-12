@@ -177,6 +177,134 @@ function initScribbles() {
   debug('scribbles initialized', { count: highlights.length });
 }
 
+interface PointerState {
+  x: number;
+  y: number;
+  velocityX: number;
+  enabled: boolean;
+}
+
+function initBoomichReveal(pointer: PointerState, wake: () => void) {
+  const link = document.querySelector<HTMLAnchorElement>('#boomich-link');
+  const card = document.querySelector<HTMLElement>('#boomich-reveal');
+  const base = document.querySelector<SVGPathElement>('#boomich-net-base');
+  const loaded = document.querySelector<SVGPathElement>('#boomich-net-loaded');
+  const load = document.querySelector<SVGRectElement>('#boomich-load');
+  const readout = document.querySelector<HTMLElement>('#boomich-deflection');
+  if (!link || !card || !base || !loaded || !load || !readout) return;
+
+  const columns = 10;
+  const rows = 5;
+  const nodeCount = (columns + 1) * (rows + 1);
+  const rest = new Float64Array(nodeCount * 2);
+  const positions = new Float64Array(nodeCount * 2);
+  const pinned = new Uint8Array(nodeCount);
+  const memberCount = columns * (rows + 1) + rows * (columns + 1) + columns * rows;
+  const members = new Uint16Array(memberCount * 2);
+  let memberIndex = 0;
+  const node = (column: number, row: number) => row * (columns + 1) + column;
+  const addMember = (a: number, b: number) => {
+    members[memberIndex++] = a;
+    members[memberIndex++] = b;
+  };
+  // Allocate the grid and its connectivity once; frames only update coordinates and SVG strings.
+  for (let row = 0; row <= rows; row++) {
+    for (let column = 0; column <= columns; column++) {
+      const index = node(column, row);
+      rest[index * 2] = (column * 280) / columns;
+      rest[index * 2 + 1] = (row * 140) / rows;
+      pinned[index] = Number((column === 0 || column === columns) && (row === 0 || row === rows));
+      if (column < columns) addMember(index, node(column + 1, row));
+      if (row < rows) addMember(index, node(column, row + 1));
+      if (column < columns && row < rows) {
+        if ((column + row) % 2) addMember(index, node(column + 1, row + 1));
+        else addMember(node(column + 1, row), node(column, row + 1));
+      }
+    }
+  }
+
+  let visible = false;
+  let shown = false;
+  let amplitude = 0;
+  let cardX = 0;
+  let cardY = 0;
+
+  const renderNet = (loadX: number) => {
+    let maxDeflection = 0;
+    let loadedNode = -1;
+    for (let index = 0; index < nodeCount; index++) {
+      const x = rest[index * 2];
+      const y = rest[index * 2 + 1];
+      const dx = loadX - x;
+      const dy = 64 - y;
+      const distanceSquared = dx * dx + dy * dy;
+      const force = pinned[index] ? 0 : amplitude * Math.exp(-distanceSquared / (2 * 46 * 46));
+      const displacedX = x + (dx / Math.max(1, Math.sqrt(distanceSquared))) * force * 0.35;
+      const displacedY = y + force * 0.9;
+      positions[index * 2] = displacedX;
+      positions[index * 2 + 1] = displacedY;
+      const deflection = Math.hypot(displacedX - x, displacedY - y);
+      if (deflection > maxDeflection) {
+        maxDeflection = deflection;
+        loadedNode = index;
+      }
+    }
+    let basePath = '';
+    let loadedPath = '';
+    for (let index = 0; index < members.length; index += 2) {
+      const a = members[index];
+      const b = members[index + 1];
+      const segment = `M${positions[a * 2].toFixed(1)} ${positions[a * 2 + 1].toFixed(1)}L${positions[b * 2].toFixed(1)} ${positions[b * 2 + 1].toFixed(1)}`;
+      if (amplitude > 0.5 && (a === loadedNode || b === loadedNode)) loadedPath += segment;
+      else basePath += segment;
+    }
+    base.setAttribute('d', basePath);
+    loaded.setAttribute('d', loadedPath);
+    load.setAttribute('x', loadedNode < 0 ? '-10' : (positions[loadedNode * 2] - 3).toFixed(1));
+    load.setAttribute('y', loadedNode < 0 ? '-10' : (positions[loadedNode * 2 + 1] - 3).toFixed(1));
+    readout.textContent = maxDeflection.toFixed(1);
+  };
+  renderNet(140);
+
+  link.addEventListener('pointerenter', (event) => {
+    if (!pointer.enabled || event.pointerType === 'touch') return;
+    visible = true;
+    cardX = pointer.x = event.clientX;
+    cardY = pointer.y = event.clientY;
+    card.setAttribute('data-on', '');
+    if (!shown) {
+      debug('boomich reveal first show');
+      shown = true;
+    }
+    wake();
+  });
+  link.addEventListener('pointerleave', () => {
+    visible = false;
+    card.removeAttribute('data-on');
+  });
+
+  return {
+    update() {
+      if (!visible && amplitude === 0) return false;
+      cardX += (pointer.x - cardX) * 0.12;
+      cardY += (pointer.y - cardY) * 0.12;
+      const lag = pointer.x - cardX;
+      const targetAmplitude = visible ? Math.min(26, 6 + Math.abs(pointer.velocityX) * 1.4) : 0;
+      amplitude += (targetAmplitude - amplitude) * 0.15;
+      if (!visible && amplitude < 0.05) amplitude = 0;
+      renderNet(Math.max(30, Math.min(250, 140 - lag * 0.9)));
+      const tilt = Math.max(-10, Math.min(10, lag * 0.12)) - 3;
+      card.style.transform = `translate3d(${cardX}px, ${cardY}px, 0) translate(-50%, -118%) rotate(${tilt}deg)`;
+      return visible || amplitude > 0;
+    },
+    hide() {
+      visible = false;
+      amplitude = 0;
+      card.removeAttribute('data-on');
+    },
+  };
+}
+
 function initPointer() {
   const dot = document.querySelector<HTMLElement>('#cursor');
   const label = document.querySelector<HTMLElement>('#cursor-label');
@@ -184,16 +312,15 @@ function initPointer() {
   const name = document.querySelector<HTMLElement>('#hero-name');
   const heading = document.querySelector('h1');
   if (!dot || !label || !photo || !name || !heading) return;
-  let targetX = -200,
-    targetY = -200;
+  const pointer: PointerState = { x: -200, y: -200, velocityX: 0, enabled: false };
   let cursorX = -200,
     cursorY = -200;
   let photoX = -200,
     photoY = -200;
   let frame = 0;
-  let enabled = false;
   let photoVisible = false;
   let currentLabel = '';
+  const boomich = initBoomichReveal(pointer, requestFrame);
   const hidePhoto = () => {
     photoVisible = false;
     photo.removeAttribute('data-on');
@@ -202,40 +329,45 @@ function initPointer() {
   const hide = () => {
     dot.removeAttribute('data-on');
     hidePhoto();
+    boomich?.hide();
+    pointer.velocityX = 0;
     cancelAnimationFrame(frame);
     frame = 0;
   };
   const loop = () => {
-    cursorX += (targetX - cursorX) * 0.2;
-    cursorY += (targetY - cursorY) * 0.2;
-    const cursorMoving = Math.hypot(targetX - cursorX, targetY - cursorY) > 0.1;
+    cursorX += (pointer.x - cursorX) * 0.2;
+    cursorY += (pointer.y - cursorY) * 0.2;
+    const cursorMoving = Math.hypot(pointer.x - cursorX, pointer.y - cursorY) > 0.1;
     if (!cursorMoving) {
-      cursorX = targetX;
-      cursorY = targetY;
+      cursorX = pointer.x;
+      cursorY = pointer.y;
     }
     dot.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
 
     let photoMoving = false;
     if (photoVisible) {
-      photoX += (targetX - photoX) * 0.1;
-      photoY += (targetY - photoY) * 0.1;
-      photoMoving = Math.hypot(targetX - photoX, targetY - photoY) > 0.1;
+      photoX += (pointer.x - photoX) * 0.1;
+      photoY += (pointer.y - photoY) * 0.1;
+      photoMoving = Math.hypot(pointer.x - photoX, pointer.y - photoY) > 0.1;
       if (!photoMoving) {
-        photoX = targetX;
-        photoY = targetY;
+        photoX = pointer.x;
+        photoY = pointer.y;
       }
-      const tilt = Math.max(-12, Math.min(12, (targetX - photoX) * 0.15));
+      const tilt = Math.max(-12, Math.min(12, (pointer.x - photoX) * 0.15));
       photo.style.transform = `translate3d(${photoX}px, ${photoY}px, 0) translate(-50%, -115%) rotate(${tilt}deg)`;
     }
-    // Rest once both effects settle; the next pointer event starts another frame.
-    frame = cursorMoving || photoMoving ? requestAnimationFrame(loop) : 0;
+    const boomichMoving = boomich?.update() ?? false;
+    pointer.velocityX *= 0.85;
+    // All pointer effects share this loop and rest once their movement settles.
+    frame = cursorMoving || photoMoving || boomichMoving ? requestAnimationFrame(loop) : 0;
   };
-  const requestFrame = () => {
+  function requestFrame() {
     if (!frame) frame = requestAnimationFrame(loop);
-  };
+  }
   const sync = () => {
-    enabled = finePointer.matches && !reducedMotion.matches;
-    if (!enabled) hide();
+    pointer.enabled = finePointer.matches && !reducedMotion.matches;
+    if (!pointer.enabled) hide();
+    if (boomich) debug('boomich reveal enabled', { enabled: pointer.enabled });
   };
   sync();
   finePointer.addEventListener('change', sync);
@@ -243,12 +375,14 @@ function initPointer() {
   window.addEventListener(
     'pointermove',
     (event) => {
-      if (!enabled || event.pointerType === 'touch') return;
-      targetX = event.clientX;
-      targetY = event.clientY;
+      if (!pointer.enabled || event.pointerType === 'touch') return;
+      pointer.velocityX = event.clientX - pointer.x;
+      pointer.x = event.clientX;
+      pointer.y = event.clientY;
       if (!dot.hasAttribute('data-on')) {
-        cursorX = photoX = targetX;
-        cursorY = photoY = targetY;
+        cursorX = photoX = pointer.x;
+        cursorY = photoY = pointer.y;
+        pointer.velocityX = 0;
       }
       requestFrame();
       dot.setAttribute('data-on', '');
@@ -269,16 +403,16 @@ function initPointer() {
     if (document.hidden) hide();
   });
   name.addEventListener('pointerenter', (event) => {
-    if (!enabled || event.pointerType === 'touch') return;
+    if (!pointer.enabled || event.pointerType === 'touch') return;
     photoVisible = true;
-    photoX = targetX = event.clientX;
-    photoY = targetY = event.clientY;
+    photoX = pointer.x = event.clientX;
+    photoY = pointer.y = event.clientY;
     photo.setAttribute('data-on', '');
     heading.setAttribute('data-name-hover', '');
     requestFrame();
   });
   name.addEventListener('pointerleave', hidePhoto);
-  debug('pointer initialized', { enabled });
+  debug('pointer initialized', { enabled: pointer.enabled });
 }
 
 function initCopy() {
