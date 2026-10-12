@@ -15,37 +15,37 @@ Work on a branch (`redesign`). Keep the deploy pipeline (`.github/workflows/depl
 
 ## Translating the canvas format
 
-| In `Main.dc.html` | In the repo |
-|---|---|
-| `{{display}}` | Outfit stack: `'Outfit', ui-sans-serif, system-ui, sans-serif` |
-| `{{accent}}` / `var(--accent)` | CSS custom property `--accent` |
-| `<sc-for list="{{marquee}}">` | Static markup: the 10 tools, duplicated once (second copy `aria-hidden`) |
-| `<sc-for list="{{bids}}">` | Static markup: 4 bid rows + first 3 repeated (seamless loop) |
-| `<sc-for list="{{emailChars}}">` | 20 `<span class="ch" style="--i:N">` for `joaovitor@boomich.pt` |
-| `<sc-for list="{{focus}}">` | 5 static `<li>` rows (copy is in `renderVals()`) |
-| `ref="{{…Ref}}"`, `onMouseEnter`, `onClick` | `querySelector` + `addEventListener` in `src/index.ts` |
-| `/_blob/1b0136c0…` | `src/img/vitor-avatar.webp` (round avatar in the H1) |
-| `/_blob/c2f83c62…` | `src/img/vitor-candid.webp` (floating photo on name hover) |
-| `/_blob/fcfc797d…` | `src/img/vitor-portrait.webp` (contact section) |
-| `<helmet><style>` | `src/index.css` (keep the keyframes/classes verbatim; they are tuned) |
+| In `Main.dc.html`                           | In the repo                                                              |
+| ------------------------------------------- | ------------------------------------------------------------------------ |
+| `{{display}}`                               | Outfit stack: `'Outfit', ui-sans-serif, system-ui, sans-serif`           |
+| `{{accent}}` / `var(--accent)`              | CSS custom property `--accent`                                           |
+| `<sc-for list="{{marquee}}">`               | Static markup: the 10 tools, duplicated once (second copy `aria-hidden`) |
+| `<sc-for list="{{bids}}">`                  | Static markup: 4 bid rows + first 3 repeated (seamless loop)             |
+| `<sc-for list="{{emailChars}}">`            | 20 `<span class="ch" style="--i:N">` for `joaovitor@boomich.pt`          |
+| `<sc-for list="{{focus}}">`                 | 5 static `<li>` rows (copy is in `renderVals()`)                         |
+| `ref="{{…Ref}}"`, `onMouseEnter`, `onClick` | `querySelector` + `addEventListener` in `src/index.ts`                   |
+| `/_blob/1b0136c0…`                          | `src/img/vitor-avatar.webp` (round avatar in the H1)                     |
+| `/_blob/c2f83c62…`                          | `src/img/vitor-candid.webp` (floating photo on name hover)               |
+| `/_blob/fcfc797d…`                          | `src/img/vitor-portrait.webp` (contact section)                          |
+| `<helmet><style>`                           | `src/index.css` (keep the keyframes/classes verbatim; they are tuned)    |
 
 Inline styles in the source can become Tailwind classes or stay as CSS — prefer Tailwind for layout/spacing, plain CSS for motion. Don't "improve" the timings: easing is `cubic-bezier(.16,1,.3,1)` almost everywhere on purpose.
 
 ## Tokens
 
-| Token | Day | Night |
-|---|---|---|
-| `--bg` | `#F3F2EE` | `#11110F` |
-| `--surface` (cards, stack panel) | `#FFFFFF` | `#1B1B19` |
-| `--surface-2` (MailToBills vignette) | `#E9E7E0` | `#24241F` |
-| `--ink` | `#111111` | `#EDECE6` |
-| `--ink-2` (body copy) | `#2E2E2A` | `#CFCEC7` |
-| `--muted` (labels, meta) | `#5C5C56` | `#A3A29A` |
-| `--line` (hairlines) | `#D6D4CC` | `#2E2E2B` |
-| `--line-soft` | `#ECEAE4` | `#24241F` |
-| `--marquee-idle` | `#B3B2AA` | `#4A4A45` |
-| `--accent` | `#1E7A55` | `#3FAE7F` |
-| dark vignettes (Bidcast, Review AI) | `#141413` | `#0B0B0A` + 1px `--line` border |
+| Token                                | Day       | Night                           |
+| ------------------------------------ | --------- | ------------------------------- |
+| `--bg`                               | `#F3F2EE` | `#11110F`                       |
+| `--surface` (cards, stack panel)     | `#FFFFFF` | `#1B1B19`                       |
+| `--surface-2` (MailToBills vignette) | `#E9E7E0` | `#24241F`                       |
+| `--ink`                              | `#111111` | `#EDECE6`                       |
+| `--ink-2` (body copy)                | `#2E2E2A` | `#CFCEC7`                       |
+| `--muted` (labels, meta)             | `#5C5C56` | `#A3A29A`                       |
+| `--line` (hairlines)                 | `#D6D4CC` | `#2E2E2B`                       |
+| `--line-soft`                        | `#ECEAE4` | `#24241F`                       |
+| `--marquee-idle`                     | `#B3B2AA` | `#4A4A45`                       |
+| `--accent`                           | `#1E7A55` | `#3FAE7F`                       |
+| dark vignettes (Bidcast, Review AI)  | `#141413` | `#0B0B0A` + 1px `--line` border |
 
 Primary buttons invert in night mode (ink background, bg-colored text) — derive them from `--ink`/`--bg`, never hard-code. Check every text/background pair for 4.5:1 (3:1 at 24px+).
 
